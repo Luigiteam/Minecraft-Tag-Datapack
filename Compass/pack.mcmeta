@@ -1,0 +1,6 @@
+{
+    "pack":{
+        "pack_format": 10,
+        "description": "This gives a compass that points to another person"
+    }
+}
