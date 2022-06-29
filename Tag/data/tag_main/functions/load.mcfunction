@@ -15,7 +15,7 @@ scoreboard objectives add Toggle dummy
 
 scoreboard objectives add Powerup dummy
 
-#scoreboard objectives add VilligerRightClick 
+scoreboard objectives add trapDestroy dummy
 
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
@@ -45,8 +45,9 @@ scoreboard players set LastRound gameTimer 0
 
 scoreboard players set PowerupTimer gameTimer 0
 
-scoreboard players set Two Numbers 3
 scoreboard players set Three Numbers 2
+scoreboard players set Two Numbers 3
+scoreboard players set TrapCooldown Numbers 100
 scoreboard players set SpeedTimer Numbers 200
 scoreboard players set PowerupCooldown Numbers 600
 
