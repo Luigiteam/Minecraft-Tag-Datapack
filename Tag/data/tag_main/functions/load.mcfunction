@@ -31,8 +31,8 @@ scoreboard players set Hit0 hitDetect 0
 scoreboard players set Build startBuild 0
 
 scoreboard players set Timer gameTimer 0
-scoreboard players set EndTimer gameTimer 600
-scoreboard players set TimerMin gameTimer 100
+scoreboard players set EndTimer gameTimer 2400
+scoreboard players set TimerMin gameTimer 2400
 
 
 scoreboard players set FirstRound gameTimer 0
@@ -41,8 +41,9 @@ scoreboard players set LastRound gameTimer 0
 
 scoreboard players set PowerupTimer gameTimer 0
 
-scoreboard players set Three Numbers 2
-scoreboard players set Two Numbers 3
+scoreboard players set Two Numbers 2
+scoreboard players set Three Numbers 3
+scoreboard players set Four Numbers 4
 scoreboard players set TrapCooldown Numbers 100
 scoreboard players set SpeedTimer Numbers 200
 scoreboard players set FireworkCooldown Numbers 600
@@ -50,12 +51,10 @@ scoreboard players set PowerupCooldown Numbers 1200
 
 scoreboard players set yDistance Toggle 1
 
+scoreboard players set Tools Toggle 2
+
 scoreboard players set PowerUps Toggle 1
 scoreboard players set Type Powerup 0
-
-scoreboard players set Two Numbers 3
-scoreboard players set Three Numbers 2
-scoreboard players set SpeedTimer Numbers 100
 
 scoreboard players set yResults yDistance 0
 
@@ -68,6 +67,10 @@ team modify taggers color aqua
 team add runner "Runners"
 team modify runner color green
 
+# This is to setup the bossbar timer
+bossbar add runnertimer {"text": "Timer","color": "Gold"}
+bossbar set runnertimer style notched_12
+bossbar set runnertimer color yellow
 
 ## Item colors
 
@@ -78,6 +81,10 @@ team modify Red color red
 ### This is for the Clap Trap item
 team add Yellow
 team modify Yellow color yellow
+
+### This is for the Invis Potion item
+team add White
+team modify White color white
 
 ## Neutral for pregame
 team add neutral "Neutral"

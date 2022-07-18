@@ -9,6 +9,8 @@ kill @e[tag=builder]
 
 scoreboard players set Build startBuild 1
 
+clear @a
+
 # This sets the world border
 execute at @e[tag=spawn] run worldborder center ~ ~
 worldborder set 125 1
