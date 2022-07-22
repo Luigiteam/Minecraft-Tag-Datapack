@@ -23,6 +23,12 @@ scoreboard objectives add xDistance dummy
 
 scoreboard objectives add zDistance dummy
 
+scoreboard objectives add airTime dummy
+
+scoreboard objectives add elytraEquip dummy
+
+scoreboard objectives add elytraCooldown dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
@@ -41,6 +47,7 @@ scoreboard players set LastRound gameTimer 0
 
 scoreboard players set PowerupTimer gameTimer 0
 
+scoreboard players set One Numbers 1
 scoreboard players set Two Numbers 2
 scoreboard players set Three Numbers 3
 scoreboard players set Four Numbers 4
@@ -74,7 +81,7 @@ bossbar set runnertimer color yellow
 
 ## Item colors
 
-### This is for the wooden sword powerup
+### This is for the wooden sword item
 team add Red
 team modify Red color red
 
@@ -85,6 +92,10 @@ team modify Yellow color yellow
 ### This is for the Invis Potion item
 team add White
 team modify White color white
+
+### This is for the Elytra item
+team add lightPurple
+team modify lightPurple color light_purple
 
 ## Neutral for pregame
 team add neutral "Neutral"

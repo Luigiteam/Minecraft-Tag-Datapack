@@ -26,6 +26,7 @@ execute at @e[tag=spawn] run spreadplayers ~ ~ 25 60 true @a
 
 execute as @e[tag=spawn] at @s run tp ~ ~309 ~
 
+execute at @e[tag=spawn] run spawnpoint @a ~ ~ ~
 
 # This gives the tools out
 
@@ -50,14 +51,14 @@ execute if score Tools Toggle matches 4 run give @a iron_pickaxe
 execute if score Tools Toggle matches 4 run give @a iron_shovel
 
 ## Diamond
-execute if score Tools Toggle matches 1 run give @a diamond_axe
-execute if score Tools Toggle matches 1 run give @a diamond_pickaxe
-execute if score Tools Toggle matches 1 run give @a diamond_shovel
+execute if score Tools Toggle matches 5 run give @a diamond_axe
+execute if score Tools Toggle matches 5 run give @a diamond_pickaxe
+execute if score Tools Toggle matches 5 run give @a diamond_shovel
 
 ## Netherite
-execute if score Tools Toggle matches 1 run give @a netherite_axe
-execute if score Tools Toggle matches 1 run give @a netherite_pickaxe
-execute if score Tools Toggle matches 1 run give @a netherite_shovel
+execute if score Tools Toggle matches 6 run give @a netherite_axe
+execute if score Tools Toggle matches 6 run give @a netherite_pickaxe
+execute if score Tools Toggle matches 6 run give @a netherite_shovel
 
 # This is to set the bossbar timer
 execute store result bossbar runnertimer max run scoreboard players get EndTimer gameTimer

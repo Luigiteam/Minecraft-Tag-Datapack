@@ -29,5 +29,5 @@ scoreboard players set yResults yDistance 0
 worldborder set 30000000 1
 
 # This breaks the building
-execute at @e[tag=spawn] run fill ~4 ~ ~5 ~-4 ~5 ~-4 air
+execute at @e[tag=spawn] run fill ~20 ~ ~20 ~-20 ~5 ~-20 air
 kill @e[tag=spawn]

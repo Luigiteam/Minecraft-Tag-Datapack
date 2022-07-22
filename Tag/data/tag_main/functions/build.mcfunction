@@ -1,5 +1,7 @@
 scoreboard players set State gameStart 0
 
+execute if entity @e[tag=spawn] run function tag_main:reload
+
 execute at @r run summon armor_stand ~ ~ ~ {Invisible:1b,NoGravity:1b,Tags:["builder"],Invulnerable:1b}
 
 execute at @e[tag=builder] run setblock ~ 309 ~ structure_block{name:"tag_main:start",mode:"LOAD",posY:0}
