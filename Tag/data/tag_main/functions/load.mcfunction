@@ -13,7 +13,7 @@ scoreboard objectives add Numbers dummy
 
 scoreboard objectives add Toggle dummy
 
-scoreboard objectives add Powerup dummy
+scoreboard objectives add Rand dummy
 
 scoreboard objectives add trapDestroy dummy
 
@@ -27,7 +27,7 @@ scoreboard objectives add airTime dummy
 
 scoreboard objectives add elytraEquip dummy
 
-scoreboard objectives add elytraCooldown dummy
+scoreboard objectives add Sneak minecraft.custom:minecraft.sneak_time
 
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
@@ -61,7 +61,7 @@ scoreboard players set yDistance Toggle 1
 scoreboard players set Tools Toggle 2
 
 scoreboard players set PowerUps Toggle 1
-scoreboard players set Type Powerup 0
+scoreboard players set num Rand 0
 
 scoreboard players set yResults yDistance 0
 
@@ -85,9 +85,13 @@ bossbar set runnertimer color yellow
 team add Red
 team modify Red color red
 
-### This is for the Clap Trap item
+### This is for the Clock of Destiny item
 team add Yellow
 team modify Yellow color yellow
+
+### This is for the Clap Trap item
+team add Orange
+team modify Orange color gold
 
 ### This is for the Invis Potion item
 team add White

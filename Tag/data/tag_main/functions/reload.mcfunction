@@ -21,7 +21,7 @@ scoreboard players set yDistance Toggle 1
 scoreboard players set Tools Toggle 2
 
 scoreboard players set PowerUps Toggle 1
-scoreboard players set Type Powerup 0
+scoreboard players set Type Rand 0
 
 scoreboard players set yResults yDistance 0
 

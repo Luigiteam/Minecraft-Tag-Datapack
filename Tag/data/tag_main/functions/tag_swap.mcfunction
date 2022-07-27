@@ -1,16 +1,20 @@
-#This swaps the tagger with the runner
-tag @a[tag=tagger] add temp
+# This swaps the runner to a tagger
+tag @a[tag=runner,advancements={tag_main:on_hurt=true}] add tagger
+tag @a[tag=runner,tag=tagger,advancements={tag_main:on_hurt=true}] remove runner
 
-execute as @a[tag=tagger] if score @s hitDetect > Hit0 hitDetect at @s anchored eyes facing entity @e[tag=!tagger,sort=nearest,limit=1,type=player] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 if entity @s[distance=..0.3] run tag @e[tag=!tagger,sort=nearest,limit=1,type=player] add tagger
+# This swaps the tagger to a runner
+tag @a[tag=tagger,advancements={tag_main:on_hurt=false}] add runner
+tag @a[tag=tagger,tag=runner,advancements={tag_main:on_hurt=false}] remove tagger
 
-tag @a[tag=temp] remove tagger
-
-tag @a[tag=temp] remove temp
-
-team leave @e[tag=!tagger]
+# This changes the teams and resets the advancement
+team leave @a
 
 team join taggers @a[tag=tagger]
 
 team join runner @a[tag=!tagger]
 
-tellraw @a[tag=tagger] {"text": "You are the tagger now ", "extra": [{"selector":"@s"}]}
+execute as @a[tag=tagger] run tellraw @a {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
+
+bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
+
+advancement revoke @a only tag_main:on_hurt
