@@ -4,8 +4,10 @@ worldborder set 125 0
 team leave @a
 
 tag @a remove tagger
+tag @a remove runner
 
-tag @r add tagger
+tag @r[tag=!runner] add tagger
+tag @a[tag=!tagger] add runner
 
 # This sets the timers up
 scoreboard players operation Timer gameTimer = EndTimer gameTimer
@@ -17,7 +19,7 @@ scoreboard players operation LastRound gameTimer = EndTimer gameTimer
 scoreboard players operation LastRound gameTimer /= Four Numbers
 
 team join taggers @a[tag=tagger]
-team join runner @a[tag=!tagger]
+team join runner @a[tag=runner]
 
 # This spreads the players
 execute as @e[tag=spawn] at @s run tp ~ ~-309 ~
@@ -63,7 +65,9 @@ execute if score Tools Toggle matches 6 run give @a netherite_shovel
 # This is to set the bossbar timer
 execute store result bossbar runnertimer max run scoreboard players get EndTimer gameTimer
 execute store result bossbar runnertimer value run scoreboard players get Timer gameTimer
+bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
 bossbar set runnertimer players @a
+
 
 gamemode survival @a
 scoreboard players set State gameStart 1

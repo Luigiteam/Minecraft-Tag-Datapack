@@ -9,6 +9,15 @@ execute if score Timer gameTimer matches 1201.. run bossbar set runnertimer colo
 execute if score Timer gameTimer matches 1200 run bossbar set runnertimer color red
 execute if score Timer gameTimer matches 1200 run tellraw @a "1 Minute Remaining"
 
+# This keeps teams in check
+## Checks for people in the wrong teams
+execute as @a[tag=tagger,tag=!runner,team=runner] run team leave @s
+execute as @a[tag=runner,tag=!tagger,team=taggers] run team leave @s
+
+team join taggers @a[tag=tagger]
+
+team join runner @a[tag=runner]
+
 # Pre-Game
 execute if score State gameStart matches 0 at @e[tag=spawn] run tp @a[distance=9..] ~ ~2 ~
 execute if score State gameStart matches 0 run gamemode adventure @a
@@ -21,9 +30,9 @@ execute at @e[tag=tagger] as @e[tag=runner,type=armor_stand,sort=nearest,limit=1
 scoreboard players operation yResults yDistance = @e[tag=tagger] yDistance
 execute at @e[tag=tagger] as @e[tag=runner,type=armor_stand,sort=nearest,limit=1] run scoreboard players operation yResults yDistance -= @s yDistance
 
-execute if score yDistanceToggle Toggle matches 1 as @e[tag=tagger] if score yResults yDistance matches ..-1 run title @s actionbar {"text": "The nearest runner is above you"}
-execute if score yDistanceToggle Toggle matches 1 as @e[tag=tagger] if score yResults yDistance matches 0 run title @s actionbar {"text": "The nearest runner is the same level as you"}
-execute if score yDistanceToggle Toggle matches 1 as @e[tag=tagger] if score yResults yDistance matches 1.. run title @s actionbar {"text": "The nearest runner is under you"}
+execute if score yDistance Toggle matches 1 as @e[tag=tagger] if score yResults yDistance matches ..-1 run title @s actionbar {"text": "The nearest runner is above you"}
+execute if score yDistance Toggle matches 1 as @e[tag=tagger] if score yResults yDistance matches 0 run title @s actionbar {"text": "The nearest runner is the same level as you"}
+execute if score yDistance Toggle matches 1 as @e[tag=tagger] if score yResults yDistance matches 1.. run title @s actionbar {"text": "The nearest runner is under you"}
 
 # This is the fundunmentals for the Elytra of Soaring
 
@@ -49,6 +58,10 @@ execute as @e[tag=!airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. 
 
 scoreboard players set @a[nbt=!{Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]}] airTime 0
 
+# This is how the Snowball works
+execute at @e[type=armor_stand,tag=snowballs] unless entity @e[type=snowball,distance=..2] run fill ~2 ~2 ~-2 ~-2 ~-2 ~2 air destroy
+kill @e[type=armor_stand,tag=snowballs]
+execute at @e[type=snowball,nbt={Item:{tag:{Floating:1b}}}] run summon minecraft:armor_stand ~ ~ ~ {Tags:["snowballs"],Invisible:1b, Marker:1b}
 # This is some clamp trap stuff
 scoreboard players set @e[tag=ClampTrap] trapDestroy 0
 
@@ -66,8 +79,8 @@ execute as @e[tag=Trap] if score @s gameTimer >= TrapCooldown Numbers at @s run 
 kill @e[scores={trapDestroy=1..},tag=Trap]
 
 # This is how the Clock powerup works
-execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b}}},scores={Sneak=1..}] run function tag_main:clock_trigger/clock_runner
-execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b}}},scores={Sneak=1..}] run function tag_main:clock_trigger/clock_tagger
+execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_runner
+execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_tagger
 
 # This makes the powerups glow in their color
 
@@ -87,6 +100,9 @@ team join lightPurple @e[type=item,nbt={Item:{id:"minecraft:elytra",tag:{Floatin
 
 ## Clock of Destiny
 team join Yellow @e[type=item,nbt={Item:{id:"minecraft:clock",tag:{Floating:1b}}}]
+
+## Snowball of Freezing
+team join aqua @e[type=item,nbt={Item:{id:"minecraft:snowball",tag:{Floating:1b}}}]
 
 # This is some tagger stuff
 execute as @a[tag=tagger] if score @s hitDetect > Hit0 hitDetect at @s anchored eyes facing entity @e[tag=!tagger,sort=nearest,limit=1,type=player] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 if entity @s[distance=..0.3] run function tag_main:tag_swap
@@ -114,7 +130,7 @@ execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] at @s if block ~ ~-1 ~ m
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] run scoreboard players add @s gameTimer 1
 
 
-execute as @e[type=item,nbt={Item:{id:"minecraft:wooden_sword",Count:1b,tag:{Floating:1b}}}] at @s if score @s gameTimer >= FireworkCooldown Numbers run summon firework_rocket ~ ~5 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;11743532],FadeColors:[I;14188952]}],Flight:2}}}}
+execute as @e[type=item,nbt={Item:{id:"minecraft:wooden_sword",tag:{Floating:1b}}}] at @s if score @s gameTimer >= FireworkCooldown Numbers run summon firework_rocket ~ ~5 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;11743532],FadeColors:[I;14188952]}],Flight:2}}}}
 
 execute as @e[type=item,nbt={Item:{id:"minecraft:polar_bear_spawn_egg"}}] at @s if score @s gameTimer >= FireworkCooldown Numbers run summon minecraft:firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;15435844],FadeColors:[I;11250603]}],Flight:2}}}}
 
@@ -123,6 +139,9 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:splash_potion",tag:{Floating:1b
 execute as @e[type=item,nbt={Item:{id:"minecraft:elytra",tag:{Floating:1b}}}] at @s if score @s gameTimer >= FireworkCooldown Numbers run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;12801229,15790320],FadeColors:[I;8073150]}],Flight:2}}}}
 
 execute as @e[type=item,nbt={Item:{id:"minecraft:clock",tag:{Floating:1b}}}] at @s if score @s gameTimer >= FireworkCooldown Numbers run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;14602026]}],Flight:2}}}}
+
+execute as @e[type=item,nbt={Item:{id:"minecraft:snowball",tag:{Floating:1b}}}] at @s if score @s gameTimer >= FireworkCooldown Numbers run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;6719955]}],Flight:2}}}}
+
 
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer >= FireworkCooldown Numbers run scoreboard players set @s gameTimer 0
 

@@ -1,3 +1,4 @@
+## VERSION 0.7.1a
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -29,6 +30,8 @@ scoreboard objectives add elytraEquip dummy
 
 scoreboard objectives add Sneak minecraft.custom:minecraft.sneak_time
 
+scoreboard objectives add optionsSelect dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
@@ -58,12 +61,16 @@ scoreboard players set PowerupCooldown Numbers 1200
 
 scoreboard players set yDistance Toggle 1
 
-scoreboard players set Tools Toggle 2
+scoreboard players set Tools Toggle 0
 
 scoreboard players set PowerUps Toggle 1
+
 scoreboard players set num Rand 0
+scoreboard players set anvil Rand 0
 
 scoreboard players set yResults yDistance 0
+
+scoreboard players set Selection optionsSelect 0
 
 # Adds the teams
 ## team Taggers
@@ -101,8 +108,12 @@ team modify White color white
 team add lightPurple
 team modify lightPurple color light_purple
 
+### This if for the Snowball item
+team add aqua
+team modify aqua color aqua
+
 ## Neutral for pregame
 team add neutral "Neutral"
 team modify neutral friendlyFire false
 
-tellraw @a {"text":"Tag Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 0.8 Loaded!","color":"32e65c"}
