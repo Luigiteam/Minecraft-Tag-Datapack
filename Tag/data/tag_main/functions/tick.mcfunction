@@ -1,22 +1,25 @@
+execute at @e[tag=spawn] if score State gameStart matches 0 run kill @e[type=!player,distance=..15]
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
 
 execute if score State gameStart matches 1.. run effect give @a[nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
 
 ## Not necisary, but gives some nice flare
+bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@a[tag=tagger]"}]}
+
 execute if score Timer gameTimer matches 1201.. run bossbar set runnertimer color yellow
 
 execute if score Timer gameTimer matches 1200 run bossbar set runnertimer color red
 execute if score Timer gameTimer matches 1200 run tellraw @a "1 Minute Remaining"
 
-# This keeps teams in check
+# This keeps teams in check (Disabled cureently)
 ## Checks for people in the wrong teams
-execute as @a[tag=tagger,tag=!runner,team=runner] run team leave @s
-execute as @a[tag=runner,tag=!tagger,team=taggers] run team leave @s
+#execute as @a[tag=tagger,tag=!runner,team=runner] run team leave @s
+#execute as @a[tag=runner,tag=!tagger,team=taggers] run team leave @s
 
-team join taggers @a[tag=tagger]
+#team join taggers @a[tag=tagger]
 
-team join runner @a[tag=runner]
+#team join runner @a[tag=runner]
 
 # Pre-Game
 execute if score State gameStart matches 0 at @e[tag=spawn] run tp @a[distance=9..] ~ ~2 ~

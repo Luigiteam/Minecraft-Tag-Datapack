@@ -57,7 +57,7 @@ scoreboard players set Four Numbers 4
 scoreboard players set TrapCooldown Numbers 100
 scoreboard players set SpeedTimer Numbers 200
 scoreboard players set FireworkCooldown Numbers 600
-scoreboard players set PowerupCooldown Numbers 1200
+scoreboard players set PowerupCooldown Numbers 900
 
 scoreboard players set yDistance Toggle 1
 
@@ -116,4 +116,4 @@ team modify aqua color aqua
 team add neutral "Neutral"
 team modify neutral friendlyFire false
 
-tellraw @a {"text":"Tag 0.8 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 0.8.1 Loaded!","color":"32e65c"}
