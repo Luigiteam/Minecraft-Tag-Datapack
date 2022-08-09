@@ -1,4 +1,6 @@
-execute at @e[tag=spawn] if score State gameStart matches 0 run kill @e[type=!player,distance=..15]
+
+execute at @e[tag=spawn] if score State gameStart matches 0 run kill @e[type=!player,type=!armor_stand,distance=..15]
+
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
 
@@ -148,8 +150,9 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:snowball",tag:{Floating:1b}}}] 
 
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer >= FireworkCooldown Numbers run scoreboard players set @s gameTimer 0
 
-# This resets the score for Sneak
+# This resets the score for Sneak and taggerDamage
 scoreboard players set @a Sneak 0
+scoreboard players set @a taggerDamage 0
 
 # This checks if the runners are done running
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 run function tag_main:winners

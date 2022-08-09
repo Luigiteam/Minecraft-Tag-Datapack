@@ -1,4 +1,4 @@
-## VERSION 0.7.1a
+## VERSION 0.8.2b
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -31,6 +31,8 @@ scoreboard objectives add elytraEquip dummy
 scoreboard objectives add Sneak minecraft.custom:minecraft.sneak_time
 
 scoreboard objectives add optionsSelect dummy
+
+scoreboard objectives add taggerDamage custom:damage_dealt
 
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
