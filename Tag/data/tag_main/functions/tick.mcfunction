@@ -109,10 +109,6 @@ team join Yellow @e[type=item,nbt={Item:{id:"minecraft:clock",tag:{Floating:1b}}
 ## Snowball of Freezing
 team join aqua @e[type=item,nbt={Item:{id:"minecraft:snowball",tag:{Floating:1b}}}]
 
-# This is some tagger stuff
-execute as @a[tag=tagger] if score @s hitDetect > Hit0 hitDetect at @s anchored eyes facing entity @e[tag=!tagger,sort=nearest,limit=1,type=player] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 if entity @s[distance=..0.3] run function tag_main:tag_swap
-scoreboard players set @a hitDetect 0
-
 # This subtracts the Runner's timer
 execute if score State gameStart matches 1 run scoreboard players remove Timer gameTimer 1
 execute store result bossbar runnertimer value run scoreboard players get Timer gameTimer 
@@ -152,7 +148,6 @@ execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer >=
 
 # This resets the score for Sneak and taggerDamage
 scoreboard players set @a Sneak 0
-scoreboard players set @a taggerDamage 0
 
 # This checks if the runners are done running
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 run function tag_main:winners

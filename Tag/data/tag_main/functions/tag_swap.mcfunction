@@ -18,3 +18,5 @@ execute as @a[tag=tagger] run tellraw @a {"text": "The tagger is ", "extra": [{"
 bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
 
 advancement revoke @a only tag_main:on_hurt
+
+playsound block.note_block.pling player @a ~ ~ ~ 100

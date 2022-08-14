@@ -1,4 +1,4 @@
-## VERSION 0.8.2
+## VERSION 0.8.2.2
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -118,4 +118,4 @@ team modify aqua color aqua
 team add neutral "Neutral"
 team modify neutral friendlyFire false
 
-tellraw @a {"text":"Tag 0.8.2 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 0.8.2.2 Loaded!","color":"32e65c"}
