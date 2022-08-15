@@ -1,4 +1,4 @@
-## VERSION 0.8.2.2
+## VERSION 0.9b
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -69,6 +69,7 @@ scoreboard players set PowerUps Toggle 1
 
 scoreboard players set num Rand 0
 scoreboard players set anvil Rand 0
+scoreboard players set set Rand 0
 
 scoreboard players set yResults yDistance 0
 
@@ -114,8 +115,12 @@ team modify lightPurple color light_purple
 team add aqua
 team modify aqua color aqua
 
+### This is for the Eye of Teleportation item
+team add green
+team modify green color green
+
 ## Neutral for pregame
 team add neutral "Neutral"
 team modify neutral friendlyFire false
 
-tellraw @a {"text":"Tag 0.8.2.2 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 0.9 Loaded!","color":"32e65c"}

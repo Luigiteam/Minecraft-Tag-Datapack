@@ -1,18 +1,38 @@
 
-execute at @e[tag=spawn] if score State gameStart matches 0 run kill @e[type=!player,type=!armor_stand,distance=..15]
+execute at @e[tag=spawn] if score State gameStart matches 1.. run tp @e[type=player,distance=..20] @e[tag=tpSpawn,limit=1,sort=nearest]
 
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
 
 execute if score State gameStart matches 1.. run effect give @a[nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
 
-## Not necisary, but gives some nice flare
+# Not necisary, but gives some nice flare
 bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@a[tag=tagger]"}]}
+title @a[tag=runner] actionbar {"text": "The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
 execute if score Timer gameTimer matches 1201.. run bossbar set runnertimer color yellow
 
 execute if score Timer gameTimer matches 1200 run bossbar set runnertimer color red
 execute if score Timer gameTimer matches 1200 run tellraw @a "1 Minute Remaining"
+
+# This detects what are the options are set to place the correct buttons
+
+## Keep Inventory
+execute if score State gameStart matches 0 store result score num optionsSelect run gamerule keepInventory
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~-3 ~2 ~-2 birch_button[facing=east]
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~-3 ~2 ~-2 mangrove_button[facing=east]
+
+## yDistance
+execute if score State gameStart matches 0 store result score num optionsSelect run scoreboard players get yDistance Toggle
+
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~-2 ~2 ~-3 birch_button[facing=south]
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~-2 ~2 ~-3 mangrove_button[facing=south]
+
+## Powerups
+execute if score State gameStart matches 0 store result score num optionsSelect run scoreboard players get PowerUps Toggle
+
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~2 ~2 ~-3 birch_button[facing=south]
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~2 ~2 ~-3 mangrove_button[facing=south]
 
 # This keeps teams in check (Disabled cureently)
 ## Checks for people in the wrong teams
@@ -109,6 +129,9 @@ team join Yellow @e[type=item,nbt={Item:{id:"minecraft:clock",tag:{Floating:1b}}
 ## Snowball of Freezing
 team join aqua @e[type=item,nbt={Item:{id:"minecraft:snowball",tag:{Floating:1b}}}]
 
+## Eye of Teleportation
+team join green @e[type=item,nbt={Item:{id:"minecraft:ender_eye",tag:{Floating:1b}}}]
+
 # This subtracts the Runner's timer
 execute if score State gameStart matches 1 run scoreboard players remove Timer gameTimer 1
 execute store result bossbar runnertimer value run scoreboard players get Timer gameTimer 
@@ -143,6 +166,7 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:clock",tag:{Floating:1b}}}] at 
 
 execute as @e[type=item,nbt={Item:{id:"minecraft:snowball",tag:{Floating:1b}}}] at @s if score @s gameTimer >= FireworkCooldown Numbers run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;6719955]}],Flight:2}}}}
 
+execute as @e[type=item,nbt={Item:{id:"minecraft:ender_eye",tag:{Floating:1b}}}] at @s if score @s gameTimer >= FireworksCooldown Numbers run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;4312372]}],Flight:2}}}}
 
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer >= FireworkCooldown Numbers run scoreboard players set @s gameTimer 0
 

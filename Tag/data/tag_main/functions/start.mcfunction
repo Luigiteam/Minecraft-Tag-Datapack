@@ -68,6 +68,10 @@ execute store result bossbar runnertimer value run scoreboard players get Timer 
 bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
 bossbar set runnertimer players @a
 
+gamerule doImmediateRespawn true
+
+execute as @e[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 100 2.0
+tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
 gamemode survival @a
 scoreboard players set State gameStart 1

@@ -58,16 +58,20 @@ execute if score pow Rand matches 0..7 at @e[tag=positioned] run summon minecraf
 execute if score pow Rand matches 0..7 at @e[tag=positioned] run summon minecraft:firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"minecraft:firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;11250603],FadeColors:[I;15790320]}],Flight:2}}}}
 
 ## Item 4 (Elytra of Soaring)
-execute if score pow Rand matches 16..20 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:elytra",Count:1b,tag:{Floating:1b,display:{Name:'[{"text":"Elytra of Soaring","italic":false}]',Lore:['[{"text":"Put this elytra on and fly up in the air","italic":false}]','[{"text":"Maybe you can catch some people off-guard","italic":false}]']}}}}
-execute if score pow Rand matches 16..20 at @e[tag=positioned] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;12801229,15790320],FadeColors:[I;8073150]}],Flight:2}}}}
+execute if score pow Rand matches 16..18 at @e[tag=positioned] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;12801229,15790320],FadeColors:[I;8073150]}],Flight:2}}}}
+execute if score pow Rand matches 16..18 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:elytra",Count:1b,tag:{Floating:1b,display:{Name:'[{"text":"Elytra of Soaring","italic":false}]',Lore:['[{"text":"Put this elytra on and fly up in the air","italic":false}]','[{"text":"Maybe you can catch some people off-guard","italic":false}]']}}}}
 
 ## Item 5 (Clock of Destiny)
-execute if score pow Rand matches 21..27 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:clock",Count:1,tag:{Floating:1b,display:{Name:'[{"text":"Clock of Destiny","italic":false}]',Lore:['[{"text":"Hold shift while holding it","italic":false}]','[{"text":"Runners decrease the timer by 30 seconds","italic":false}]','[{"text":"Taggers increase the timer by 30 seconds","italic":false}]']},Enchantments:[{}]}}}
-execute if score pow Rand matches 21..27 at @e[tag=positioned] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;14602026]}],Flight:2}}}}
+execute if score pow Rand matches 22..27 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:clock",Count:1,tag:{Floating:1b,display:{Name:'[{"text":"Clock of Destiny","italic":false}]',Lore:['[{"text":"Hold shift while holding it","italic":false}]','[{"text":"Runners decrease the timer by 30 seconds","italic":false}]','[{"text":"Taggers increase the timer by 30 seconds","italic":false}]']},Enchantments:[{}]}}}
+execute if score pow Rand matches 22..27 at @e[tag=positioned] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;14602026]}],Flight:2}}}}
 
 ## Item 6 (Snowball of Freezing)
 execute if score pow Rand matches 11..13 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b,display:{Name:'[{"text":"Snowball of Destruction","italic":false}]',Lore:['[{"text":"It\'s so cold that blocks around it break too","italic":false}]']},Enchantments:[{}]}}}
 execute if score pow Rand matches 11..13 at @e[tag=positioned] run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;6719955]}],Flight:2}}}}
+
+## Item 7 (Eye of Teleportation)
+execute if score pow Rand matches 19..21 run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:ender_eye",Count:1b,tag:{display:{Name:'[{"text":"Eye of Teleportation","italic":false}]',Lore:['[{"text":"This Powerup allows you to tp to any","italic":false}]','[{"text":"person randomly","italic":false}]']},Enchantments:[{}],Floating:1b}}}
+execute if score pow Rnad matches 19..21 run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;4312372]}],Flight:2}}}}
 
 ### This rolls the chance for an anvil to fall (Can roll between 0-9)
 function tag_main:random
@@ -91,11 +95,13 @@ execute if score anvil Rand matches 0..6 if score pow Rand matches 8..10 run tel
 
 execute if score anvil Rand matches 0..6 if score pow Rand matches 0..7 run tellraw @a "A Powerup has spawned somewhere"
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 16..20 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"light_purple"}
+execute if score anvil Rand matches 0..6 if score pow Rand matches 16..18 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"light_purple"}
 
 execute if score anvil Rand matches 0..6 if score pow Rand matches 21..27 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"yellow"}
 
 execute if score anvil Rand matches 0..6 if score pow Rand matches 11..13 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"aqua"}
+
+execute if score anvil Rand matches 0..6 if score pow Rand matches 19..21 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"green"}
 
 # With an Anvil spawning
 execute if score anvil Rand matches 7..9 if score pow Rand matches 14..15 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF76A5"}
@@ -109,6 +115,9 @@ execute if score anvil Rand matches 7..9 if score pow Rand matches 16..20 run te
 execute if score anvil Rand matches 7..9 if score pow Rand matches 21..27 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFFF90"}
 
 execute if score anvil Rand matches 7..9 if score pow Rand matches 11..13 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#88FFFF"}
+
+execute if score anvil Rand matches 0..6 if score pow Rand matches 19..21 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"#BDFF9C"}
+
 
 scoreboard players set anvil Rand 0
 

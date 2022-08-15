@@ -19,4 +19,4 @@ bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@
 
 advancement revoke @a only tag_main:on_hurt
 
-playsound block.note_block.pling player @a ~ ~ ~ 100
+playsound block.note_block.pling player @a ~ ~ ~ 100 1.5
