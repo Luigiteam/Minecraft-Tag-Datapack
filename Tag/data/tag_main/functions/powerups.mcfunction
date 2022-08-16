@@ -116,7 +116,7 @@ execute if score anvil Rand matches 7..9 if score pow Rand matches 21..27 run te
 
 execute if score anvil Rand matches 7..9 if score pow Rand matches 11..13 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#88FFFF"}
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 19..21 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"#BDFF9C"}
+execute if score anvil Rand matches 7..9 if score pow Rand matches 19..21 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"#BDFF9C"}
 
 
 scoreboard players set anvil Rand 0

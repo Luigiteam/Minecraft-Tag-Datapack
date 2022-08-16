@@ -15,25 +15,6 @@ execute if score Timer gameTimer matches 1201.. run bossbar set runnertimer colo
 execute if score Timer gameTimer matches 1200 run bossbar set runnertimer color red
 execute if score Timer gameTimer matches 1200 run tellraw @a "1 Minute Remaining"
 
-# This detects what are the options are set to place the correct buttons
-
-## Keep Inventory
-execute if score State gameStart matches 0 store result score num optionsSelect run gamerule keepInventory
-execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~-3 ~2 ~-2 birch_button[facing=east]
-execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~-3 ~2 ~-2 mangrove_button[facing=east]
-
-## yDistance
-execute if score State gameStart matches 0 store result score num optionsSelect run scoreboard players get yDistance Toggle
-
-execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~-2 ~2 ~-3 birch_button[facing=south]
-execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~-2 ~2 ~-3 mangrove_button[facing=south]
-
-## Powerups
-execute if score State gameStart matches 0 store result score num optionsSelect run scoreboard players get PowerUps Toggle
-
-execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~2 ~2 ~-3 birch_button[facing=south]
-execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~2 ~2 ~-3 mangrove_button[facing=south]
-
 # This keeps teams in check (Disabled cureently)
 ## Checks for people in the wrong teams
 #execute as @a[tag=tagger,tag=!runner,team=runner] run team leave @s

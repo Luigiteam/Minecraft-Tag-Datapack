@@ -13,7 +13,7 @@
       }
     },
     "rewards": {
-      "function": "tag_main:eye"
+      "function": "tag_main:powerup_functions/eye_teleport/eye"
     }
   }
   

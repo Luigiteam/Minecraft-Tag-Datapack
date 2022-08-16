@@ -1,3 +1,5 @@
+kill @e[type=armor_stand,nbt={Invisible:1b}]
+
 scoreboard players set State gameStart 0
 
 execute if entity @e[tag=spawn] run function tag_main:reload
@@ -17,6 +19,25 @@ execute at @e[tag=builder] run setblock ~ ~1 ~ redstone_block
 kill @e[tag=builder]
 
 clear @a
+
+# This detects what are the options are set to place the correct buttons
+
+## Keep Inventory
+execute if score State gameStart matches 0 store result score num optionsSelect run gamerule keepInventory
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~-3 ~2 ~-2 birch_button[facing=east]
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~-3 ~2 ~-2 mangrove_button[facing=east]
+
+## yDistance
+execute if score State gameStart matches 0 store result score num optionsSelect run scoreboard players get yDistance Toggle
+
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~-2 ~2 ~-3 birch_button[facing=south]
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~-2 ~2 ~-3 mangrove_button[facing=south]
+
+## Powerups
+execute if score State gameStart matches 0 store result score num optionsSelect run scoreboard players get PowerUps Toggle
+
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 0 run setblock ~2 ~2 ~-3 birch_button[facing=south]
+execute at @e[tag=spawn] if score State gameStart matches 0 if score num optionsSelect matches 1 run setblock ~2 ~2 ~-3 mangrove_button[facing=south]
 
 # This sets the world border
 execute at @e[tag=spawn] run worldborder center ~ ~

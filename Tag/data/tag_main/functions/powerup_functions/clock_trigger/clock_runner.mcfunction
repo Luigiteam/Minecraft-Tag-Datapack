@@ -11,6 +11,6 @@ execute if score set Rand matches 25..27 run function tag_main:winners
 
 execute unless score set Rand matches 25..27 run scoreboard players remove Timer gameTimer 600
 
-clear @a[tag=runner,scores={Sneak=1..}] clock{Floating:1b} 1
+clear @s clock{Floating:1b} 1
 
 execute unless score set Rand matches 25..27 run tellraw @a "The Timer has loss 30 seconds"
