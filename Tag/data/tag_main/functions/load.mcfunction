@@ -1,4 +1,4 @@
-## VERSION 0.9b
+## VERSION 0.9.1
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -123,4 +123,4 @@ team modify green color green
 team add neutral "Neutral"
 team modify neutral friendlyFire false
 
-tellraw @a {"text":"Tag 0.9 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 0.9.1 Loaded!","color":"32e65c"}
