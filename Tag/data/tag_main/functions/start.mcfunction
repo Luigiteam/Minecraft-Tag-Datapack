@@ -68,6 +68,10 @@ execute store result bossbar runnertimer value run scoreboard players get Timer 
 bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
 bossbar set runnertimer players @a
 
+# This gives the player's scores for their respective effects
+execute as @a[scores={effectTrigger=1..}] run scoreboard players operation @s effectType = @s effectTrigger
+tag @a add noEffect
+
 gamerule doImmediateRespawn true
 
 execute as @e[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 100 2.0

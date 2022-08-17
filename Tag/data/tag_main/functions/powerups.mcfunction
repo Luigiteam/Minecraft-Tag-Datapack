@@ -67,18 +67,18 @@ execute if score pow Rand matches 22..27 at @e[tag=positioned] run summon firewo
 
 ## Item 6 (Snowball of Freezing)
 execute if score pow Rand matches 11..13 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b,display:{Name:'[{"text":"Snowball of Destruction","italic":false}]',Lore:['[{"text":"It\'s so cold that blocks around it break too","italic":false}]']},Enchantments:[{}]}}}
-execute if score pow Rand matches 11..13 at @e[tag=positioned] run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;6719955]}],Flight:2}}}}
+execute if score pow Rand matches 11..13 at @e[tag=positioned] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;6719955]}],Flight:2}}}}
 
 ## Item 7 (Eye of Teleportation)
-execute if score pow Rand matches 19..21 run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:ender_eye",Count:1b,tag:{display:{Name:'[{"text":"Eye of Teleportation","italic":false}]',Lore:['[{"text":"This Powerup allows you to tp to any","italic":false}]','[{"text":"person randomly","italic":false}]']},Enchantments:[{}],Floating:1b}}}
-execute if score pow Rnad matches 19..21 run summon firework_rocket ~ ~ ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;4312372]}],Flight:2}}}}
+execute if score pow Rand matches 19..21 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:ender_eye",Count:1b,tag:{display:{Name:'[{"text":"Eye of Teleportation","italic":false}]',Lore:['[{"text":"This Powerup allows you to tp to any","italic":false}]','[{"text":"person randomly","italic":false}]']},Enchantments:[{}],Floating:1b}}}
+execute if score pow Rnad matches 19..21 at @e[tag=positioned] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;4312372]}],Flight:2}}}}
 
 ### This rolls the chance for an anvil to fall (Can roll between 0-9)
 function tag_main:random
 scoreboard players operation anvil Rand += num Rand
 scoreboard players set num Rand 0
 
-execute if score anvil Rand matches 7..9 at @e[tag=positioned] run setblock ~ ~270 ~ minecraft:anvil
+execute if score anvil Rand matches 7..9 at @e[tag=positioned] run summon minecraft:falling_block ~ ~200 ~ {BlockState:{Name:"anvil"}}
 
 # This starts the cooldown and kill the position armorstands
 scoreboard players set PowerupTimer gameTimer 0

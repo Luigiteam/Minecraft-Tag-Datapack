@@ -1,12 +1,8 @@
-## VERSION 0.9.1
+## VERSION 0.9.2b
 forceload add 0 0 0 0
 
 # Adding Objectives
 scoreboard objectives add gameStart dummy
-
-scoreboard objectives add hitDetect minecraft.custom:damage_dealt
-
-scoreboard objectives add startBuild dummy
 
 scoreboard objectives add gameTimer dummy
 
@@ -32,14 +28,14 @@ scoreboard objectives add Sneak minecraft.custom:minecraft.sneak_time
 
 scoreboard objectives add optionsSelect dummy
 
-scoreboard objectives add taggerDamage custom:damage_dealt
+scoreboard objectives add effectTrigger trigger
+
+scoreboard objectives add effectTimer dummy
+
+scoreboard objectives add effectType dummy
 
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
-
-scoreboard players set Hit0 hitDetect 0
-
-scoreboard players set Build startBuild 0
 
 scoreboard players set Timer gameTimer 0
 scoreboard players set EndTimer gameTimer 2400
@@ -123,4 +119,6 @@ team modify green color green
 team add neutral "Neutral"
 team modify neutral friendlyFire false
 
-tellraw @a {"text":"Tag 0.9.1 Loaded!","color":"32e65c"}
+gamerule keepInventory true
+
+tellraw @a {"text":"Tag 0.9.2b Loaded!","color":"32e65c"}
