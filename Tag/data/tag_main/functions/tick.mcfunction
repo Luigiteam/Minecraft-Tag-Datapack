@@ -2,6 +2,8 @@ scoreboard players enable @a effectTrigger
 
 execute at @e[tag=spawn] if score State gameStart matches 1.. run tp @e[type=player,distance=..20] @e[tag=tpSpawn,limit=1,sort=nearest]
 
+kill @e[nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}]
+
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
 
@@ -132,8 +134,15 @@ execute as @a[tag=tagger] if score @s gameTimer >= SpeedTimer Numbers if score T
 execute as @a[tag=tagger] if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 1 0 true
 
 # This gives effects to everyone
-execute as @a[scores={effectType=1..},tag=noEffect] if score State gameStart matches 1.. run scoreboard players add @s effectTimer 1
-execute as @a[tag=noEffect,scores={effectTimer=400..}] run function tag_main:effect
+execute as @a[scores={effectType=1..,effectTimer=..400},tag=noEffect] if score State gameStart matches 1.. run scoreboard players add @s effectTimer 1
+execute as @a[tag=!noEffect,scores={effectUse=1..}] run tellraw @s "You cannot use this right now"
+execute as @a[tag=noEffect,scores={effectTimer=..399,effectUse=1..}] run tellraw @s "You cannot use this right now"
+tellraw @a[scores={effectTimer=400}] "You can use your effect now!"
+execute as @a[tag=noEffect,scores={effectTimer=400..,effectUse=1..},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}] run function tag_main:effect
+scoreboard players set @a effectUse 0
+
+## This gives players their carrot on a stick for effects
+execute if score State gameStart matches 1.. as @a[scores={effectType=1..},nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}]}
 
 ## This checks if an individual has no effect
 execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{ActiveEffects:[{Id:8}]}] run tag @s add noEffect
