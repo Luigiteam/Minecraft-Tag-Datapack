@@ -33,3 +33,14 @@ execute if score Selection optionsSelect matches 3 if score num optionsSelect ma
 execute if score Selection optionsSelect matches 3 if score num optionsSelect matches 1 run scoreboard players set PowerUps Toggle 0
 execute if score Selection optionsSelect matches 3 if score num optionsSelect matches 1 run tellraw @a "Power-Ups are off"
 execute if score Selection optionsSelect matches 3 if score num optionsSelect matches 1 at @e[tag=spawn] run setblock ~2 ~2 ~-3 birch_button[facing=south]
+
+# 4 - Insane Mode Toggle
+execute if score Selection optionsSelect matches 4 store result score num optionsSelect run scoreboard players get Insane Toggle
+
+execute if score Selection optionsSelect matches 4 if score num optionsSelect matches 0 run scoreboard players set Insane Toggle 1
+execute if score Selection optionsSelect matches 4 if score num optionsSelect matches 0 at @e[tag=spawn] run playsound block.note_block.bit block @a ~ ~ ~ 100 2.0
+
+execute if score Selection optionsSelect matches 4 if score num optionsSelect matches 1 run scoreboard players set Insane Toggle 0
+execute if score Selection optionsSelect matches 4 if score num optionsSelect matches 1 at @e[tag=spawn] run playsound block.note_block.bit block @a ~ ~ ~ 100 0.1
+
+scoreboard players set Selection optionsSelect 0

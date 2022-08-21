@@ -1,4 +1,4 @@
-## VERSION 0.10.1
+## VERSION 1.0
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -50,6 +50,8 @@ scoreboard players set LastRound gameTimer 0
 
 scoreboard players set PowerupTimer gameTimer 0
 
+scoreboard players set tnt gameTimer 0
+
 scoreboard players set One Numbers 1
 scoreboard players set Two Numbers 2
 scoreboard players set Three Numbers 3
@@ -64,6 +66,8 @@ scoreboard players set yDistance Toggle 1
 scoreboard players set Tools Toggle 0
 
 scoreboard players set PowerUps Toggle 1
+
+scoreboard players set Insane Toggle 0
 
 scoreboard players set num Rand 0
 scoreboard players set anvil Rand 0
@@ -123,4 +127,4 @@ team modify neutral friendlyFire false
 
 gamerule keepInventory true
 
-tellraw @a {"text":"Tag 0.10.1 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 1.0 Loaded!","color":"32e65c"}

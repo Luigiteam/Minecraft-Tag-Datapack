@@ -4,6 +4,9 @@ execute at @e[tag=spawn] if score State gameStart matches 1.. run tp @e[type=pla
 
 kill @e[nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}]
 
+execute if score Insane Toggle matches 1 run scoreboard players add tnt gameTimer 1
+execute if score tnt gameTimer matches 300 as @a at @s run summon tnt ~ ~ ~ {Fuse:60s}
+
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
 
@@ -17,15 +20,6 @@ execute if score Timer gameTimer matches 1201.. run bossbar set runnertimer colo
 
 execute if score Timer gameTimer matches 1200 run bossbar set runnertimer color red
 execute if score Timer gameTimer matches 1200 run tellraw @a "1 Minute Remaining"
-
-# This keeps teams in check (Disabled cureently)
-## Checks for people in the wrong teams
-#execute as @a[tag=tagger,tag=!runner,team=runner] run team leave @s
-#execute as @a[tag=runner,tag=!tagger,team=taggers] run team leave @s
-
-#team join taggers @a[tag=tagger]
-
-#team join runner @a[tag=runner]
 
 # Pre-Game
 execute if score State gameStart matches 0 at @e[tag=spawn] run tp @a[distance=9..] ~ ~2 ~
@@ -127,11 +121,17 @@ execute if score State gameStart matches 1 as @a[tag=tagger] if score @s gameTim
 execute if score PowerUps Toggle matches 1 if score State gameStart matches 1 if score PowerupTimer gameTimer < PowerupCooldown Numbers run scoreboard players add PowerupTimer gameTimer 1
 execute if score PowerupTimer gameTimer >= PowerupCooldown Numbers run function tag_main:powerups
 
-execute as @a[tag=tagger] if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer > SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 0 true
-execute as @a[tag=tagger] if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 1 true
-execute as @a[tag=tagger] if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= LastRound gameTimer run effect give @s speed 1 2 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer > SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 0 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 1 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= LastRound gameTimer run effect give @s speed 1 2 true
 
-execute as @a[tag=tagger] if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 1 0 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 1 0 true
+
+execute as @a[tag=tagger] if score Insane Toggle matches 1 if score @s gameTimer >= SpeedTimer Numbers run effect give @s speed 3 0 true
+execute as @a[tag=tagger] if score Insane Toggle matches 1 if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 2 0 true
+
+execute as @a[tag=runner] if score Insane Toggle matches 1 run effect give @s speed 1 0 true
+execute as @a[tag=runner] if score Insane Toggle matches 1 run effect give @s dolphins_grace 0 0 true
 
 # This gives effects to everyone
 execute as @a[scores={effectType=1..,effectTimer=..400},tag=noEffect] if score State gameStart matches 1.. run scoreboard players add @s effectTimer 1
@@ -142,7 +142,7 @@ execute as @a[tag=noEffect,scores={effectTimer=400..,effectUse=1..},nbt={Selecte
 scoreboard players set @a effectUse 0
 
 ## This gives players their carrot on a stick for effects
-execute if score State gameStart matches 1.. as @a[scores={effectType=1..},nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}]}
+execute if score State gameStart matches 1.. as @a[scores={effectType=1..},nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],Name:'[{"text":"Effect Activator","italic":false}]'}
 
 ## This checks if an individual has no effect
 execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{ActiveEffects:[{Id:8}]}] run tag @s add noEffect

@@ -15,3 +15,5 @@ execute if score @s effectType matches 5 run effect give @s levitation 15 255 fa
 
 scoreboard players set @s effectTimer 0
 tag @s remove noEffect
+
+playsound block.beacon.activate block @s ~ ~ ~ 100 2.0

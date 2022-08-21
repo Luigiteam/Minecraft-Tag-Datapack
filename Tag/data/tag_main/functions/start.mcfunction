@@ -9,6 +9,8 @@ tag @a remove runner
 tag @r[tag=!runner] add tagger
 tag @a[tag=!tagger] add runner
 
+scoreboard players set @a effectTimer 0
+
 # This sets the timers up
 scoreboard players operation Timer gameTimer = EndTimer gameTimer
 
@@ -71,6 +73,9 @@ bossbar set runnertimer players @a
 # This gives the player's scores for their respective effects
 execute as @a[scores={effectTrigger=1..}] run scoreboard players operation @s effectType = @s effectTrigger
 tag @a add noEffect
+
+# Insane mode stuff
+scoreboard players set PowerupCooldown Numbers 200
 
 gamerule doImmediateRespawn true
 
