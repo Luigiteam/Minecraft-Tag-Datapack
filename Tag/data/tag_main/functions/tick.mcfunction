@@ -131,7 +131,7 @@ execute as @a[tag=tagger] if score Insane Toggle matches 1 if score @s gameTimer
 execute as @a[tag=tagger] if score Insane Toggle matches 1 if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 2 0 true
 
 execute as @a[tag=runner] if score Insane Toggle matches 1 run effect give @s speed 1 0 true
-execute as @a[tag=runner] if score Insane Toggle matches 1 run effect give @s dolphins_grace 0 0 true
+execute as @a[tag=runner] if score Insane Toggle matches 1 run effect give @s dolphins_grace 1 0 true
 
 # This gives effects to everyone
 execute as @a[scores={effectType=1..,effectTimer=..400},tag=noEffect] if score State gameStart matches 1.. run scoreboard players add @s effectTimer 1
