@@ -5,7 +5,7 @@ execute at @e[tag=spawn] if score State gameStart matches 1.. run tp @e[type=pla
 kill @e[nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}]
 
 execute if score State gameStart matches 1 if score Insane Toggle matches 1 run scoreboard players add tnt gameTimer 1
-execute if score tnt gameTimer matches 300 as @a at @s run summon tnt ~ ~ ~ {Fuse:60s}
+execute if score tnt gameTimer matches 300.. as @a at @s run summon tnt ~ ~ ~ {Fuse:60s}
 execute if score tnt gameTimer matches 300.. run scoreboard players set tnt gameTimer 0
 
 # This is some code that needs to run all the time
