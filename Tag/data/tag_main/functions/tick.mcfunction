@@ -2,10 +2,12 @@ scoreboard players enable @a effectTrigger
 
 execute at @e[tag=spawn] if score State gameStart matches 1.. run tp @e[type=player,distance=..20] @e[tag=tpSpawn,limit=1,sort=nearest]
 
+execute at @e[tag=spawn] run kill @e[type=item,distance=..15]
+
 kill @e[nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}]
 
 execute if score State gameStart matches 1 if score Insane Toggle matches 1 run scoreboard players add tnt gameTimer 1
-execute if score tnt gameTimer matches 300.. as @a at @s run summon tnt ~ ~ ~ {Fuse:60s}
+execute if score tnt gameTimer matches 300.. as @a at @s run summon tnt ~ ~5 ~ {Fuse:60s}
 execute if score tnt gameTimer matches 300.. run scoreboard players set tnt gameTimer 0
 
 # This is some code that needs to run all the time
@@ -143,7 +145,7 @@ execute as @a[tag=noEffect,scores={effectTimer=400..,effectUse=1..},nbt={Selecte
 scoreboard players set @a effectUse 0
 
 ## This gives players their carrot on a stick for effects
-execute if score State gameStart matches 1.. as @a[scores={effectType=1..},nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],Name:'[{"text":"Effect Activator","italic":false}]'}
+execute if score State gameStart matches 1.. as @a[scores={effectType=1..},nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'}}
 
 ## This checks if an individual has no effect
 execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{ActiveEffects:[{Id:8}]}] run tag @s add noEffect

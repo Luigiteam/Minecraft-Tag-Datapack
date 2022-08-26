@@ -2,10 +2,10 @@ scoreboard players set pow Rand 0
 # This summons 4 armor stands and selects a random person to  randomly for the powerup to spawn
 execute as @r run tag @s add posTemp
 
-execute at @a[tag=posTemp] run summon armor_stand 0 -64 0 {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:[POS1,posRandom]}
-execute at @a[tag=posTemp] run summon armor_stand 0 -64 0 {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:[POS2,posRandom]}
-execute at @a[tag=posTemp] run summon armor_stand 0 -64 0 {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:[POS3,posRandom]}
-execute at @a[tag=posTemp] run summon armor_stand 0 -64 0 {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:[POS4,posRandom]}
+execute at @a[tag=posTemp] run summon armor_stand 0 -60 0 {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:[POS1,posRandom]}
+execute at @a[tag=posTemp] run summon armor_stand 0 -60 0 {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:[POS2,posRandom]}
+execute at @a[tag=posTemp] run summon armor_stand 0 -60 0 {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:[POS3,posRandom]}
+execute at @a[tag=posTemp] run summon armor_stand 0 -60 0 {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:[POS4,posRandom]}
 
 tag @e[tag=posRandom,sort=random,limit=1,type=armor_stand] add positioned
 
@@ -36,13 +36,22 @@ execute as @e[tag=spawn] store result score @s zDistance run data get entity @s 
 execute as @e[tag=positioned] store result score @s xDistance run data get entity @s Pos[0]
 execute as @e[tag=positioned] store result score @s zDistance run data get entity @s Pos[2]
 
+execute if score worldBorderSize Numbers matches ..0 store result score worldBorderSize Numbers run worldborder get
+
+scoreboard players operation halfWBS Numbers = worldBorderSize Numbers
+scoreboard players operation halfWBS Numbers /= Two Numbers
+
+scoreboard players set nHalfWBS Numbers 0
+scoreboard players operation nHalfWBS Numbers -= worldBorderSize Numbers
+scoreboard players operation nHalfWBS Numbers /= Two Numbers
+
 scoreboard players operation @e[tag=positioned] xDistance -= @e[tag=spawn] xDistance
 scoreboard players operation @e[tag=positioned] zDistance -= @e[tag=spawn] zDistance
 
-tp @e[tag=positioned,scores={zDistance=62..}] @e[tag=posTemp,limit=1]
-tp @e[tag=positioned,scores={zDistance=..-62}] @e[tag=posTemp,limit=1]
-tp @e[tag=positioned,scores={xDistance=62..}] @e[tag=posTemp,limit=1]
-tp @e[tag=positioned,scores={xDistance=..-62}] @e[tag=posTemp,limit=1]
+execute if score @e[tag=positioned,limit=1] zDistance >= halfWBS Numbers run tp @e[tag=positioned] @e[tag=posTemp,limit=1]
+execute if score @e[tag=positioned,limit=1] zDistance <= nHalfWBS Numbers run tp @e[tag=positioned] @e[tag=posTemp,limit=1]
+execute if score @e[tag=positioned,limit=1] xDistance >= halfWBS Numbers run tp @e[tag=positioned] @e[tag=posTemp,limit=1]
+execute if score @e[tag=positioned,limit=1] xDistance <= nHalfWBS Numbers run tp @e[tag=positioned] @e[tag=posTemp,limit=1]
 
 # This is when the powerup and Firework spawns
 ## Item 1 (Wooden Sword)
@@ -83,10 +92,7 @@ execute if score anvil Rand matches 7..9 at @e[tag=positioned] run summon minecr
 # This starts the cooldown and kill the position armorstands
 scoreboard players set PowerupTimer gameTimer 0
 
-
 kill @e[tag=posRandom]
-
-tag @e[tag=powRandom,tag=choosen] remove choosen
 
 #When No Anvil is spawning
 execute if score anvil Rand matches 0..6 if score pow Rand matches 14..15 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF71A2"}
@@ -97,7 +103,7 @@ execute if score anvil Rand matches 0..6 if score pow Rand matches 0..7 run tell
 
 execute if score anvil Rand matches 0..6 if score pow Rand matches 16..18 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"light_purple"}
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 21..27 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"yellow"}
+execute if score anvil Rand matches 0..6 if score pow Rand matches 22..27 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"yellow"}
 
 execute if score anvil Rand matches 0..6 if score pow Rand matches 11..13 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"aqua"}
 
@@ -110,9 +116,9 @@ execute if score anvil Rand matches 7..9 if score pow Rand matches 8..10 run tel
 
 execute if score anvil Rand matches 7..9 if score pow Rand matches 0..7 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#B8B8B8"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 16..20 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF8DFF"}
+execute if score anvil Rand matches 7..9 if score pow Rand matches 16..18 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF8DFF"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 21..27 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFFF90"}
+execute if score anvil Rand matches 7..9 if score pow Rand matches 22..27 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFFF90"}
 
 execute if score anvil Rand matches 7..9 if score pow Rand matches 11..13 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#88FFFF"}
 

@@ -41,4 +41,4 @@ execute at @e[tag=spawn] if score State gameStart matches 0 if score num options
 
 # This sets the world border
 execute at @e[tag=spawn] run worldborder center ~ ~
-worldborder set 125 1
+worldborder set 100 1

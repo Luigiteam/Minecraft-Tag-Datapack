@@ -1,4 +1,4 @@
-## VERSION 1.0
+## VERSION 1.1b
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -52,6 +52,8 @@ scoreboard players set PowerupTimer gameTimer 0
 
 scoreboard players set tnt gameTimer 0
 
+scoreboard players set nOne Numbers -1
+
 scoreboard players set One Numbers 1
 scoreboard players set Two Numbers 2
 scoreboard players set Three Numbers 3
@@ -60,6 +62,10 @@ scoreboard players set TrapCooldown Numbers 100
 scoreboard players set SpeedTimer Numbers 200
 scoreboard players set FireworkCooldown Numbers 600
 scoreboard players set PowerupCooldown Numbers 900
+
+scoreboard players set worldBorderSize Numbers 0
+scoreboard players set halfWBS Numbers 0
+scoreboard players set nHalfWBS Numbers 0
 
 scoreboard players set yDistance Toggle 1
 
@@ -76,6 +82,7 @@ scoreboard players set set Rand 0
 scoreboard players set yResults yDistance 0
 
 scoreboard players set Selection optionsSelect 0
+scoreboard players set Change optionsSelect 0
 
 # Adds the teams
 ## team Taggers
@@ -127,4 +134,4 @@ team modify neutral friendlyFire false
 
 gamerule keepInventory true
 
-tellraw @a {"text":"Tag 1.0 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 1.1b Loaded!","color":"32e65c"}

@@ -1,5 +1,4 @@
 execute at @e[tag=spawn] run worldborder center ~ ~
-worldborder set 125 0
 
 team leave @a
 
@@ -75,7 +74,8 @@ execute as @a[scores={effectTrigger=1..}] run scoreboard players operation @s ef
 tag @a add noEffect
 
 # Insane mode stuff
-scoreboard players set PowerupCooldown Numbers 200
+execute if score Insane Toggle matches 1 run scoreboard players set PowerupCooldown Numbers 200
+execute if score Insane Toggle matches 0 run scoreboard players set PowerupCooldown Numbers 900
 
 gamerule doImmediateRespawn true
 
