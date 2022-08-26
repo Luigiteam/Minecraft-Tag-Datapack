@@ -1,4 +1,4 @@
-## VERSION 1.1b
+## VERSION 1.1
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -134,4 +134,4 @@ team modify neutral friendlyFire false
 
 gamerule keepInventory true
 
-tellraw @a {"text":"Tag 1.1b Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 1.1 Loaded!","color":"32e65c"}
