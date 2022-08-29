@@ -1,4 +1,4 @@
-## VERSION 1.1
+## VERSION 1.2
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -35,6 +35,8 @@ scoreboard objectives add effectTimer dummy
 scoreboard objectives add effectType dummy
 
 scoreboard objectives add effectUse minecraft.used:carrot_on_a_stick
+
+scoreboard objectives add eyeTimer dummy
 
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
@@ -134,4 +136,4 @@ team modify neutral friendlyFire false
 
 gamerule keepInventory true
 
-tellraw @a {"text":"Tag 1.1 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 1.2 Loaded!","color":"32e65c"}

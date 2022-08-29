@@ -82,5 +82,7 @@ gamerule doImmediateRespawn true
 execute as @e[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 100 2.0
 tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
+scoreboard players set @a xpTimerDelay 0
+
 gamemode survival @a
 scoreboard players set State gameStart 1

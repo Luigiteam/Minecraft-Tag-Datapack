@@ -13,7 +13,7 @@ execute if score @s effectType matches 4 run effect give @s night_vision 15 0 fa
 ## Levetation
 execute if score @s effectType matches 5 run effect give @s levitation 15 255 false
 
-scoreboard players set @s effectTimer 0
+scoreboard players set @s effectTimer 400
 tag @s remove noEffect
 
 playsound block.beacon.activate block @s ~ ~ ~ 100 2.0

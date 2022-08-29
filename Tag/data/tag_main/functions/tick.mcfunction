@@ -65,9 +65,9 @@ execute as @e[tag=!airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. 
 scoreboard players set @a[nbt=!{Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]}] airTime 0
 
 # This is how the Snowball works
-execute at @e[type=armor_stand,tag=snowballs] unless entity @e[type=snowball,distance=..2] run fill ~2 ~3 ~-2 ~-2 ~-3 ~2 air destroy
+execute at @e[type=armor_stand,tag=snowballs] unless entity @e[type=snowball,distance=..2] run summon tnt ~ ~ ~
 kill @e[type=armor_stand,tag=snowballs]
-execute at @e[type=snowball,nbt={Item:{tag:{Floating:1b}}}] run summon minecraft:armor_stand ~ ~ ~ {Tags:["snowballs"],Invisible:1b, Marker:1b}
+execute at @e[type=snowball,nbt={Item:{tag:{Floating:1b}}}] run summon minecraft:armor_stand ~ ~ ~ {Tags:["snowballs"],Invisible:1b, Marker:1b,Silent:1b}
 # This is some clamp trap stuff
 scoreboard players set @e[tag=ClampTrap] trapDestroy 0
 
@@ -137,11 +137,13 @@ execute as @a[tag=runner] if score Insane Toggle matches 1 run effect give @s sp
 execute as @a[tag=runner] if score Insane Toggle matches 1 run effect give @s dolphins_grace 1 0 true
 
 # This gives effects to everyone
-execute as @a[scores={effectType=1..,effectTimer=..400},tag=noEffect] if score State gameStart matches 1.. run scoreboard players add @s effectTimer 1
+execute as @a[scores={effectType=1..,effectTimer=1..},tag=noEffect] if score State gameStart matches 1.. run scoreboard players remove @s effectTimer 1
+
 execute as @a[tag=!noEffect,scores={effectUse=1..}] run tellraw @s "You cannot use this right now"
-execute as @a[tag=noEffect,scores={effectTimer=..399,effectUse=1..}] run tellraw @s "You cannot use this right now"
-tellraw @a[scores={effectTimer=400}] "You can use your effect now!"
-execute as @a[tag=noEffect,scores={effectTimer=400..,effectUse=1..},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}] run function tag_main:effect
+execute as @a[tag=noEffect,scores={effectTimer=1..,effectUse=1..}] run tellraw @s "You cannot use this right now"
+
+tellraw @a[scores={effectTimer=1}] "You can use your effect now!"
+execute as @a[tag=noEffect,scores={effectTimer=..0,effectUse=1..},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}] run function tag_main:effect
 scoreboard players set @a effectUse 0
 
 ## This gives players their carrot on a stick for effects
@@ -153,6 +155,50 @@ execute as @a[tag=!noEffect,scores={effectType=2},nbt=!{ActiveEffects:[{Id:11}]}
 execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{ActiveEffects:[{Id:3}]}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{ActiveEffects:[{Id:16}]}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{ActiveEffects:[{Id:25}]}] run tag @s add noEffect
+
+## This shows how much time is left to use your effect on the xp bar
+execute as @a[scores={effectTimer=400..}] run xp set @s 20 levels
+
+execute as @a[scores={effectTimer=380}] run xp set @s 19 levels
+
+execute as @a[scores={effectTimer=360}] run xp set @s 18 levels
+
+execute as @a[scores={effectTimer=340}] run xp set @s 17 levels
+
+execute as @a[scores={effectTimer=320}] run xp set @s 16 levels
+
+execute as @a[scores={effectTimer=300}] run xp set @s 15 levels
+
+execute as @a[scores={effectTimer=280}] run xp set @s 14 levels
+
+execute as @a[scores={effectTimer=260}] run xp set @s 13 levels
+
+execute as @a[scores={effectTimer=240}] run xp set @s 12 levels
+
+execute as @a[scores={effectTimer=220}] run xp set @s 11 levels
+
+execute as @a[scores={effectTimer=200}] run xp set @s 10 levels
+
+execute as @a[scores={effectTimer=180}] run xp set @s 9 levels
+
+execute as @a[scores={effectTimer=160}] run xp set @s 8 levels
+
+execute as @a[scores={effectTimer=140}] run xp set @s 7 levels
+
+execute as @a[scores={effectTimer=120}] run xp set @s 6 levels
+
+execute as @a[scores={effectTimer=100}] run xp set @s 5 levels
+
+execute as @a[scores={effectTimer=80}] run xp set @s 4 levels
+
+execute as @a[scores={effectTimer=60}] run xp set @s 3 levels
+
+execute as @a[scores={effectTimer=40}] run xp set @s 2 levels
+
+execute as @a[scores={effectTimer=20}] run xp set @s 1 levels
+
+execute as @a[scores={effectTimer=..0}] if score State gameStart matches 1.. run xp set @s 0 points
+execute as @a[scores={effectTimer=..0}] if score State gameStart matches 1.. run xp set @s 0 levels
 
 # This checks if an item is over water
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] at @s if block ~ ~-1 ~ minecraft:water run data merge entity @s {Motion:[0.0,1.0,0.0]}
@@ -180,6 +226,9 @@ execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer >=
 
 # This resets the score for Sneak
 scoreboard players set @a Sneak 0
+
+# This is part of the eye of teleportation cooldown
+execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s eyeTimer 1
 
 # This checks if the runners are done running
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 run function tag_main:winners
