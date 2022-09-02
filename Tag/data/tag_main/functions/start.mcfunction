@@ -68,7 +68,7 @@ execute if score Tools Toggle matches 6 run give @a netherite_shovel
 # This is to set the bossbar timer
 execute store result bossbar runnertimer max run scoreboard players get EndTimer gameTimer
 execute store result bossbar runnertimer value run scoreboard players get Timer gameTimer
-bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
+bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"}]
 bossbar set runnertimer players @a
 
 # This gives the player's scores for their respective effects
@@ -87,6 +87,10 @@ tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
 scoreboard players set @a eyeTimer 100
 scoreboard players set @a effectLost 0
+
+scoreboard players add Rounds round 1
+
+time set day
 
 gamemode survival @a
 scoreboard players set State gameStart 1

@@ -7,23 +7,27 @@ execute at @e[tag=spawn] run kill @e[type=item,distance=..15]
 execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}},scores={gameTimer=100..}] run kill @s
 
 execute if score State gameStart matches 1 if score Insane Toggle matches 1 run scoreboard players add tnt gameTimer 1
-execute if score tnt gameTimer matches 300.. as @a at @s run summon tnt ~ ~5 ~ {Fuse:60s}
+execute if score tnt gameTimer matches 300.. as @a[tag=!freeze] at @s run summon tnt ~ ~5 ~ {Fuse:60s}
 execute if score tnt gameTimer matches 300.. run scoreboard players set tnt gameTimer 0
 
 # Freeze Tag
-execute if score State gameStart matches 1 store result score runners Numbers run execute if entity @a[tag=runner]
-execute if score State gameStart matches 1 store result score frozenRunners Numbers run execute if entity @a[tag=freeze]
+## OID stuff
+execute as @a[tag=runner] unless score @s oid matches 0.. run function tag_main:new_id
 
-execute if score frozenRunners Numbers = runners Numbers if score State gameStart matches 1 run function tag_main:tagger_winners
+## Win Checks
+execute if score State gameStart matches 1 if score gameMode Toggle matches 2 store result score runners Numbers run execute if entity @a[tag=runner]
+execute if score State gameStart matches 1 if score gameMode Toggle matches 2 store result score frozenRunners Numbers run execute if entity @a[tag=freeze]
+
+execute if score frozenRunners Numbers = runners Numbers if score State gameStart matches 1 if score gameMode Toggle matches 2 run function tag_main:tagger_winners
 
 execute as @a[scores={timeFroze=0..}] run scoreboard players remove @s timeFroze 1
 execute as @a[scores={timeFroze=0}] run advancement grant @s only tag_main:on_hurt_by_runner
 
-## This applies Jump boost 128 and slowness 128 to any frozen people
+## This applies Jump boost 128 and slowness 1 to any frozen people
 execute as @a[tag=freeze] run effect give @s jump_boost 1 128 true
-execute as @a[tag=freeze] run effect give @s slowness 1 128 true
+execute as @a[tag=freeze] run effect give @s slowness 1 0 true
 
-execute at @e[tag=freezeCheck] run tp @a[tag=freeze,distance=1..2,limit=1,sort=nearest] ~ ~ ~
+execute as @e[tag=freezeCheck,type=area_effect_cloud] at @s if score @s oid = @p oid run tp @p[tag=freeze,limit=1,sort=nearest,distance=0.5..] @s
 
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
@@ -31,7 +35,7 @@ execute if score State gameStart matches 0.. run effect give @a saturation 1 255
 execute if score State gameStart matches 1.. run effect give @a[nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
 
 # Not necisary, but gives some nice flare
-bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@a[tag=tagger]"}]}
+bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"}]
 title @a[tag=runner] actionbar {"text": "The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
 execute if score Timer gameTimer matches 1201.. run bossbar set runnertimer color yellow
@@ -80,7 +84,7 @@ execute as @e[tag=!airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. 
 scoreboard players set @a[nbt=!{Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]}] airTime 0
 
 # This is how the Snowball works
-execute at @e[type=armor_stand,tag=snowballs] unless entity @e[type=snowball,distance=..2] run summon tnt ~ ~ ~
+execute at @e[type=armor_stand,tag=snowballs] unless entity @e[type=snowball,distance=..2] run fill ~-2 ~-2 ~-2 ~2 ~2 ~2 air destroy
 kill @e[type=armor_stand,tag=snowballs]
 execute at @e[type=snowball,nbt={Item:{tag:{Floating:1b}}}] run summon minecraft:armor_stand ~ ~ ~ {Tags:["snowballs"],Invisible:1b, Marker:1b,Silent:1b}
 # This is some clamp trap stuff
@@ -226,7 +230,7 @@ execute as @a[scores={effectTimer=..0}] if score State gameStart matches 1.. run
 execute as @a[scores={effectTimer=..0}] if score State gameStart matches 1.. run xp set @s 0 levels
 
 # This checks if an item is over water
-execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] at @s if block ~ ~-1 ~ minecraft:water run data merge entity @s {Motion:[0.0,1.0,0.0]}
+execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] at @s if block ~ ~-1 ~ minecraft:water run data merge entity @s {Motion:[0.0,0.5,0.0]}
 
 # This repeats fireworks over powerups if they have not been not picked up
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] run scoreboard players add @s gameTimer 1

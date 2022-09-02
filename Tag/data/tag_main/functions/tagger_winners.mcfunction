@@ -4,5 +4,9 @@ execute at @a[tag=tagger] run summon firework_rocket ~ ~ ~ {LifeTime:20,Firework
 
 bossbar set runnertimer players
 
+advancement grant @a[tag=runner] only tag_main:on_hurt_by_runner
+
+scoreboard players add @a[tag=tagger] wins 1
+
 tellraw @a ["","The winner is ",{"selector":"@a[tag=tagger]","color":"gold"},{"text": "!"}]
 tellraw @a " "

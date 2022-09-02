@@ -1,4 +1,4 @@
-## VERSION 1.3
+## VERSION 1.3.1
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -43,6 +43,12 @@ scoreboard objectives add effectAmount dummy
 scoreboard objectives add eyeTimer dummy
 
 scoreboard objectives add timeFroze dummy
+
+scoreboard objectives add oid dummy
+
+scoreboard objectives add wins dummy
+
+scoreboard objectives add round dummy
 
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
@@ -98,6 +104,8 @@ scoreboard players set yResults yDistance 0
 scoreboard players set Selection optionsSelect 0
 scoreboard players set Change optionsSelect 0
 
+scoreboard players set Rounds round 0
+
 # Adds the teams
 ## team Taggers
 team add taggers "Taggers"
@@ -134,7 +142,7 @@ team modify White color white
 team add lightPurple
 team modify lightPurple color light_purple
 
-### This if for the Snowball item
+### This if for the Snowball of Destruction
 team add aqua
 team modify aqua color aqua
 
@@ -148,4 +156,6 @@ team modify neutral friendlyFire false
 
 gamerule keepInventory true
 
-tellraw @a {"text":"Tag 1.3 Loaded!","color":"32e65c"}
+scoreboard objectives setdisplay list wins
+
+tellraw @a {"text":"Tag 1.3.1 Loaded!","color":"32e65c"}
