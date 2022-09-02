@@ -14,7 +14,7 @@ execute if score tnt gameTimer matches 300.. run scoreboard players set tnt game
 execute if score State gameStart matches 1 store result score runners Numbers run execute if entity @a[tag=runner]
 execute if score State gameStart matches 1 store result score frozenRunners Numbers run execute if entity @a[tag=freeze]
 
-execute if score frozenRunners Numbers = runners Numbers run function tag_main:tagger_winners
+execute if score frozenRunners Numbers = runners Numbers if score State gameStart matches 1 run function tag_main:tagger_winners
 
 execute as @a[scores={timeFroze=0..}] run scoreboard players remove @s timeFroze 1
 execute as @a[scores={timeFroze=0}] run advancement grant @s only tag_main:on_hurt_by_runner
