@@ -4,11 +4,26 @@ execute at @e[tag=spawn] if score State gameStart matches 1.. run tp @e[type=pla
 
 execute at @e[tag=spawn] run kill @e[type=item,distance=..15]
 
-kill @e[nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}]
+execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}},scores={gameTimer=100..}] run kill @s
 
 execute if score State gameStart matches 1 if score Insane Toggle matches 1 run scoreboard players add tnt gameTimer 1
 execute if score tnt gameTimer matches 300.. as @a at @s run summon tnt ~ ~5 ~ {Fuse:60s}
 execute if score tnt gameTimer matches 300.. run scoreboard players set tnt gameTimer 0
+
+# Freeze Tag
+execute if score State gameStart matches 1 store result score runners Numbers run execute if entity @a[tag=runner]
+execute if score State gameStart matches 1 store result score frozenRunners Numbers run execute if entity @a[tag=freeze]
+
+execute if score frozenRunners Numbers = runners Numbers run function tag_main:tagger_winners
+
+execute as @a[scores={timeFroze=0..}] run scoreboard players remove @s timeFroze 1
+execute as @a[scores={timeFroze=0}] run advancement grant @s only tag_main:on_hurt_by_runner
+
+## This applies Jump boost 128 and slowness 128 to any frozen people
+execute as @a[tag=freeze] run effect give @s jump_boost 1 128 true
+execute as @a[tag=freeze] run effect give @s slowness 1 128 true
+
+execute at @e[tag=freezeCheck] run tp @a[tag=freeze,distance=1..2,limit=1,sort=nearest] ~ ~ ~
 
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
@@ -147,7 +162,17 @@ execute as @a[tag=noEffect,scores={effectTimer=..0,effectUse=1..},nbt={SelectedI
 scoreboard players set @a effectUse 0
 
 ## This gives players their carrot on a stick for effects
-execute if score State gameStart matches 1.. as @a[scores={effectType=1..},nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'}}
+execute as @a store result score @s effectAmount run clear @s carrot_on_a_stick{Floating:1b} 0
+execute as @a[scores={effectAmount=2..}] run clear @s carrot_on_a_stick{Floating:1b} 1
+
+execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}},tag=!processed] run data modify entity @s Owner set from entity @s Thrower
+execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}},tag=!processed] run data modify entity @s PickupDelay set value 0
+tag @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}},tag=!processed] add processed
+
+execute as @a[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]},scores={effectType=1..}] run scoreboard players set @s effectLost 0
+execute if score State gameStart matches 1.. as @a[nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]},scores={effectType=1..}] run scoreboard players add @s effectLost 1
+execute as @a[scores={effectLost=400..}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'}}
+execute as @a[scores={effectLost=400..}] run scoreboard players set @s effectLost 0
 
 ## This checks if an individual has no effect
 execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{ActiveEffects:[{Id:8}]}] run tag @s add noEffect

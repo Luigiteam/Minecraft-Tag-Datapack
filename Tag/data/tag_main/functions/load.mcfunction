@@ -1,4 +1,4 @@
-## VERSION 1.2
+## VERSION 1.3
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -36,7 +36,13 @@ scoreboard objectives add effectType dummy
 
 scoreboard objectives add effectUse minecraft.used:carrot_on_a_stick
 
+scoreboard objectives add effectLost dummy
+
+scoreboard objectives add effectAmount dummy
+
 scoreboard objectives add eyeTimer dummy
+
+scoreboard objectives add timeFroze dummy
 
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
@@ -60,10 +66,14 @@ scoreboard players set One Numbers 1
 scoreboard players set Two Numbers 2
 scoreboard players set Three Numbers 3
 scoreboard players set Four Numbers 4
+
 scoreboard players set TrapCooldown Numbers 100
 scoreboard players set SpeedTimer Numbers 200
 scoreboard players set FireworkCooldown Numbers 600
-scoreboard players set PowerupCooldown Numbers 900
+scoreboard players set PowerupCooldown Numbers 400
+
+scoreboard players set runners Numbers 0
+scoreboard players set frozenRunners Numbers 0
 
 scoreboard players set worldBorderSize Numbers 0
 scoreboard players set halfWBS Numbers 0
@@ -76,6 +86,8 @@ scoreboard players set Tools Toggle 0
 scoreboard players set PowerUps Toggle 1
 
 scoreboard players set Insane Toggle 0
+
+scoreboard players set gameMode Toggle 1
 
 scoreboard players set num Rand 0
 scoreboard players set anvil Rand 0
@@ -136,4 +148,4 @@ team modify neutral friendlyFire false
 
 gamerule keepInventory true
 
-tellraw @a {"text":"Tag 1.2 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 1.3 Loaded!","color":"32e65c"}

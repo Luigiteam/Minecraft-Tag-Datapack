@@ -1,5 +1,7 @@
 execute at @e[tag=spawn] run worldborder center ~ ~
 
+clear @a
+
 team leave @a
 
 tag @a remove tagger
@@ -72,17 +74,19 @@ bossbar set runnertimer players @a
 # This gives the player's scores for their respective effects
 execute as @a[scores={effectTrigger=1..}] run scoreboard players operation @s effectType = @s effectTrigger
 tag @a add noEffect
+give @a[scores={effectType=1..}] carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'}}
 
 # Insane mode stuff
 execute if score Insane Toggle matches 1 run scoreboard players set PowerupCooldown Numbers 200
-execute if score Insane Toggle matches 0 run scoreboard players set PowerupCooldown Numbers 900
+execute if score Insane Toggle matches 0 run scoreboard players set PowerupCooldown Numbers 400
 
 gamerule doImmediateRespawn true
 
 execute as @e[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 100 2.0
 tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
-scoreboard players set @a xpTimerDelay 0
+scoreboard players set @a eyeTimer 100
+scoreboard players set @a effectLost 0
 
 gamemode survival @a
 scoreboard players set State gameStart 1

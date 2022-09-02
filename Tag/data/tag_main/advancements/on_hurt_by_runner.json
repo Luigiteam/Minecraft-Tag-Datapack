@@ -1,0 +1,29 @@
+{
+    "criteria": {
+      "requirement": {
+        "trigger": "minecraft:entity_hurt_player",
+        "conditions": {
+          "player": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "type": "minecraft:player",
+                "team": "runner"
+              }
+            }
+          ],
+          "damage": {
+            "source_entity": {
+              "type": "minecraft:player",
+              "team": "runner"
+            }
+          }
+        }
+      }
+    },
+    "rewards": {
+      "function": "tag_main:tag_function/tag_decide"
+    }
+  }
+  

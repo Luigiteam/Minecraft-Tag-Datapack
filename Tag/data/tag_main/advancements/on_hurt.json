@@ -23,6 +23,6 @@
     }
   },
   "rewards": {
-    "function": "tag_main:tag_swap"
+    "function": "tag_main:tag_function/tag_decide"
   }
 }
