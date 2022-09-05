@@ -1,3 +1,5 @@
+gamemode spectator @a[tag=spectate]
+
 scoreboard players enable @a effectTrigger
 scoreboard players enable @a teamChoose
 
