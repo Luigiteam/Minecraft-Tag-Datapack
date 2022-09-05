@@ -1,4 +1,4 @@
-gamemode spectator @a[tag=spectate]
+execute if score State gameStart matches 1 run gamemode spectator @a[tag=spectate]
 
 scoreboard players enable @a effectTrigger
 scoreboard players enable @a teamChoose
