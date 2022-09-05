@@ -1,4 +1,5 @@
 scoreboard players enable @a effectTrigger
+scoreboard players enable @a teamChoose
 
 execute at @e[tag=spawn] if score State gameStart matches 1.. run tp @e[type=player,distance=..20] @e[tag=tpSpawn,limit=1,sort=nearest]
 
@@ -10,6 +11,9 @@ execute if score State gameStart matches 1 if score Insane Toggle matches 1 run 
 execute if score tnt gameTimer matches 300.. as @a[tag=!freeze] at @s run summon tnt ~ ~5 ~ {Fuse:60s}
 execute if score tnt gameTimer matches 300.. run scoreboard players set tnt gameTimer 0
 
+# Reverse Tag
+execute if score State gameStart matches 1 if score gameMode Toggle matches 3 run scoreboard players add @a[tag=tagger] reverseTime 1
+
 # Freeze Tag
 ## OID stuff
 execute as @a[tag=runner] unless score @s oid matches 0.. run function tag_main:new_id
@@ -18,7 +22,7 @@ execute as @a[tag=runner] unless score @s oid matches 0.. run function tag_main:
 execute if score State gameStart matches 1 if score gameMode Toggle matches 2 store result score runners Numbers run execute if entity @a[tag=runner]
 execute if score State gameStart matches 1 if score gameMode Toggle matches 2 store result score frozenRunners Numbers run execute if entity @a[tag=freeze]
 
-execute if score frozenRunners Numbers = runners Numbers if score State gameStart matches 1 if score gameMode Toggle matches 2 run function tag_main:tagger_winners
+execute if score frozenRunners Numbers = runners Numbers if score State gameStart matches 1 if score gameMode Toggle matches 2 run function tag_main:winning/tagger_winners
 
 execute as @a[scores={timeFroze=0..}] run scoreboard players remove @s timeFroze 1
 execute as @a[scores={timeFroze=0}] run advancement grant @s only tag_main:on_hurt_by_runner
@@ -32,7 +36,10 @@ execute as @e[tag=freezeCheck,type=area_effect_cloud] at @s if score @s oid = @p
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
 
-execute if score State gameStart matches 1.. run effect give @a[nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @a[nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
+
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @a[nbt=!{ActiveEffects:[{Id:14}]},tag=tagger] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect clear @a[tag=runner] glowing
 
 # Not necisary, but gives some nice flare
 bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"}]
@@ -259,5 +266,9 @@ scoreboard players set @a Sneak 0
 # This is part of the eye of teleportation cooldown
 execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s eyeTimer 1
 
+# Extras
+scoreboard players set @a damage 0
+
 # This checks if the runners are done running
-execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 run function tag_main:winners
+execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 1..2 run function tag_main:winners
+execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 3 run function tag_main:winning/reverse_time_check

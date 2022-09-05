@@ -1,4 +1,4 @@
-## VERSION 1.3.1
+## VERSION 1.4
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -50,6 +50,14 @@ scoreboard objectives add wins dummy
 
 scoreboard objectives add round dummy
 
+scoreboard objectives add teamChoose trigger
+
+scoreboard objectives add damage custom:minecraft.damage_dealt
+
+scoreboard objectives add reverseTime dummy
+
+scoreboard objectives add reverseTimeTemp dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
@@ -78,7 +86,10 @@ scoreboard players set SpeedTimer Numbers 200
 scoreboard players set FireworkCooldown Numbers 600
 scoreboard players set PowerupCooldown Numbers 400
 
+scoreboard players set players Numbers 0
 scoreboard players set runners Numbers 0
+scoreboard players set taggers Numbers 0
+scoreboard players set spectators Numbers 0
 scoreboard players set frozenRunners Numbers 0
 
 scoreboard players set worldBorderSize Numbers 0
@@ -158,4 +169,4 @@ gamerule keepInventory true
 
 scoreboard objectives setdisplay list wins
 
-tellraw @a {"text":"Tag 1.3.1 Loaded!","color":"32e65c"}
+tellraw @a {"text":"Tag 1.4 Loaded!","color":"32e65c"}

@@ -6,5 +6,7 @@ bossbar set runnertimer players
 
 scoreboard players add @a[tag=runner] wins 1
 
+advancement grant @a[tag=runner] only tag_main:on_hurt_by_runner
+
 tellraw @a ["","The winners are ",{"selector":"@a[tag=!tagger]","color":"gold"},{"text": "!"}]
 tellraw @a " "

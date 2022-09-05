@@ -2,15 +2,35 @@ execute at @e[tag=spawn] run worldborder center ~ ~
 
 clear @a
 
+# Assigns the tags
 team leave @a
 
 tag @a remove tagger
 tag @a remove runner
+tag @a remove spectate
 
-tag @r[tag=!runner] add tagger
-tag @a[tag=!tagger] add runner
+execute as @a[scores={teamChoose=-1}] run tag @s add spectate
 
-scoreboard players set @a effectTimer 0
+execute as @a[scores={teamChoose=0}] run function tag_main:start_teams
+
+execute as @a[scores={teamChoose=1}] run tag @s add tagger
+
+execute as @a[scores={teamChoose=2}] run tag @s add runner
+
+execute store result score players Numbers run execute if entity @a[tag=!spectate]
+execute store result score runners Numbers run execute if entity @a[tag=runner,tag=!spectate]
+execute store result score taggers Numbers run execute if entity @a[tag=tagger,tag=!spectate]
+
+execute if score runner Numbers = players Numbers run tag @r[tag=!spectate] add teamChangeToTagger
+execute if score tagger Numbers = players Numbers run tag @r[tag=!spectate] add teamChangeToRunner
+
+execute as @a[tag=teamChangeToTagger] run tag @s remove runner
+execute as @a[tag=teamChangeToTagger] run tag @s add tagger
+execute as @a[tag=teamChangeToTagger] run tag @s remove teamChangeToTagger
+
+execute as @a[tag=teamChangeToRunner] run tag @s remove tagger
+execute as @a[tag=teamChangeToRunner] run tag @s add runner
+execute as @a[tag=teamChangeToRunner] run tag @s remove teamChangeToRunner
 
 # This sets the timers up
 scoreboard players operation Timer gameTimer = EndTimer gameTimer
@@ -87,6 +107,8 @@ tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
 scoreboard players set @a eyeTimer 100
 scoreboard players set @a effectLost 0
+scoreboard players set @a effectTimer 0
+scoreboard players set @a reverseTime 0
 
 scoreboard players add Rounds round 1
 

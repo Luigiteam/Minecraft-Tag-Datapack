@@ -3,8 +3,8 @@ tag @s add tagger
 tag @s remove runner
 
 # This swaps the tagger to a runner
-tag @a[tag=tagger,advancements={tag_main:on_hurt=false},sort=nearest,limit=1] add runner
-tag @a[tag=tagger,advancements={tag_main:on_hurt=false},sort=nearest,limit=1] remove tagger
+tag @p[tag=tagger,advancements={tag_main:on_hurt=false},sort=nearest,limit=1,scores={damage=1..}] add runner
+tag @p[tag=tagger,advancements={tag_main:on_hurt=false},sort=nearest,limit=1,scores={damage=1..}] remove tagger
 
 # This changes the teams and resets the advancement
 team leave @a
@@ -13,7 +13,7 @@ team join taggers @a[tag=tagger]
 
 team join runner @a[tag=runner]
 
-execute as @a[tag=tagger] run tellraw @a {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
+tellraw @a {"text": "The tagger is ", "extra": [{"selector":"@a[tag=tagger]"}]}
 
 bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@s"}]}
 

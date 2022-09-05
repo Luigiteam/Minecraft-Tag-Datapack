@@ -55,6 +55,8 @@ execute if score gameMode Toggle matches 2 at @e[tag=spawn] run data merge block
 
 execute if score gameMode Toggle matches 2 at @e[tag=spawn] run data merge block ~2 ~3 ~3 {Text1:'{"text":"","clickEvent":{"action":"run_command","value":"tellraw @a \\"Freeze tag: There is always one tagger and the rest is a runner. When a tagger hits a runner, the runner becomes freezes. If the tagger freezes every runner before the timer runs out, they win. Otherwise, the runners win if even only one is not frozen.\\""}}',Text2:'{"text":"Freeze Tag"}'}
 
+scoreboard players set @a teamChoose 0
+
 # This sets the world border
 execute at @e[tag=spawn] run worldborder center ~ ~
 worldborder set 100 1
