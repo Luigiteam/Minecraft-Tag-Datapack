@@ -44,7 +44,10 @@ execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect clear @a[tag=runner] glowing
 
 # Not necisary, but gives some nice flare
-bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"}]
+execute if score gameMode Toggle matches 1 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ": Normal Tag"}]
+execute if score gameMode Toggle matches 2 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ": Freeze Tag"}]
+execute if score gameMode Toggle matches 3 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ": Reverse Tag"}]
+
 title @a[tag=runner] actionbar {"text": "The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
 execute if score Timer gameTimer matches 1201.. run bossbar set runnertimer color yellow
