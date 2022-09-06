@@ -272,7 +272,8 @@ scoreboard players set @a Sneak 0
 execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s eyeTimer 1
 
 # Extras
-scoreboard players set @a damage 0
+execute as @a if score @s damage matches 1.. run scoreboard players add @s damageTimer 1
+execute as @a if score @s damageTimer matches 10.. run scoreboard players set @s damage 0
 
 # This checks if the runners are done running
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 1..2 run function tag_main:winners

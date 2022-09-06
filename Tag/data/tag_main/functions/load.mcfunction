@@ -58,6 +58,8 @@ scoreboard objectives add reverseTime dummy
 
 scoreboard objectives add reverseTimeTemp dummy
 
+scoreboard objectives add damageTimer dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
