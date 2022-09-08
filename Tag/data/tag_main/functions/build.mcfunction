@@ -4,11 +4,8 @@ scoreboard players set State gameStart 0
 
 execute if entity @e[tag=spawn] run function tag_main:reload
 
-tag @r add buildPos
-execute at @a[tag=buildPos] run summon armor_stand ~ 309 ~ {Invisible:1b,NoGravity:1b,Tags:["builder"],Invulnerable:1b}
-execute at @a[tag=buildPos] run summon armor_stand ~ ~3 ~ {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:["tpSpawn"]}
-
-tag @e[tag=buildPos] remove buildPos
+execute at @s run summon armor_stand ~ 309 ~ {Invisible:1b,NoGravity:1b,Tags:["builder"],Invulnerable:1b}
+execute at @s run summon armor_stand ~ ~3 ~ {Invisible:1b,Invulnerable:1b,NoGravity:1b,Tags:["tpSpawn"]}
 
 execute at @e[tag=builder] run setblock ~ ~-309 ~ air
 execute at @e[tag=tpSpawn] run spawnpoint @a ~ ~ ~

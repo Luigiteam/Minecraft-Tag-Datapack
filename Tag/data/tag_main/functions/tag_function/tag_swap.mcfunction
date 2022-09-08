@@ -3,8 +3,8 @@ tag @s add tagger
 tag @s remove runner
 
 # This swaps the tagger to a runner
-tag @a[tag=tagger,advancements={tag_main:tagger_hit_check=true},sort=nearest,limit=1] add runner
-tag @a[tag=tagger,advancements={tag_main:tagger_hit_check=true},sort=nearest,limit=1] remove tagger
+execute at @s run tag @p[tag=tagger,advancements={tag_main:tagger_hit_check=true},limit=1] add runner
+execute at @s run tag @p[tag=tagger,advancements={tag_main:tagger_hit_check=true},limit=1] remove tagger
 
 # This changes the teams and resets the advancement
 team leave @a
