@@ -12,15 +12,10 @@
             }
           }
         ],
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "team": "runner"
-            }
-          }
-        ]
+        "entity": {
+          "type": "minecraft:player",
+          "team": "runner"
+        }
       }
     }
   }

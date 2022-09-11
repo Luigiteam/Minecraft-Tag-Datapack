@@ -1,4 +1,3 @@
-execute if entity @e[advancements={tag_main:tagger_hit_check=true}] run say Hi
 # Normal mode
 execute if score gameMode Toggle matches 1 as @a[advancements={tag_main:on_hurt=true}] run function tag_main:tag_function/tag_swap
 
