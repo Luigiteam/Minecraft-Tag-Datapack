@@ -155,11 +155,14 @@ execute if score State gameStart matches 1 as @a[tag=tagger] if score @s gameTim
 execute if score PowerUps Toggle matches 1 if score State gameStart matches 1 if score PowerupTimer gameTimer < PowerupCooldown Numbers run scoreboard players add PowerupTimer gameTimer 1
 execute if score PowerupTimer gameTimer >= PowerupCooldown Numbers run function tag_main:powerups
 
-execute as @a[tag=tagger] if score Insane Toggle matches 0 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer > SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 0 true
-execute as @a[tag=tagger] if score Insane Toggle matches 0 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 1 true
-execute as @a[tag=tagger] if score Insane Toggle matches 0 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= LastRound gameTimer run effect give @s speed 1 2 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 1..2 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer > SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 0 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 1..2 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 1 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 1..2 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= LastRound gameTimer run effect give @s speed 1 2 true
 
-execute as @a[tag=tagger] if score Insane Toggle matches 0 if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 1 0 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 1..2 if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 1 0 true
+
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 3 if score @s gameTimer >= SpeedTimer Numbers run effect give @s speed 1 0 true
+execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 3 if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 1 0 true
 
 execute as @a[tag=tagger] if score Insane Toggle matches 1 if score @s gameTimer >= SpeedTimer Numbers run effect give @s speed 3 0 true
 execute as @a[tag=tagger] if score Insane Toggle matches 1 if score @s gameTimer >= SpeedTimer Numbers run effect give @s dolphins_grace 2 0 true

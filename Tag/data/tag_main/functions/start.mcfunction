@@ -2,6 +2,7 @@ execute at @e[tag=spawn] run worldborder center ~ ~
 
 clear @a
 
+tag @a remove winner
 # Assigns the tags
 team leave @a
 
@@ -21,8 +22,8 @@ execute store result score players Numbers run execute if entity @a[tag=!spectat
 execute store result score runners Numbers run execute if entity @a[tag=runner,tag=!spectate]
 execute store result score taggers Numbers run execute if entity @a[tag=tagger,tag=!spectate]
 
-execute if score runner Numbers = players Numbers run tag @r[tag=!spectate] add teamChangeToTagger
-execute if score tagger Numbers = players Numbers run tag @r[tag=!spectate] add teamChangeToRunner
+execute if score runners Numbers = players Numbers run tag @r[tag=!spectate] add teamChangeToTagger
+execute if score taggers Numbers = players Numbers run tag @r[tag=!spectate] add teamChangeToRunner
 
 execute as @a[tag=teamChangeToTagger] run tag @s remove runner
 execute as @a[tag=teamChangeToTagger] run tag @s add tagger

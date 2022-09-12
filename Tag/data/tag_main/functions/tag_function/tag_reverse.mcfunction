@@ -1,8 +1,8 @@
-tag @s remove tagger
-tag @s add runner
-
 execute at @s run tag @a[tag=runner,sort=nearest,limit=1] add tagger
 execute at @s run tag @a[tag=runner,sort=nearest,limit=1] remove runner
+
+tag @s remove tagger
+tag @s add runner
 
 # This changes the teams and resets the advancement
 team leave @a

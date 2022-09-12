@@ -1,10 +1,10 @@
-# This swaps the runner to a tagger
-tag @s add tagger
-tag @s remove runner
-
 # This swaps the tagger to a runner
 execute at @s run tag @a[tag=tagger,sort=nearest,limit=1] add runner
 execute at @s run tag @a[tag=tagger,sort=nearest,limit=1] remove tagger
+
+# This swaps the runner to a tagger
+tag @s add tagger
+tag @s remove runner
 
 # This changes the teams and resets the advancement
 team leave @a
