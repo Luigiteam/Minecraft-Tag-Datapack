@@ -10,7 +10,7 @@ execute at @e[tag=spawn] run kill @e[type=item,distance=..15]
 execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}},scores={gameTimer=100..}] run kill @s
 
 execute if score State gameStart matches 1 if score Insane Toggle matches 1 run scoreboard players add tnt gameTimer 1
-execute if score tnt gameTimer matches 300.. as @a[tag=!freeze] at @s run summon tnt ~ ~5 ~ {Fuse:60s}
+execute if score tnt gameTimer matches 300.. as @a[tag=!freeze] at @s run summon tnt ~ ~ ~ {Fuse:60s}
 execute if score tnt gameTimer matches 300.. run scoreboard players set tnt gameTimer 0
 
 # Reverse Tag
@@ -275,8 +275,8 @@ scoreboard players set @a Sneak 0
 execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s eyeTimer 1
 
 # Extras
-execute as @a if score @s damage matches 1.. run scoreboard players add @s damageTimer 1
-execute as @a if score @s damageTimer matches 10.. run scoreboard players set @s damage 0
+execute as @a if score @s damage matches 11.. run scoreboard players set @s damage 10
+execute as @a if score @s damage matches 1.. run scoreboard players remove @s damage 1
 
 # This checks if the runners are done running
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 1..2 run function tag_main:winners

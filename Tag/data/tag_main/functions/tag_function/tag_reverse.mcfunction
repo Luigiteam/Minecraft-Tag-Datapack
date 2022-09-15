@@ -1,5 +1,5 @@
-execute at @s run tag @a[tag=runner,sort=nearest,limit=1] add tagger
-execute at @s run tag @a[tag=runner,sort=nearest,limit=1] remove runner
+tag @a[tag=runner,sort=nearest,scores={damage=1..10},limit=1] add tagger
+tag @a[tag=runner,sort=nearest,scores={damage=1..10},limit=1] remove runner
 
 tag @s remove tagger
 tag @s add runner
@@ -15,6 +15,6 @@ tellraw @a {"text": "The tagger is ", "extra": [{"selector":"@a[tag=tagger]"}]}
 
 bossbar set runnertimer name {"text": "The tagger is ", "extra": [{"selector":"@a[tag=tagger]"}]}
 
-advancement revoke @a only tag_main:on_hurt
+advancement revoke @a only tag_main:on_hurt_by_runner
 
 playsound block.note_block.pling player @a ~ ~ ~ 100 1.5

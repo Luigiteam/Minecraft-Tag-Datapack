@@ -54,6 +54,13 @@ execute if score gameMode Toggle matches 2 at @e[tag=spawn] run data merge block
 
 scoreboard players set @a teamChoose 0
 
+## REVERSE
+execute if score gameMode Toggle matches 3 at @e[tag=spawn] run setblock ~2 ~2 ~3 warped_button[facing=north]
+
+execute if score gameMode Toggle matches 3 at @e[tag=spawn] run data merge block ~2 ~2 ~5 {Command:"scoreboard players set Selection optionsSelect 3"}
+
+execute if score gameMode Toggle matches 3 at @e[tag=spawn] run data merge block ~2 ~3 ~3 {Text1:'{"text":"","clickEvent":{"action":"run_command","value":"tellraw @a {\\"text\\":\\"Reverse Tag is where whoever is the tagger for the longest before the timer runs out, wins. Runners don\'t have any glowing effect to give them the edge to take over the tagger!\\"}"}}',Text2:'{"text":"Reverse Tag"}'}
+
 # This sets the world border
 execute at @e[tag=spawn] run worldborder center ~ ~
 worldborder set 100 1
