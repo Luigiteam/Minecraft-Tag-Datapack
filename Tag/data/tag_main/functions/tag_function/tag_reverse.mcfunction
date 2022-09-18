@@ -1,5 +1,5 @@
-tag @a[tag=runner,sort=nearest,scores={damage=1..10},limit=1] add tagger
-tag @a[tag=runner,sort=nearest,scores={damage=1..10},limit=1] remove runner
+execute as @p[tag=runner] if score @s damage matches 1.. run tag @s add tagger
+execute as @p[tag=runner] if score @s damage matches 1.. run tag @s remove runner
 
 tag @s remove tagger
 tag @s add runner

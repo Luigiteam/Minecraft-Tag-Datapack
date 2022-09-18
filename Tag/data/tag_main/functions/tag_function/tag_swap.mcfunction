@@ -1,6 +1,6 @@
 # This swaps the tagger to a runner
-tag @a[tag=tagger,sort=nearest,scores={damage=1..10},limit=1] add runner
-tag @a[tag=tagger,sort=nearest,scores={damage=1..10},limit=1] remove tagger
+execute as @p[tag=tagger] if score @s damage matches 1.. run tag @s add runner
+execute as @p[tag=tagger] if score @s damage matches 1.. run tag @s remove tagger
 
 # This swaps the runner to a tagger
 tag @s add tagger

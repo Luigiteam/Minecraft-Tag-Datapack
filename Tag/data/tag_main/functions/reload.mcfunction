@@ -20,6 +20,6 @@ gamerule keepInventory true
 worldborder set 30000000 1
 
 # This breaks the building
-execute at @e[tag=spawn] run fill ~10 ~5 ~10 ~-10 ~-10 ~-10 air
+execute at @e[tag=spawn] run fill ~10 ~7 ~10 ~-10 ~-7 ~-10 air
 execute at @e[tag=spawn] run kill @e[distance=..15]
 kill @e[tag=spawn]

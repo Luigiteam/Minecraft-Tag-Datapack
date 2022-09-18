@@ -1,0 +1,15 @@
+{
+    "criteria": {
+        "requirements":{
+            "trigger": "minecraft:player_hurt_entity",
+            "conditions": {
+                "player": {
+                    "team": "runner"
+                },
+                "entity": {
+                    "team":"taggers"
+                }
+            }
+        }
+    }
+}

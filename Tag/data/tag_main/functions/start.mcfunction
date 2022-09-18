@@ -110,6 +110,7 @@ scoreboard players set @a eyeTimer 100
 scoreboard players set @a effectLost 0
 scoreboard players set @a effectTimer 0
 scoreboard players set @a reverseTime 0
+scoreboard players set @a damage 0
 
 scoreboard players add Rounds round 1
 
