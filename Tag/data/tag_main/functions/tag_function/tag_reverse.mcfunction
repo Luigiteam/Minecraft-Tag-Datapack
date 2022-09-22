@@ -1,5 +1,5 @@
-execute as @p[tag=runner] if score @s damage matches 1.. run tag @s add tagger
-execute as @p[tag=runner] if score @s damage matches 1.. run tag @s remove runner
+execute as @p[tag=runner,scores={damage=1..}] run tag @s add tagger
+execute as @p[tag=runner,scores={damage=1..}] run tag @s remove runner
 
 tag @s remove tagger
 tag @s add runner
