@@ -275,8 +275,11 @@ scoreboard players set @a Sneak 0
 execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s eyeTimer 1
 
 # Extras
-execute as @a if score @s damage matches 11.. run scoreboard players set @s damage 10
-execute as @a if score @s damage matches 1.. run scoreboard players remove @s damage 1
+execute as @a[advancements={tag_main:on_hurt=true}] if entity @a[scores={damageDelt=1..}] run function tag_main:tag_function/tag_decide
+execute as @a[advancements={tag_main:on_hurt_by_runner=true}] if entity @a[scores={damageDelt=1..}] run function tag_main:tag_function/tag_decide
+
+execute as @a if score @s damageDelt matches 11.. run scoreboard players set @s damageDelt 10
+execute as @a if score @s damageDelt matches 1.. run scoreboard players remove @s damageDelt 1
 
 # This checks if the runners are done running
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 1..2 run function tag_main:winners

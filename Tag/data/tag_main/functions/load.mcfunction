@@ -52,7 +52,7 @@ scoreboard objectives add round dummy
 
 scoreboard objectives add teamChoose trigger
 
-scoreboard objectives add damage custom:minecraft.damage_dealt
+scoreboard objectives add damageDelt custom:minecraft.damage_dealt
 
 scoreboard objectives add reverseTime dummy
 

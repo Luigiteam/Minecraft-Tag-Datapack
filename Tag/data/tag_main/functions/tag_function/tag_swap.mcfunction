@@ -1,6 +1,6 @@
 # This swaps the tagger to a runner
-execute as @p[tag=tagger,scores={damage=1..}] run tag @s add runner
-execute as @p[tag=tagger,scores={damage=1..}] run tag @s remove tagger
+execute as @p[tag=tagger,scores={damageDelt=1..}] run tag @s add runner
+execute as @p[tag=tagger,scores={damageDelt=1..}] run tag @s remove tagger
 
 # This swaps the runner to a tagger
 tag @s add tagger

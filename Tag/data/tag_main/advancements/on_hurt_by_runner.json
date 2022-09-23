@@ -8,8 +8,7 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "minecraft:player",
-              "team": "taggers"
+              "type": "minecraft:player"
             }
           }
         ],
@@ -21,8 +20,5 @@
         }
       }
     }
-  },
-  "rewards": {
-    "function": "tag_main:tag_function/tag_decide"
   }
 }
