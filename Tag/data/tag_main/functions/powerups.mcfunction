@@ -63,7 +63,7 @@ execute if score pow Rand matches 8..10 at @e[tag=positioned] run summon minecra
 execute if score pow Rand matches 8..10 at @e[tag=positioned] run summon minecraft:firework_rocket ~ ~10 ~ {LifeTime:20,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;15435844],FadeColors:[I;11250603]}],Flight:1}}}}
 
 ## Item 3 (Potion of Invisibility)
-execute if score pow Rand matches 0..7 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:splash_potion",Count:1b,tag:{Floating:1b,Potion:"minecraft:water",CustomPotionEffects:[{Id:14,Duration:300,Ambient:1b}],display:{Name:'"Potion of Invisibility"',Lore:['[{"text":"This gives the user invisibility when applied, removing the glowing effect as well for a short time"}]']}}}}
+execute if score pow Rand matches 0..7 at @e[tag=positioned] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:splash_potion",Count:1b,tag:{Floating:1b,Potion:"minecraft:thick",CustomPotionEffects:[{Id:14,Duration:300,Ambient:1b}],display:{Name:'"Potion of Invisibility"',Lore:['[{"text":"This gives the user invisibility when applied, removing the glowing effect as well for a short time"}]']}}}}
 execute if score pow Rand matches 0..7 at @e[tag=positioned] run summon minecraft:firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"minecraft:firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;11250603],FadeColors:[I;15790320]}],Flight:2}}}}
 
 ## Item 4 (Elytra of Soaring)

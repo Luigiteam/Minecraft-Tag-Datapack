@@ -29,24 +29,27 @@ execute if score frozenRunners Numbers = runners Numbers if score State gameStar
 execute as @a[scores={timeFroze=0..}] run scoreboard players remove @s timeFroze 1
 execute as @a[scores={timeFroze=0}] run advancement grant @s only tag_main:on_hurt_by_runner
 
-## This applies Jump boost 128 and slowness 1 to any frozen people
-execute as @a[tag=freeze] run effect give @s jump_boost 1 128 true
-execute as @a[tag=freeze] run effect give @s slowness 1 0 true
+execute at @a[tag=freeze] run particle minecraft:block minecraft:snow ~ ~ ~ 0 0 0 0.5 2
+execute at @a[tag=freeze] run particle minecraft:block minecraft:blue_ice ~ ~ ~ 0 0 0 0.5 2
 
-execute as @e[tag=freezeCheck,type=area_effect_cloud] at @s if score @s oid = @p oid run tp @p[tag=freeze,limit=1,sort=nearest,distance=0.5..] @s
+## This checks if a person is outside their cloud
+
+execute as @e[tag=freezeCheck,type=marker] at @s if score @s oid = @p[tag=freeze] oid run tp @p[tag=freeze,limit=1,sort=nearest,distance=1..] @s
 
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1 255 true
 
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @a[nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. run effect clear @a[nbt={ActiveEffects:[{Id:14}]}] glowing
 
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @a[nbt=!{ActiveEffects:[{Id:14}]},tag=tagger] minecraft:glowing 1 0 true
+
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect clear @a[tag=runner] glowing
 
 # Not necisary, but gives some nice flare
-execute if score gameMode Toggle matches 1 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ": Normal Tag"}]
-execute if score gameMode Toggle matches 2 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ": Freeze Tag"}]
-execute if score gameMode Toggle matches 3 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ": Reverse Tag"}]
+execute if score gameMode Toggle matches 1 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ":"},{"text": " Normal Tag"}]
+execute if score gameMode Toggle matches 2 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ":"},{"text": " Freeze Tag","color": "aqua"}]
+execute if score gameMode Toggle matches 3 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ":"},{"text": " Reverse Tag","color": "red"}]
 
 title @a[tag=runner] actionbar {"text": "The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
@@ -75,7 +78,7 @@ execute if score yDistance Toggle matches 1 as @e[tag=tagger] if score yResults 
 
 ## Detection & Effects
 
-execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra"}]}] run item replace entity @s armor.chest with minecraft:elytra{Floating:1b,Enchantments:[{id:"minecraft:binding_curse",lvl:1}],display:{Name:'[{"text":"Elytra of Soaring","italic":false}]',Lore:['[{"text":"Put this elytra on and fly up in the air","italic":false}]','[{"text":"Maybe you can catch some people off-guard","italic":false}]']}}
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]}] run item replace entity @s armor.chest with minecraft:elytra{Floating:1b,Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}
 
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]},scores={airTime=..0}] run tag @s add airborne
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]},scores={airTime=..0}] run tag @s add elytraKit
@@ -89,9 +92,9 @@ scoreboard players add @a[tag=airborne] airTime 1
 
 execute at @a[tag=airborne,scores={airTime=1..50}] run particle firework ~ ~-1 ~ 0 1 0 0.07 5 force @a 
 
-execute as @e[tag=airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. run item replace entity @s armor.chest with air
-execute as @e[tag=airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. run tag @s remove airborne
-execute as @e[tag=!airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. run scoreboard players set @s airTime 0
+execute as @a[tag=airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. run item replace entity @s armor.chest with air
+execute as @a[tag=airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. run tag @s remove airborne
+execute as @a[tag=!airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. run scoreboard players set @s airTime 0
 
 scoreboard players set @a[nbt=!{Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]}] airTime 0
 

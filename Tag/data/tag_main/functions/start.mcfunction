@@ -106,11 +106,15 @@ gamerule doImmediateRespawn true
 execute as @e[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 100 2.0
 tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
 
+# Sets up some scoreboards
 scoreboard players set @a eyeTimer 100
 scoreboard players set @a effectLost 0
 scoreboard players set @a effectTimer 0
 scoreboard players set @a reverseTime 0
 scoreboard players set @a damageDelt 0
+scoreboard players set @a airTime 0
+
+tag @a[tag=airborne] remove airborne
 
 scoreboard players add Rounds round 1
 

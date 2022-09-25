@@ -1,18 +1,19 @@
 # Normal mode
-execute if score gameMode Toggle matches 1 as @a[advancements={tag_main:on_hurt=true},tag=runner] run function tag_main:tag_function/tag_swap
+execute if score gameMode Toggle matches 1 if entity @s[advancements={tag_main:on_hurt=true},tag=runner] as @s at @s run function tag_main:tag_function/tag_swap
 
 # Freeze mode
+
 ## Runner By Tagger
-execute if score gameMode Toggle matches 2 as @a[advancements={tag_main:on_hurt=true},tag=runner] run function tag_main:tag_function/tag_freeze
+execute if score gameMode Toggle matches 2 if entity @s[advancements={tag_main:on_hurt=true},tag=runner] as @s at @s run function tag_main:tag_function/tag_freeze
 
 ## Runner By Runner
-execute if score gameMode Toggle matches 2 as @a[advancements={tag_main:on_hurt_by_runner=true},tag=runner] run function tag_main:tag_function/tag_freeze
+execute if score gameMode Toggle matches 2 if entity @s[advancements={tag_main:on_hurt_by_runner=true},tag=runner] as @s at @s run function tag_main:tag_function/tag_freeze
 
 # Reverse mode
-execute if score gameMode Toggle matches 3 as @a[advancements={tag_main:on_hurt_by_runner=true},tag=tagger] run function tag_main:tag_function/tag_reverse
+execute if score gameMode Toggle matches 3 if entity @s[advancements={tag_main:on_hurt_by_runner=true},tag=tagger] as @s at @s run function tag_main:tag_function/tag_reverse
 
 # Other
-advancement revoke @a only tag_main:on_hurt
-advancement revoke @a only tag_main:on_hurt_by_runner
+advancement revoke @s only tag_main:on_hurt
+advancement revoke @s only tag_main:on_hurt_by_runner
 
 scoreboard players set @a damageDelt 0
