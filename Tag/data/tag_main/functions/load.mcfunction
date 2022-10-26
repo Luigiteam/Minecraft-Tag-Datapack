@@ -1,4 +1,4 @@
-## VERSION 1.4
+## VERSION 1.5
 forceload add 0 0 0 0
 
 # Adding Objectives
@@ -35,8 +35,10 @@ scoreboard objectives add effectTimer dummy
 scoreboard objectives add effectType dummy
 
 scoreboard objectives add effectUse minecraft.used:carrot_on_a_stick
+scoreboard objectives add effectUseWarped minecraft.used:warped_fungus_on_a_stick
 
 scoreboard objectives add effectLost dummy
+scoreboard objectives add effectLostWarped dummy
 
 scoreboard objectives add effectAmount dummy
 
@@ -58,6 +60,14 @@ scoreboard objectives add reverseTime dummy
 
 scoreboard objectives add reverseTimeTemp dummy
 
+scoreboard objectives add blindTimer dummy
+
+scoreboard objectives add heartBeatSpeed dummy
+
+scoreboard objectives add heartBeatTimer dummy
+
+scoreboard objectives add markerTimer dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
@@ -71,6 +81,8 @@ scoreboard players set SecondRound gameTimer 0
 scoreboard players set LastRound gameTimer 0
 
 scoreboard players set PowerupTimer gameTimer 0
+
+scoreboard players set winnerTimer gameTimer 0
 
 scoreboard players set tnt gameTimer 0
 
@@ -114,13 +126,14 @@ scoreboard players set yResults yDistance 0
 
 scoreboard players set Selection optionsSelect 0
 scoreboard players set Change optionsSelect 0
+scoreboard players set seekType optionsSelect 0
 
 scoreboard players set Rounds round 0
 
 # Adds the teams
 ## team Taggers
 team add taggers "Taggers"
-team modify taggers color aqua
+team modify taggers color red
 
 ## team Runners
 team add runner "Runners"
@@ -169,4 +182,7 @@ gamerule keepInventory true
 
 scoreboard objectives setdisplay list wins
 
-tellraw @a {"text":"Tag 1.4 Loaded!","color":"32e65c"}
+worldborder damage buffer 0.4
+worldborder damage amount 5
+
+tellraw @a {"text":"Tag 1.5 Loaded!","color":"32e65c"}

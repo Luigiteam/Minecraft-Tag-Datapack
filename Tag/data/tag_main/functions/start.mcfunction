@@ -1,11 +1,11 @@
-execute at @e[tag=spawn] run worldborder center ~ ~
+execute at @e[tag=spawn,type=marker] run worldborder center ~ ~
 
 clear @a
 
-tag @a remove winner
 # Assigns the tags
 team leave @a
 
+tag @a remove winner
 tag @a remove tagger
 tag @a remove runner
 tag @a remove spectate
@@ -35,6 +35,7 @@ execute as @a[tag=teamChangeToRunner] run tag @s remove teamChangeToRunner
 
 # This sets the timers up
 scoreboard players operation Timer gameTimer = EndTimer gameTimer
+execute if score gameMode Toggle matches 5 run scoreboard players add Timer gameTimer 300
 
 scoreboard players operation SecondRound gameTimer = EndTimer gameTimer
 scoreboard players operation SecondRound gameTimer /= Two Numbers
@@ -46,13 +47,13 @@ team join taggers @a[tag=tagger]
 team join runner @a[tag=runner]
 
 # This spreads the players
-execute as @e[tag=spawn] at @s run tp ~ ~-309 ~
+execute as @e[tag=spawn,type=marker] at @s run tp ~ ~-309 ~
 
-execute at @e[tag=spawn] run spreadplayers ~ ~ 25 60 true @a
+execute at @e[tag=spawn,type=marker] run spreadplayers ~ ~ 25 50 true @a
 
-execute as @e[tag=spawn] at @s run tp ~ ~309 ~
+execute as @e[tag=spawn,type=marker] at @s run tp ~ ~309 ~
 
-execute at @e[tag=spawn] run spawnpoint @a ~ ~ ~
+execute at @e[tag=spawn,type=marker] run spawnpoint @a ~ ~ ~
 
 # This gives the tools out
 
@@ -97,14 +98,16 @@ execute as @a[scores={effectTrigger=1..}] run scoreboard players operation @s ef
 tag @a add noEffect
 give @a[scores={effectType=1..}] carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'}}
 
+execute if score gameMode Toggle matches 5 run give @a[tag=tagger] warped_fungus_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Runner Revealer","italic":false}]'}}
+
 # Insane mode stuff
 execute if score Insane Toggle matches 1 run scoreboard players set PowerupCooldown Numbers 200
 execute if score Insane Toggle matches 0 run scoreboard players set PowerupCooldown Numbers 400
 
 gamerule doImmediateRespawn true
 
-execute as @e[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 100 2.0
-tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@e[tag=tagger]"}]}
+execute as @a[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 100 2.0
+tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@a[tag=tagger]"}]}
 
 # Sets up some scoreboards
 scoreboard players set @a eyeTimer 100
@@ -113,8 +116,19 @@ scoreboard players set @a effectTimer 0
 scoreboard players set @a reverseTime 0
 scoreboard players set @a damageDelt 0
 scoreboard players set @a airTime 0
+scoreboard players set @a blindTimer -1
+scoreboard players set @a heartBeatSpeed 0
+scoreboard players set winnerTimer gameTimer 0
+
+execute if score gameMode Toggle matches 5 run scoreboard players set @a[tag=tagger] blindTimer 300
 
 tag @a[tag=airborne] remove airborne
+
+execute if score gameMode Toggle matches 1..4 run team modify runner nametagVisibility always 
+execute if score gameMode Toggle matches 5 run team modify runner nametagVisibility hideForOtherTeams 
+
+execute if score gameMode Toggle matches 1..4 run team modify taggers nametagVisibility always 
+execute if score gameMode Toggle matches 5 run team modify taggers nametagVisibility hideForOtherTeams 
 
 scoreboard players add Rounds round 1
 
