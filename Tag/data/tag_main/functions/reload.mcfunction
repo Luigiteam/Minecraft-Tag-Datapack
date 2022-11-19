@@ -1,3 +1,5 @@
+kill @e[type=marker,tag=tpSpawn]
+
 # Resetting Fake PLayers
 scoreboard players set State gameStart -1
 
@@ -18,8 +20,3 @@ gamerule keepInventory true
 
 #This sets the worldborder back to default
 worldborder set 30000000 1
-
-# This breaks the building
-execute at @e[tag=spawn,type=marker] run fill ~5 ~-1 ~5 ~-5 ~7 ~-5 air
-execute at @e[tag=spawn,type=marker] run kill @e[distance=..15,type=item]
-kill @e[tag=spawn,type=marker]

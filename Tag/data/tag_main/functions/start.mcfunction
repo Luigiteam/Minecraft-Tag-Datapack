@@ -1,6 +1,8 @@
-execute at @e[tag=spawn,type=marker] run worldborder center ~ ~
-
 clear @a
+
+kill @e[type=marker,tag=tpSpawn]
+summon marker ~ ~ ~ {Tags:[tpSpawn]}
+execute at @e[tag=tpSpawn,type=marker] run spawnpoint @a ~ ~ ~
 
 # Assigns the tags
 team leave @a
@@ -45,15 +47,6 @@ scoreboard players operation LastRound gameTimer /= Four Numbers
 
 team join taggers @a[tag=tagger]
 team join runner @a[tag=runner]
-
-# This spreads the players
-execute as @e[tag=spawn,type=marker] at @s run tp ~ ~-309 ~
-
-execute at @e[tag=spawn,type=marker] run spreadplayers ~ ~ 25 50 true @a
-
-execute as @e[tag=spawn,type=marker] at @s run tp ~ ~309 ~
-
-execute at @e[tag=spawn,type=marker] run spawnpoint @a ~ ~ ~
 
 # This gives the tools out
 
@@ -106,7 +99,7 @@ execute if score Insane Toggle matches 0 run scoreboard players set PowerupCoold
 
 gamerule doImmediateRespawn true
 
-execute as @a[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 100 2.0
+execute as @a[tag=tagger] at @s run playsound block.note_block.pling player @s ~ ~ ~ 1 2.0
 tellraw @a {"text":"The tagger is ", "extra":[{"selector":"@a[tag=tagger]"}]}
 
 # Sets up some scoreboards
@@ -133,6 +126,17 @@ execute if score gameMode Toggle matches 5 run team modify taggers nametagVisibi
 scoreboard players add Rounds round 1
 
 time set day
+
+# This forces default if a person doesn't have a specific sound selected
+execute as @a unless score @s playerRevelerSound matches 0.. run scoreboard players set @s playerRevelerSound 1
+execute as @a unless score @s heartBeatSound matches 0.. run scoreboard players set @s heartBeatSound 1
+
+# This sets the world border
+execute at @e[type=marker,tag=tpSpawn] run worldborder center ~ ~
+
+worldborder set 100 1
+
+execute at @e[type=marker,tag=tpSpawn] run spreadplayers ~ ~ 30 60 true @a
 
 gamemode survival @a
 scoreboard players set State gameStart 1

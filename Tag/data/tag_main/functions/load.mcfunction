@@ -1,5 +1,7 @@
-## VERSION 1.5
+## VERSION 1.6
 forceload add 0 0 0 0
+
+## NEED TO ADD IN SETTINGS FOR yDistance and keepInventory Toggles
 
 # Adding Objectives
 scoreboard objectives add gameStart dummy
@@ -68,6 +70,21 @@ scoreboard objectives add heartBeatTimer dummy
 
 scoreboard objectives add markerTimer dummy
 
+scoreboard objectives add giveBook trigger
+
+scoreboard objectives add textTrigger trigger
+
+scoreboard objectives add TP dummy
+
+scoreboard objectives add Build dummy
+
+scoreboard objectives add playerRevelerSound dummy
+
+scoreboard objectives add heartBeatSound dummy
+
+scoreboard objectives add deathDetector deathCount
+scoreboard objectives add hp health
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
@@ -93,7 +110,6 @@ scoreboard players set Two Numbers 2
 scoreboard players set Three Numbers 3
 scoreboard players set Four Numbers 4
 
-scoreboard players set TrapCooldown Numbers 100
 scoreboard players set SpeedTimer Numbers 200
 scoreboard players set FireworkCooldown Numbers 600
 scoreboard players set PowerupCooldown Numbers 400
@@ -104,7 +120,8 @@ scoreboard players set taggers Numbers 0
 scoreboard players set spectators Numbers 0
 scoreboard players set frozenRunners Numbers 0
 
-scoreboard players set worldBorderSize Numbers 0
+scoreboard players set worldBorderSize Numbers 100
+scoreboard players set worldBorderSizeGet Numbers 100
 scoreboard players set halfWBS Numbers 0
 scoreboard players set nHalfWBS Numbers 0
 
@@ -118,6 +135,24 @@ scoreboard players set Insane Toggle 0
 
 scoreboard players set gameMode Toggle 1
 
+## Powerup Toggles
+scoreboard players set settingSet optionsSelect 0
+
+scoreboard players set kbStick Toggle 1
+scoreboard players set clampTrap Toggle 1
+scoreboard players set potionInvis Toggle 1
+scoreboard players set elytra Toggle 1
+scoreboard players set clock Toggle 1
+scoreboard players set snowball Toggle 1
+scoreboard players set eyeTeleport Toggle 1
+scoreboard players set punchBow Toggle 1
+
+scoreboard players set allDisabled Toggle 0
+
+scoreboard players set upgradeModule Toggle 1
+
+##
+
 scoreboard players set num Rand 0
 scoreboard players set anvil Rand 0
 scoreboard players set set Rand 0
@@ -127,8 +162,11 @@ scoreboard players set yResults yDistance 0
 scoreboard players set Selection optionsSelect 0
 scoreboard players set Change optionsSelect 0
 scoreboard players set seekType optionsSelect 0
+scoreboard players set Mode optionsSelect 0
 
 scoreboard players set Rounds round 0
+
+scoreboard players set build Build 0
 
 # Adds the teams
 ## team Taggers
@@ -174,6 +212,10 @@ team modify aqua color aqua
 team add green
 team modify green color green
 
+### This is for the Punching Bow item
+team add gray
+team modify gray color gray
+
 ## Neutral for pregame
 team add neutral "Neutral"
 team modify neutral friendlyFire false
@@ -185,4 +227,6 @@ scoreboard objectives setdisplay list wins
 worldborder damage buffer 0.4
 worldborder damage amount 5
 
-tellraw @a {"text":"Tag 1.5 Loaded!","color":"32e65c"}
+data modify storage death Pos set value [0.0d,0.0d,0.0d]
+
+tellraw @a {"text":"Tag 1.6 Loaded!","color":"32e65c"}

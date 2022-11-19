@@ -1,0 +1,4 @@
+kill @e[nbt={Item:{id:"minecraft:polar_bear_spawn_egg",tag:{Floating:1b}}},sort=nearest,limit=1]
+summon item ~ ~ ~ {Item:{id:"minecraft:polar_bear_spawn_egg",Count:1b,tag:{Floating:1b,EntityTag:{id:"minecraft:area_effect_cloud",Tags:[UpgradeClampTrap],Particle:"ambient_entity_effect 1 0 0 1",Age:-2147483648,WaitTime:-2147483648,Duration:-1,Radius:4.5f},display:{Name:'[{"text":"Super Clamp Trap","italic":false}]',Lore:['[{"text":"This is a trap that","italic":false}]','[{"text":"readies in 3 seconds,","italic":false}]','[{"text":"invisible particles,","italic":false}]','[{"text":"and more lasting effects!","italic":false}]']}}}}
+summon minecraft:firework_rocket ~ ~5 ~ {LifeTime:0,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;15435844],FadeColors:[I;11250603]}],Flight:1}}}}
+kill @s
