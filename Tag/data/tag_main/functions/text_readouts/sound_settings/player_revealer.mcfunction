@@ -1,0 +1,2 @@
+tellraw @a ["",{"text":"------\nThese settings are when you use the \"Player Revealer\"\n\n"},{"text":"[Click Me To Hear Noteblock Bit Sounds]","color":"green","clickEvent":{"action":"run_command","value":"/scoreboard players set @s playerRevelerSound 1"}},{"text":"\n\n"},{"text":"[Click Me To Hear Nothing]","color":"red","clickEvent":{"action":"run_command","value":"/scoreboard players set @s playerRevelerSound 0"}}]
+scoreboard players set @s textTrigger 0

@@ -1,0 +1,4 @@
+kill @e[type=item,nbt={Item:{id:"minecraft:splash_potion",Count:1b,tag:{Floating:1b}}},sort=nearest,limit=1]
+summon item ~ ~ ~ {Item:{id:"minecraft:splash_potion",Count:1b,tag:{CustomPotionEffects:[{Id:14,Amplifier:0b,Duration:300,ShowParticles:0b,ShowIcon:1b},{Id:26,Amplifier:0b,Duration:400,ShowParticles:0b,ShowIcon:1b},{Id:1,Amplifier:1b,Duration:200,ShowParticles:0b,ShowIcon:1b}],display:{Name:'[{"text":"Decoy Potion","italic":false}]',Lore:['[{"text":"Any Runner that gets splashed","italic":false}]','[{"text":"with this potion leaves behind a","italic":false}]','[{"text":"decoy that the player revealer","italic":false}]','[{"text":"can track while youself is","italic":false}]','[{"text":"invisiable and fast.","italic":false}]']},Floating:1b}}}
+summon minecraft:firework_rocket ~ ~5 ~ {LifeTime:0,FireworksItem:{id:"minecraft:firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;5394769],FadeColors:[I;11250603]}],Flight:2}}}}
+kill @s

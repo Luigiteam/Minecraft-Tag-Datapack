@@ -1,0 +1,2 @@
+scoreboard players set @s deathDetector 0
+execute if entity @s[tag=tagger] as @s if score State gameStart matches 1.. if score upgradeModule Toggle matches 1 run function tag_main:death_check/tagger_death

@@ -12,6 +12,12 @@ execute if score gameMode Toggle matches 2 if entity @s[advancements={tag_main:o
 # Reverse mode
 execute if score gameMode Toggle matches 3 if entity @s[advancements={tag_main:on_hurt_by_runner=true},tag=tagger] as @s at @s run function tag_main:tag_function/tag_reverse
 
+# Infection mode
+execute if score gameMode Toggle matches 4 if entity @s[advancements={tag_main:on_hurt=true},tag=runner] as @s at @s run function tag_main:tag_function/tag_infection
+
+# Hide-and-Seek
+execute if score gameMode Toggle matches 5 if entity @s[advancements={tag_main:on_hurt=true},tag=runner] as @s run function tag_main:tag_function/tag_seek 
+
 # Other
 advancement revoke @s only tag_main:on_hurt
 advancement revoke @s only tag_main:on_hurt_by_runner
