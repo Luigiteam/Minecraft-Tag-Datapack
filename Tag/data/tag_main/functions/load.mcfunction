@@ -228,5 +228,6 @@ worldborder damage buffer 0.4
 worldborder damage amount 5
 
 data modify storage death Pos set value [0.0d,0.0d,0.0d]
+data modify storage snowball_motion Motion set value [0.0d,0.0d,0.0d]
 
 tellraw @a {"text":"Tag 1.6 Loaded!","color":"32e65c"}

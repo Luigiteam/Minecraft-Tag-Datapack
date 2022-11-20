@@ -215,13 +215,6 @@ execute as @e[tag=UpgradeClampTrap,type=area_effect_cloud] if score @s trapDestr
 
 execute as @e[tag=UpgradeClamp] unless score @s trapDestroy matches 0.. run scoreboard players set @s trapDestroy 0
 
-# Decoy Potion
-scoreboard players add @e[type=armor_stand,tag=decoy] gameTimer 1
-kill @e[type=armor_stand,tag=decoy,scores={gameTimer=600..}]
-team join runner @e[type=armor_stand,tag=decoy,team=]
-execute as @a[nbt={ActiveEffects:[{Id:26},{Id:14}]}] at @s run function tag_main:powerup_functions/decoy_potion/decoy_potion
-tag @a[nbt=!{ActiveEffects:[{Id:14}]}] remove hidden
-
 # This is how the Clock powerup works
 execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_runner
 execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_tagger
@@ -461,6 +454,19 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floa
 
 #### Decoy Potion
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[nbt={Item:{id:"minecraft:splash_potion",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/decoy_potion
+
+scoreboard players add @e[type=armor_stand,tag=decoy] gameTimer 1
+kill @e[type=armor_stand,tag=decoy,scores={gameTimer=600..}]
+team join runner @e[type=armor_stand,tag=decoy,team=]
+execute as @a[nbt={ActiveEffects:[{Id:26},{Id:14}]}] at @s run function tag_main:powerup_functions/decoy_potion/decoy_potion
+tag @a[nbt=!{ActiveEffects:[{Id:14}]}] remove hidden
+
+#### Multi-Snowball of Destruction
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[nbt={Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/muti_snowball
+
+execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b,Enchantments:[{id:"minecraft:multishot"}]}}}] unless score @s gameTimer matches 6.. run scoreboard players add @s gameTimer 1
+execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b,Enchantments:[{id:"minecraft:multishot"}]}}}] if score @s gameTimer matches 5 at @s run function tag_main:powerup_functions/multishot_snowball/multishot_snowball
+
 
 ## Hit Detection
 execute as @a[advancements={tag_main:on_hurt=true}] if entity @a[scores={damageDelt=1..}] run function tag_main:tag_function/tag_decide
