@@ -111,6 +111,8 @@ scoreboard players set @a damageDelt 0
 scoreboard players set @a airTime 0
 scoreboard players set @a blindTimer -1
 scoreboard players set @a heartBeatSpeed 0
+scoreboard players set @a yDistance 0
+
 scoreboard players set winnerTimer gameTimer 0
 
 execute if score gameMode Toggle matches 5 run scoreboard players set @a[tag=tagger] blindTimer 300

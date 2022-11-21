@@ -154,7 +154,7 @@ execute if score State gameStart matches 0 as @a at @s if entity @e[type=marker,
 execute if score State gameStart matches 0 run team join neutral @a
 
 # This detirmines the nearest player's y distance and displays it on the taggers screen
-execute as @a[tag=tagger] store result score @s yDistance run data get entity @s Pos[1]
+execute as @a store result score @s yDistance run data get entity @s Pos[1]
 execute at @a[tag=tagger] as @a[tag=runner,sort=nearest,limit=1] store result score @s yDistance run data get entity @s Pos[1]
 
 scoreboard players operation yResults yDistance = @a[tag=tagger] yDistance
@@ -435,6 +435,13 @@ scoreboard players set @a Sneak 0
 execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s eyeTimer 1
 
 # Extras
+## Artifical Height/Void limit
+execute as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run setblock ~ ~-2 ~ air destroy
+execute as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run tp @s ~ ~-1 ~
+
+execute as @a[tag=!heightOP] at @s if score @s yDistance > minDepth Numbers if score State gameStart matches 1.. run fill ~ ~-1 ~ ~ ~ ~ minecraft:air replace barrier
+execute as @a[tag=!heightOP] at @s unless score @s yDistance > minDepth Numbers if score State gameStart matches 1.. if block ~ ~ ~ air run setblock ~ ~-1 ~ barrier
+
 ## Upgrade Core Stuff
 ### Drop Core on Tagger Death
 execute as @a[scores={deathDetector=1..,hp=1..}] run function tag_main:death_check/death

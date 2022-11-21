@@ -125,6 +125,9 @@ scoreboard players set worldBorderSizeGet Numbers 100
 scoreboard players set halfWBS Numbers 0
 scoreboard players set nHalfWBS Numbers 0
 
+scoreboard players set maxHeight Numbers 150
+scoreboard players set minDepth Numbers -30
+
 scoreboard players set yDistance Toggle 1
 
 scoreboard players set Tools Toggle 0
@@ -154,6 +157,7 @@ scoreboard players set upgradeModule Toggle 1
 ##
 
 scoreboard players set num Rand 0
+scoreboard players set drop Rand 0
 scoreboard players set anvil Rand 0
 scoreboard players set set Rand 0
 

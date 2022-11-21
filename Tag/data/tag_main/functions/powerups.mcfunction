@@ -82,7 +82,7 @@ execute if score pow Rand matches 7..9 if score snowball Toggle matches 1 at @e[
 execute if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:ender_eye",Count:1b,tag:{display:{Name:'[{"text":"Eye of Teleportation","italic":false}]',Lore:['[{"text":"This Powerup allows you to tp to any","italic":false}]','[{"text":"person randomly","italic":false}]']},Enchantments:[{}],Floating:1b}}}
 execute if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;4312372]}],Flight:2}}}}
 
-## Item 8 (Bow of Second Chances)
+## Item 8 (Punching Pow)
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon item ~ ~280 ~ {Item:{id:"minecraft:bow",Count:1b,tag:{Floating:1b,Damage:379,RepairCost:10000,CustomModelData:0,display:{Name:'[{"text":"Punching Bow","italic":false}]'},Enchantments:[{id:"punch",lvl:2}]}}}
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon item ~ ~280 ~ {Item:{id:"minecraft:arrow",Count:5b,tag:{Floating:1b}}}
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;10853544]}],Flight:2}}}}
