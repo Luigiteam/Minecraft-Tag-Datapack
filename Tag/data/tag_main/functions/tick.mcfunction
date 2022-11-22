@@ -149,7 +149,8 @@ execute if score Timer gameTimer matches 1200 run bossbar set runnertimer color 
 execute if score Timer gameTimer matches 1200 run tellraw @a "1 Minute Remaining"
 
 # Pre-Game
-execute if score State gameStart matches 0 as @a at @s if entity @e[type=marker,tag=tpOptions,distance=..7] run gamemode adventure @a
+execute if score State gameStart matches 0 as @e[tag=tpOptions] at @s if entity @a[distance=..7,gamemode=!adventure] run gamemode adventure @a
+execute if score State gameStart matches 0 as @e[tag=tpOptions] at @s if entity @a[distance=7..,gamemode=adventure] run gamemode adventure @a
 execute if score State gameStart matches 0 as @a at @s if entity @e[type=marker,tag=tpSpawn,distance=..10]
 execute if score State gameStart matches 0 run team join neutral @a
 
