@@ -105,16 +105,16 @@ execute as @e[tag=freezeCheck,type=marker] at @s if score @s oid = @p[tag=freeze
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1000000 255 true
 
-execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @a[nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
-execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @e[type=armor_stand,tag=decoy,nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
-execute if score State gameStart matches 1.. run effect clear @a[nbt={ActiveEffects:[{Id:14}]}] glowing
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @a[nbt=!{ActiveEffects:[{Id:14b}]}] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @e[type=armor_stand,tag=decoy,nbt=!{ActiveEffects:[{Id:14b}]}] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. run effect clear @a[nbt={ActiveEffects:[{Id:14b}]}] glowing
 
-execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @a[nbt=!{ActiveEffects:[{Id:14}]},tag=tagger] minecraft:glowing 1 0 true
-execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @e[type=armor_stand,tag=decoy,nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @a[nbt=!{ActiveEffects:[{Id:14b}]},tag=tagger] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @e[type=armor_stand,tag=decoy,nbt=!{ActiveEffects:[{Id:14b}]}] minecraft:glowing 1 0 true
 
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect clear @a[tag=runner] glowing
 
-execute as @a[tag=tagger,nbt=!{ActiveEffects:[{Id:14}]}] at @s unless entity @a[tag=runner,distance=..31] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run effect give @s glowing 1 0 true
+execute as @a[tag=tagger,nbt=!{ActiveEffects:[{Id:14b}]}] at @s unless entity @a[tag=runner,distance=..31] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run effect give @s glowing 1 0 true
 
 # Not necisary, but gives some nice flare
 execute if score gameMode Toggle matches 1 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ":"},{"text": " Normal Tag"}]
@@ -207,9 +207,9 @@ execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s if entity
 execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s run effect give @e[type=player,distance=..5] minecraft:slowness 10 10
 
 execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. run data merge entity @s {Particle:"block air 1 0 0 1"}
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] run scoreboard players add @s trapDestroy 1
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] at @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] run summon minecraft:evoker_fangs ~ ~ ~ {Glowing:1b}
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s run effect give @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] slowness 10 15
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2b}]}] run scoreboard players add @s trapDestroy 1
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2b}]}] at @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2b}]}] run summon minecraft:evoker_fangs ~ ~ ~ {Glowing:1b}
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s run effect give @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2b}]}] slowness 10 15
 
 execute as @e[tag=ClampTrap,type=area_effect_cloud] if score @s trapDestroy matches 1.. run kill @s
 execute as @e[tag=UpgradeClampTrap,type=area_effect_cloud] if score @s trapDestroy matches 3.. run kill @s
@@ -300,11 +300,11 @@ execute as @a[scores={effectLost=100..}] run give @s carrot_on_a_stick{Floating:
 execute as @a[scores={effectLost=100..}] run scoreboard players set @s effectLost 0
 
 ### This checks if an individual has no effect
-execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{ActiveEffects:[{Id:8}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=2},nbt=!{ActiveEffects:[{Id:11}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{ActiveEffects:[{Id:3}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{ActiveEffects:[{Id:5}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{ActiveEffects:[{Id:25}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{ActiveEffects:[{Id:8b}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=2},nbt=!{ActiveEffects:[{Id:11b}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{ActiveEffects:[{Id:3b}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{ActiveEffects:[{Id:5b}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{ActiveEffects:[{Id:25b}]}] run tag @s add noEffect
 
 ## Warped fungus on a stick
 ### This gives the effect
@@ -440,8 +440,7 @@ execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s 
 execute as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run setblock ~ ~-2 ~ air destroy
 execute as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run tp @s ~ ~-1 ~
 
-execute as @a[tag=!heightOP] at @s if score @s yDistance > minDepth Numbers if score State gameStart matches 1.. run fill ~ ~-1 ~ ~ ~ ~ minecraft:air replace barrier
-execute as @a[tag=!heightOP] at @s unless score @s yDistance > minDepth Numbers if score State gameStart matches 1.. if block ~ ~ ~ air run setblock ~ ~-1 ~ barrier
+execute as @a[tag=!heightOP] at @s unless score @s yDistance > minDepth Numbers if score State gameStart matches 1.. if block ~ ~ ~ air run effect give @s levitation 1 4 true
 
 ## Upgrade Core Stuff
 ### Drop Core on Tagger Death
@@ -466,8 +465,8 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floa
 scoreboard players add @e[type=armor_stand,tag=decoy] gameTimer 1
 kill @e[type=armor_stand,tag=decoy,scores={gameTimer=600..}]
 team join runner @e[type=armor_stand,tag=decoy,team=]
-execute as @a[nbt={ActiveEffects:[{Id:26},{Id:14}]}] at @s run function tag_main:powerup_functions/decoy_potion/decoy_potion
-tag @a[nbt=!{ActiveEffects:[{Id:14}]}] remove hidden
+execute as @a[nbt={ActiveEffects:[{Id:26b},{Id:14b}]}] at @s run function tag_main:powerup_functions/decoy_potion/decoy_potion
+tag @a[nbt=!{ActiveEffects:[{Id:14b}]}] remove hidden
 
 #### Multi-Snowball of Destruction
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[nbt={Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/muti_snowball
