@@ -105,16 +105,16 @@ execute as @e[tag=freezeCheck,type=marker] at @s if score @s oid = @p[tag=freeze
 # This is some code that needs to run all the time
 execute if score State gameStart matches 0.. run effect give @a saturation 1000000 255 true
 
-execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @a[nbt=!{ActiveEffects:[{Id:14b}]}] minecraft:glowing 1 0 true
-execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @e[type=armor_stand,tag=decoy,nbt=!{ActiveEffects:[{Id:14b}]}] minecraft:glowing 1 0 true
-execute if score State gameStart matches 1.. run effect clear @a[nbt={ActiveEffects:[{Id:14b}]}] glowing
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @a[nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @e[type=armor_stand,tag=decoy,nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. run effect clear @a[nbt={ActiveEffects:[{Id:14}]}] glowing
 
-execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @a[nbt=!{ActiveEffects:[{Id:14b}]},tag=tagger] minecraft:glowing 1 0 true
-execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @e[type=armor_stand,tag=decoy,nbt=!{ActiveEffects:[{Id:14b}]}] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @a[nbt=!{ActiveEffects:[{Id:14}]},tag=tagger] minecraft:glowing 1 0 true
+execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect give @e[type=armor_stand,tag=decoy,nbt=!{ActiveEffects:[{Id:14}]}] minecraft:glowing 1 0 true
 
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 3 run effect clear @a[tag=runner] glowing
 
-execute as @a[tag=tagger,nbt=!{ActiveEffects:[{Id:14b}]}] at @s unless entity @a[tag=runner,distance=..31] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run effect give @s glowing 1 0 true
+execute as @a[tag=tagger,nbt=!{ActiveEffects:[{Id:14}]}] at @s unless entity @a[tag=runner,distance=..31] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run effect give @s glowing 1 0 true
 
 # Not necisary, but gives some nice flare
 execute if score gameMode Toggle matches 1 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ":"},{"text": " Normal Tag"}]
@@ -207,9 +207,9 @@ execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s if entity
 execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s run effect give @e[type=player,distance=..5] minecraft:slowness 10 10
 
 execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. run data merge entity @s {Particle:"block air 1 0 0 1"}
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2b}]}] run scoreboard players add @s trapDestroy 1
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2b}]}] at @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2b}]}] run summon minecraft:evoker_fangs ~ ~ ~ {Glowing:1b}
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s run effect give @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2b}]}] slowness 10 15
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] run scoreboard players add @s trapDestroy 1
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] at @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] run summon minecraft:evoker_fangs ~ ~ ~ {Glowing:1b}
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s run effect give @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] slowness 10 15
 
 execute as @e[tag=ClampTrap,type=area_effect_cloud] if score @s trapDestroy matches 1.. run kill @s
 execute as @e[tag=UpgradeClampTrap,type=area_effect_cloud] if score @s trapDestroy matches 3.. run kill @s
@@ -217,9 +217,13 @@ execute as @e[tag=UpgradeClampTrap,type=area_effect_cloud] if score @s trapDestr
 execute as @e[tag=UpgradeClamp] unless score @s trapDestroy matches 0.. run scoreboard players set @s trapDestroy 0
 
 # This is how the Clock powerup works
-execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_runner
-execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_tagger
+## Normal Clock
+execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b,Upgrade:0b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_runner
+execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b,Upgrade:0b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_tagger
 
+## Upgraded Clock
+execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{display:{Name:'{"text":"Additive Clock of Destiny"}'}}}}] if score @s Sneak matches 60.. run function tag_main:powerup_functions/additive_clock/runner
+execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{display:{Name:'{"text":"Additive Clock of Destiny"}'}}}}] if score @s Sneak matches 60.. run function tag_main:powerup_functions/additive_clock/tagger
 # This makes the powerups glow in their color
 
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] run data merge entity @s {Glowing:1b}
@@ -296,15 +300,21 @@ tag @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}}
 
 execute as @a[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]},scores={effectType=1..}] run scoreboard players set @s effectLost 0
 execute if score State gameStart matches 1.. as @a[nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",tag:{Floating:1b}}]},scores={effectType=1..}] run scoreboard players add @s effectLost 1
-execute as @a[scores={effectLost=100..}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'}}
+
+execute as @a[scores={effectLost=100..,effectType=1}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:1b}
+execute as @a[scores={effectLost=100..,effectType=2}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:2b}
+execute as @a[scores={effectLost=100..,effectType=3}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:3b}
+execute as @a[scores={effectLost=100..,effectType=4}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:4b}
+execute as @a[scores={effectLost=100..,effectType=5}] run give @s carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:5b}
+
 execute as @a[scores={effectLost=100..}] run scoreboard players set @s effectLost 0
 
 ### This checks if an individual has no effect
-execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{ActiveEffects:[{Id:8b}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=2},nbt=!{ActiveEffects:[{Id:11b}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{ActiveEffects:[{Id:3b}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{ActiveEffects:[{Id:5b}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{ActiveEffects:[{Id:25b}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{ActiveEffects:[{Id:8}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=2},nbt=!{ActiveEffects:[{Id:11}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{ActiveEffects:[{Id:3}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{ActiveEffects:[{Id:5}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{ActiveEffects:[{Id:25}]}] run tag @s add noEffect
 
 ## Warped fungus on a stick
 ### This gives the effect
@@ -430,7 +440,7 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:bow",tag:{Floating:1b}}}] at @s
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer >= FireworkCooldown Numbers run scoreboard players set @s gameTimer 0
 
 # This resets the score for Sneak
-scoreboard players set @a Sneak 0
+scoreboard players set @a[nbt=!{SelectedItem:{id:"minecraft:clock"}}] Sneak 0
 
 # This is part of the eye of teleportation cooldown
 execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s eyeTimer 1
@@ -454,19 +464,22 @@ execute if score State gameStart matches 1.. as @a[tag=!spectate,nbt=!{SelectedI
 ### Powerup Upgrades
 
 #### Supers KB stick
-execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[nbt={Item:{id:"minecraft:wooden_sword",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/kb
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:wooden_sword",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/kb
 
 #### Super Clamp Trap
-execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[nbt={Item:{id:"minecraft:polar_bear_spawn_egg",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/clamp_trap
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:polar_bear_spawn_egg",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/clamp_trap
 
 #### Decoy Potion
-execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[nbt={Item:{id:"minecraft:splash_potion",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/decoy_potion
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:splash_potion",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/decoy_potion
 
 scoreboard players add @e[type=armor_stand,tag=decoy] gameTimer 1
 kill @e[type=armor_stand,tag=decoy,scores={gameTimer=600..}]
 team join runner @e[type=armor_stand,tag=decoy,team=]
-execute as @a[nbt={ActiveEffects:[{Id:26b},{Id:14b}]}] at @s run function tag_main:powerup_functions/decoy_potion/decoy_potion
-tag @a[nbt=!{ActiveEffects:[{Id:14b}]}] remove hidden
+execute as @a[nbt={ActiveEffects:[{Id:26},{Id:14}]}] at @s run function tag_main:powerup_functions/decoy_potion/decoy_potion
+tag @a[nbt=!{ActiveEffects:[{Id:14}]}] remove hidden
+
+#### Additive Clock of Destiny
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:clock",tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/additive_clock
 
 #### Multi-Snowball of Destruction
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[nbt={Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/muti_snowball

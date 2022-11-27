@@ -89,7 +89,11 @@ bossbar set runnertimer players @a
 # This gives the player's scores for their respective effects
 execute as @a[scores={effectTrigger=1..}] run scoreboard players operation @s effectType = @s effectTrigger
 tag @a add noEffect
-give @a[scores={effectType=1..}] carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'}}
+give @a[scores={effectType=1}] carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:1b}
+give @a[scores={effectType=2}] carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:2b}
+give @a[scores={effectType=3}] carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:3b}
+give @a[scores={effectType=4}] carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:4b}
+give @a[scores={effectType=5}] carrot_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Effect Activator","italic":false}]'},Type:5b}
 
 execute if score gameMode Toggle matches 5 run give @a[tag=tagger] warped_fungus_on_a_stick{Floating:1b,Enchantments:[{}],display:{Name:'[{"text":"Runner Revealer","italic":false}]'}}
 
