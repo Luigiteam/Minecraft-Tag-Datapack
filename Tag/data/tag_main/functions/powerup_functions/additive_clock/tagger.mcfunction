@@ -13,13 +13,14 @@ execute store result score @s clockStorage run data get entity @s SelectedItem.t
 
 scoreboard players set timeAdd Numbers 600
 scoreboard players operation timeAdd Numbers *= @s clockStorage
-scoreboard players operation timeAdd Numbers += 600 Numbers
+scoreboard players add timeAdd Numbers 600
 
 scoreboard players operation Timer gameTimer += timeAdd Numbers
 
 clear @s clock{display:{Name:'{"text":"Additive Clock of Destiny"}'}} 1
 
 execute store result storage math_holder Slot[0] double 1.0 run scoreboard players get timeAdd Numbers
+execute store result storage math_holder Slot[0] double 0.05 run data get storage math_holder Slot[0] 1.0
 execute store result score timeAdd Numbers run data get storage math_holder Slot[0] 1
 
 tellraw @a [{"text":"The timer has been added by "},{"score":{"name":"timeAdd","objective": "Numbers"}},{"text":" seconds"}]

@@ -7,12 +7,12 @@
             "items": [
               "minecraft:ender_eye"
             ],
-            "nbt": "{Floating:1b,Upgrade:0b}"
+            "nbt": "{Floating:1b,Upgrade:1b}"
           }
         }
       }
     },
     "rewards": {
-      "function": "tag_main:powerup_functions/eye_teleport/eye"
+      "function": "tag_main:powerup_functions/eye_of_recalling/eye_of_recalling"
     }
 }

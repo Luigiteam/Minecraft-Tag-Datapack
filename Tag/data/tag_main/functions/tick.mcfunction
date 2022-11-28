@@ -222,8 +222,8 @@ execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1
 execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{Floating:1b,Upgrade:0b}}},scores={Sneak=1..}] run function tag_main:powerup_functions/clock_trigger/clock_tagger
 
 ## Upgraded Clock
-execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{display:{Name:'{"text":"Additive Clock of Destiny"}'}}}}] if score @s Sneak matches 60.. run function tag_main:powerup_functions/additive_clock/runner
-execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{display:{Name:'{"text":"Additive Clock of Destiny"}'}}}}] if score @s Sneak matches 60.. run function tag_main:powerup_functions/additive_clock/tagger
+execute as @a[tag=runner,nbt={SelectedItem:{id:"minecraft:clock",tag:{display:{Name:'{"text":"Additive Clock of Destiny"}'}}}}] if score @s Sneak matches 20.. run function tag_main:powerup_functions/additive_clock/runner
+execute as @a[tag=tagger,nbt={SelectedItem:{id:"minecraft:clock",tag:{display:{Name:'{"text":"Additive Clock of Destiny"}'}}}}] if score @s Sneak matches 20.. run function tag_main:powerup_functions/additive_clock/tagger
 # This makes the powerups glow in their color
 
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] run data merge entity @s {Glowing:1b}
@@ -474,9 +474,11 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floa
 
 scoreboard players add @e[type=armor_stand,tag=decoy] gameTimer 1
 kill @e[type=armor_stand,tag=decoy,scores={gameTimer=600..}]
-team join runner @e[type=armor_stand,tag=decoy,team=]
 execute as @a[nbt={ActiveEffects:[{Id:26},{Id:14}]}] at @s run function tag_main:powerup_functions/decoy_potion/decoy_potion
 tag @a[nbt=!{ActiveEffects:[{Id:14}]}] remove hidden
+
+execute as @e[type=item,nbt={Item:{tag:{Kill:1b}}}] at @s run kill @e[type=item,nbt={Item:{id:"minecraft:armor_stand"}},distance=..2]
+kill @e[nbt={Item:{tag:{Kill:1b}}}]
 
 #### Additive Clock of Destiny
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:clock",tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/additive_clock
@@ -487,6 +489,27 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floa
 execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b,Enchantments:[{id:"minecraft:multishot"}]}}}] unless score @s gameTimer matches 6.. run scoreboard players add @s gameTimer 1
 execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",Count:1b,tag:{Floating:1b,Enchantments:[{id:"minecraft:multishot"}]}}}] if score @s gameTimer matches 5 at @s run function tag_main:powerup_functions/multishot_snowball/multishot_snowball
 
+#### Eye of Recalling
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:ender_eye",tag:{Floating:1b,Upgrade:0b}}},distance=..1] run function tag_main:powerup_upgrades/eye_of_recalling
+
+execute as @a if score @s eyeTimer matches 101 at @s as @e[tag=recall,type=marker] at @s if score @s oid = @p oid run tp @p @s
+execute as @a if score @s eyeTimer matches 101 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run kill @s
+
+execute as @e[type=marker,tag=recall] at @s run particle totem_of_undying ~ ~ ~ 0.5 0.5 0.5 0.5 5
+
+execute as @a if score @s eyeTimer matches 182..200 run title @s subtitle {"text": "| | | | |","color": "green"}
+execute as @a if score @s eyeTimer matches 162..181 run title @s subtitle [{"text": "| | | | ","color": "green"},{"text": "|","color": "gray"}]
+execute as @a if score @s eyeTimer matches 142..161 run title @s subtitle [{"text": "| | | ","color": "green"},{"text": "| |","color": "gray"}]
+execute as @a if score @s eyeTimer matches 122..141 run title @s subtitle [{"text": "| | ","color": "green"},{"text": "| | |","color": "gray"}]
+execute as @a if score @s eyeTimer matches 101..121 run title @s subtitle [{"text": "| ","color": "green"},{"text": "| | | |","color": "gray"}]
+execute as @a if score @s eyeTimer matches 101..102 run title @s subtitle {"text": "| | | | |","color": "gray"}
+execute as @a if score @s eyeTimer matches 101.. run title @s title ""
+
+execute as @a if score @s eyeTimer matches 200 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.2
+execute as @a if score @s eyeTimer matches 181 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.4
+execute as @a if score @s eyeTimer matches 161 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.6
+execute as @a if score @s eyeTimer matches 141 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.8
+execute as @a if score @s eyeTimer matches 121 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 2.0
 
 ## Hit Detection
 execute as @a[advancements={tag_main:on_hurt=true}] if entity @a[scores={damageDelt=1..}] run function tag_main:tag_function/tag_decide
