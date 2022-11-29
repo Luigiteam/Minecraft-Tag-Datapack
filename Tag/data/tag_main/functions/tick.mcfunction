@@ -34,6 +34,10 @@ execute as @a if score @s textTrigger matches 3 run function tag_main:text_reado
 
 execute as @a if score @s textTrigger matches 4 run function tag_main:text_readouts/sound_settings/heartbeat
 
+execute as @a if score @s textTrigger matches 5 run function tag_main:text_readouts/effect_changer
+
+execute as @a if score @s textTrigger matches 6 run function tag_main:text_readouts/height_depth_settings
+
 # Hide-and-Seek
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 store result score runners Numbers run execute if entity @e[tag=runner,tag=!spectate]
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if score runners Numbers matches 0 run scoreboard players add winnerTimer gameTimer 1
@@ -492,10 +496,12 @@ execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",Count:1b,tag:{Flo
 #### Eye of Recalling
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:ender_eye",tag:{Floating:1b,Upgrade:0b}}},distance=..1] run function tag_main:powerup_upgrades/eye_of_recalling
 
-execute as @a if score @s eyeTimer matches 101 at @s as @e[tag=recall,type=marker] at @s if score @s oid = @p oid run tp @p @s
-execute as @a if score @s eyeTimer matches 101 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run kill @s
+execute as @a if score @s eyeTimer matches ..101 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run tp @p @s
+execute as @a if score @s eyeTimer matches ..101 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run kill @s
 
-execute as @e[type=marker,tag=recall] at @s run particle totem_of_undying ~ ~ ~ 0.5 0.5 0.5 0.5 5
+execute as @e[type=marker,tag=recall] at @s run particle glow ~ ~ ~ 0.3 0.3 0.3 0.5 5 force
+
+execute as @a if score @s eyeTimer matches 101.. run title @s times 0 20 1
 
 execute as @a if score @s eyeTimer matches 182..200 run title @s subtitle {"text": "| | | | |","color": "green"}
 execute as @a if score @s eyeTimer matches 162..181 run title @s subtitle [{"text": "| | | | ","color": "green"},{"text": "|","color": "gray"}]
@@ -504,6 +510,9 @@ execute as @a if score @s eyeTimer matches 122..141 run title @s subtitle [{"tex
 execute as @a if score @s eyeTimer matches 101..121 run title @s subtitle [{"text": "| ","color": "green"},{"text": "| | | |","color": "gray"}]
 execute as @a if score @s eyeTimer matches 101..102 run title @s subtitle {"text": "| | | | |","color": "gray"}
 execute as @a if score @s eyeTimer matches 101.. run title @s title ""
+
+execute as @a if score @s eyeTimer matches 200 at @s run playsound entity.enderman.teleport ambient @s ~ ~ ~ 1 1.0
+execute as @a if score @s eyeTimer matches 99 at @s run playsound entity.enderman.teleport ambient @s ~ ~ ~ 1 1.0
 
 execute as @a if score @s eyeTimer matches 200 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.2
 execute as @a if score @s eyeTimer matches 181 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.4

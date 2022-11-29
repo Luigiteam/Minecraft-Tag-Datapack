@@ -131,8 +131,8 @@ scoreboard players set worldBorderSizeGet Numbers 100
 scoreboard players set halfWBS Numbers 0
 scoreboard players set nHalfWBS Numbers 0
 
-scoreboard players set maxHeight Numbers 150
-scoreboard players set minDepth Numbers -30
+scoreboard players set maxHeight Numbers 125
+scoreboard players set minDepth Numbers 0
 
 scoreboard players set yDistance Toggle 1
 
