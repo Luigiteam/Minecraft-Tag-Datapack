@@ -45,8 +45,8 @@ scoreboard players set nHalfWBS Numbers 0
 scoreboard players operation nHalfWBS Numbers -= worldBorderSize Numbers
 scoreboard players operation nHalfWBS Numbers /= Two Numbers
 
-scoreboard players operation @e[tag=positioned] xDistance -= @e[tag=spawn] xDistance
-scoreboard players operation @e[tag=positioned] zDistance -= @e[tag=spawn] zDistance
+scoreboard players operation @e[tag=positioned] xDistance -= @e[tag=tpSpawn] xDistance
+scoreboard players operation @e[tag=positioned] zDistance -= @e[tag=tpSpawn] zDistance
 
 execute if score @e[tag=positioned,limit=1,type=marker] zDistance >= halfWBS Numbers run tp @e[tag=positioned,type=marker] @a[tag=posTemp,limit=1]
 execute if score @e[tag=positioned,limit=1,type=marker] zDistance <= nHalfWBS Numbers run tp @e[tag=positioned,type=marker] @a[tag=posTemp,limit=1]
@@ -67,8 +67,8 @@ execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 a
 execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"minecraft:firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;5394769],FadeColors:[I;11250603]}],Flight:2}}}}
 
 ## Item 4 (Elytra of Soaring)
+execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:elytra",Count:1b,tag:{Floating:1b,Upgrade:0b,display:{Name:'[{"text":"Elytra of Soaring","italic":false}]',Lore:['[{"text":"Put this elytra on and fly up in the air","italic":false}]','[{"text":"Maybe you can catch some people off-guard","italic":false}]']}}}}
 execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Trail:1,Colors:[I;12801229,15790320],FadeColors:[I;8073150]}],Flight:2}}}}
-execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:elytra",Count:1b,tag:{Floating:1b,display:{Name:'[{"text":"Elytra of Soaring","italic":false}]',Lore:['[{"text":"Put this elytra on and fly up in the air","italic":false}]','[{"text":"Maybe you can catch some people off-guard","italic":false}]']}}}}
 
 ## Item 5 (Clock of Destiny)
 execute if score pow Rand matches 23..27 if score clock Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:clock",Count:1,tag:{Floating:1b,Upgrade:0b,display:{Name:'[{"text":"Clock of Destiny","italic":false}]',Lore:['[{"text":"Hold shift while holding it","italic":false}]','[{"text":"Runners decrease the timer by 30 seconds","italic":false}]','[{"text":"Taggers increase the timer by 30 seconds","italic":false}]']},Enchantments:[{}]}}}

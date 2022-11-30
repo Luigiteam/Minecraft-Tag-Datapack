@@ -6,8 +6,8 @@ execute as @e[type=marker,limit=1,sort=nearest,tag=recall] unless score @s oid m
 
 kill @e[type=minecraft:eye_of_ender,nbt={Item:{tag:{Floating:1b,Upgrade:1b}}},limit=1,sort=nearest]
 
-execute if entity @s[tag=runner] run tp @s @e[limit=1,tag=!exclude]
-execute if entity @s[tag=tagger] run tp @s @e[limit=1,tag=!exclude,tag=runner]
+execute if entity @s[tag=runner] run tp @s @a[limit=1,tag=!exclude]
+execute if entity @s[tag=tagger] run tp @s @a[limit=1,tag=!exclude,tag=runner]
 
 tag @s remove exclude
 

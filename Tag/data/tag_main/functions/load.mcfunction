@@ -87,6 +87,9 @@ scoreboard objectives add hp health
 
 scoreboard objectives add clockStorage dummy
 
+scoreboard objectives add elytraDestroy dummy
+scoreboard objectives add elytraDelay dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 

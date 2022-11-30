@@ -173,10 +173,10 @@ execute if score yDistance Toggle matches 1 as @a[tag=tagger] if score yResults 
 
 ## Detection & Effects
 
-execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]}] run item replace entity @s armor.chest with minecraft:elytra{Floating:1b,Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}]}] run item replace entity @s armor.chest with minecraft:elytra{Floating:1b,Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}
 
-execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]},scores={airTime=..0}] run tag @s add airborne
-execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]},scores={airTime=..0}] run tag @s add elytraKit
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}]},scores={airTime=..0}] run tag @s add airborne
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}]},scores={airTime=..0}] run tag @s add elytraKit
 
 execute as @a[tag=elytraKit] run effect give @s levitation 2 30 true
 execute at @a[tag=elytraKit] run playsound entity.firework_rocket.launch player @a ~ ~ ~
@@ -191,7 +191,7 @@ execute as @a[tag=airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. r
 execute as @a[tag=airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. run tag @s remove airborne
 execute as @a[tag=!airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. run scoreboard players set @s airTime 0
 
-scoreboard players set @a[nbt=!{Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b}}]}] airTime 0
+scoreboard players set @a[nbt=!{Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}]}] airTime 0
 
 # This is how the Snowball works
 execute at @e[type=marker,tag=snowballs] unless entity @e[type=snowball,distance=..2] run fill ~-2 ~-3 ~-2 ~2 ~3 ~2 air destroy
@@ -454,7 +454,7 @@ execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s 
 execute as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run setblock ~ ~-2 ~ air destroy
 execute as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run tp @s ~ ~-1 ~
 
-execute as @a[tag=!heightOP] at @s unless score @s yDistance > minDepth Numbers if score State gameStart matches 1.. if block ~ ~ ~ air run effect give @s levitation 1 4 true
+execute as @a[tag=!heightOP] at @s unless score @s yDistance > minDepth Numbers if score @s elytraDestroy matches ..0 if score State gameStart matches 1.. if block ~ ~ ~ air run effect give @s levitation 1 4 true
 
 ## Upgrade Core Stuff
 ### Drop Core on Tagger Death
@@ -483,6 +483,25 @@ tag @a[nbt=!{ActiveEffects:[{Id:14}]}] remove hidden
 
 execute as @e[type=item,nbt={Item:{tag:{Kill:1b}}}] at @s run kill @e[type=item,nbt={Item:{id:"minecraft:armor_stand"}},distance=..2]
 kill @e[nbt={Item:{tag:{Kill:1b}}}]
+
+#### Upside-Down Elytra
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}},distance=..1] run function tag_main:powerup_upgrades/upside_down_elytra
+
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:1b}}]},nbt=!{Inventory:[{Slot:102b,tag:{Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}}]}] run tag @s add falling
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:1b}}]},nbt=!{Inventory:[{Slot:102b,tag:{Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}}]}] run scoreboard players set @s elytraDestroy 45
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:1b}}]},nbt=!{Inventory:[{Slot:102b,tag:{Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}}]}] run scoreboard players set @s elytraDelay 0
+execute as @a[tag=falling] run item replace entity @s armor.chest with minecraft:elytra{Floating:1b,Upgrade:1b,Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}
+
+execute as @a[tag=falling] run scoreboard players add @s elytraDelay 1
+
+execute as @a if score @s elytraDestroy matches 1..45 if score @s elytraDelay matches 2.. at @s run setblock ~ ~-1 ~ air destroy
+execute as @a if score @s elytraDestroy matches 1..45 if score @s elytraDelay matches 2.. at @s run tp ~ ~-1 ~
+execute as @a if score @s elytraDestroy matches 1..45 if score @s elytraDelay matches 2.. at @s run scoreboard players remove @s elytraDestroy 1
+
+execute as @a if score @s elytraDelay matches 2.. run scoreboard players set @s elytraDelay 0
+
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:1b,Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}}]}] if score @s elytraDestroy matches ..0 run item replace entity @s armor.chest with air
+execute as @a if score @s elytraDestroy matches ..0 run tag @s remove falling
 
 #### Additive Clock of Destiny
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:clock",tag:{Floating:1b}}},distance=..1] run function tag_main:powerup_upgrades/additive_clock
