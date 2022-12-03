@@ -58,28 +58,28 @@ execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s jump_boost
 execute as @a[tag=runner] at @s if entity @a[tag=tagger,distance=31..] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 0
 execute as @a[tag=runner] at @s if entity @a[tag=tagger,distance=31..] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatTimer 0
 
-execute as @a[tag=runner,scores={heartBeatSpeed=1..}] at @s if entity @e[tag=tagger,distance=..31] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players add @s heartBeatTimer 1
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=1..}] at @s if entity @e[tag=tagger,distance=..31] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players add @s heartBeatTimer 1
 
-execute as @a[tag=runner] at @s if entity @a[tag=tagger,distance=21..31] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 1
-execute as @a[tag=runner] at @s if entity @a[tag=tagger,distance=11..20] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 2
-execute as @a[tag=runner] at @s if entity @a[tag=tagger,distance=0..10] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 3
+execute as @a[tag=runner,tag=!spectate] at @s if entity @a[tag=tagger,distance=21..31] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 1
+execute as @a[tag=runner,tag=!spectate] at @s if entity @a[tag=tagger,distance=11..20] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 2
+execute as @a[tag=runner,tag=!spectate] at @s if entity @a[tag=tagger,distance=0..10] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 3
 
 ### Mode 1
-execute as @a[tag=runner,scores={heartBeatSpeed=1,heartBeatSound=1}] at @s if score @s heartBeatTimer matches 20 run playsound minecraft:entity.warden.heartbeat ambient @s ~ ~ ~ 1 0.5
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=1,heartBeatSound=1}] at @s if score @s heartBeatTimer matches 20 run playsound minecraft:entity.warden.heartbeat ambient @s ~ ~ ~ 1 0.5
 
-execute as @a[tag=runner,scores={heartBeatSpeed=2,heartBeatSound=1}] at @s if score @s heartBeatTimer matches 10 run playsound minecraft:entity.warden.heartbeat ambient @s ~ ~ ~ 1 1.0
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=2,heartBeatSound=1}] at @s if score @s heartBeatTimer matches 10 run playsound minecraft:entity.warden.heartbeat ambient @s ~ ~ ~ 1 1.0
 
-execute as @a[tag=runner,scores={heartBeatSpeed=3,heartBeatSound=1}] at @s if score @s heartBeatTimer matches 5 run playsound minecraft:entity.warden.heartbeat ambient @s ~ ~ ~ 1 1.5
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=3,heartBeatSound=1}] at @s if score @s heartBeatTimer matches 5 run playsound minecraft:entity.warden.heartbeat ambient @s ~ ~ ~ 1 1.5
 
 ### Mode 2
-execute as @a[tag=runner,scores={heartBeatSpeed=1,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 5 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
-execute as @a[tag=runner,scores={heartBeatSpeed=1,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 20 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=1,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 5 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=1,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 20 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
 
-execute as @a[tag=runner,scores={heartBeatSpeed=2,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 5 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
-execute as @a[tag=runner,scores={heartBeatSpeed=2,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 10 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=2,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 5 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=2,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 10 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
 
-execute as @a[tag=runner,scores={heartBeatSpeed=3,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 1 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
-execute as @a[tag=runner,scores={heartBeatSpeed=3,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 5 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=3,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 1 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
+execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=3,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 5 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
 # Infection Tag
 execute if score State gameStart matches 1 if score gameMode Toggle matches 4 store result score taggers Numbers run execute if entity @a[tag=tagger]
 execute if score State gameStart matches 1 if score gameMode Toggle matches 4 if score taggers Numbers = players Numbers run function tag_main:winning/infection_tagger_win
@@ -173,7 +173,7 @@ execute if score yDistance Toggle matches 1 as @a[tag=tagger] if score yResults 
 
 ## Detection & Effects
 
-execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}]}] run item replace entity @s armor.chest with minecraft:elytra{Floating:1b,Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}]}] run item replace entity @s armor.chest with minecraft:elytra{Floating:1b,Upgrade:0b,Enchantments:[{id:"minecraft:binding_curse",lvl:1}]}
 
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}]},scores={airTime=..0}] run tag @s add airborne
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",tag:{Floating:1b,Upgrade:0b}}]},scores={airTime=..0}] run tag @s add elytraKit
@@ -538,6 +538,19 @@ execute as @a if score @s eyeTimer matches 181 at @s run playsound block.note_bl
 execute as @a if score @s eyeTimer matches 161 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.6
 execute as @a if score @s eyeTimer matches 141 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.8
 execute as @a if score @s eyeTimer matches 121 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 2.0
+
+#### Lingering Crossbow
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",Count:1b,tag:{Floating:1b}}}] at @s if entity @e[type=item,distance=..1,nbt={Item:{id:"minecraft:bow",tag:{Floating:1b}}}] run function tag_main:powerup_upgrades/lingering_crossbow
+
+execute as @a[nbt={SelectedItem:{id:"minecraft:crossbow",tag:{Floating:1b}}}] run scoreboard players set @s crossbowHeld 10
+
+execute as @e[type=arrow] at @s if entity @a[distance=..2,scores={crossbowHeld=1..}] run tag @s add lingering
+
+execute as @e[type=arrow,tag=lingering,nbt={inGround:0b}] run scoreboard players set @s arrowEffect 0
+
+execute as @e[type=arrow,tag=lingering,nbt={inGround:1b}] at @s if score @s arrowEffect matches 0 run function tag_main:powerup_functions/lingering_crossbow/arrow
+
+execute as @a if score @s crossbowHeld matches 1.. run scoreboard players remove @s crossbowHeld 1
 
 ## Hit Detection
 execute as @a[advancements={tag_main:on_hurt=true}] if entity @a[scores={damageDelt=1..}] run function tag_main:tag_function/tag_decide

@@ -6,7 +6,7 @@ scoreboard players set @e[tag=!processed,tag=particle,type=marker] gameTimer 200
 scoreboard players set @e[tag=!processed,tag=particle,type=marker] markerTimer 0
 tag @e[type=marker,tag=particle,tag=!processed] add processed
 
-execute as @e[tag=particle] at @s run tp @s ~ ~ ~ facing entity @e[tag=runner,tag=!hidden,limit=1,sort=nearest]
+execute as @e[tag=particle] at @s run tp @s ~ ~ ~ facing entity @e[tag=runner,tag=!spectate,tag=!hidden,limit=1,sort=nearest]
 
 scoreboard players set @s effectTimer 300
 

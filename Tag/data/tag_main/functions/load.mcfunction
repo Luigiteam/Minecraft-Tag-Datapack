@@ -90,6 +90,10 @@ scoreboard objectives add clockStorage dummy
 scoreboard objectives add elytraDestroy dummy
 scoreboard objectives add elytraDelay dummy
 
+scoreboard objectives add arrowEffect dummy
+
+scoreboard objectives add crossbowHeld dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 

@@ -84,7 +84,7 @@ execute if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 at 
 
 ## Item 8 (Punching Pow)
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon item ~ ~280 ~ {Item:{id:"minecraft:bow",Count:1b,tag:{Floating:1b,Damage:379,RepairCost:10000,CustomModelData:0,display:{Name:'[{"text":"Punching Bow","italic":false}]'},Enchantments:[{id:"punch",lvl:2}]}}}
-execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon item ~ ~280 ~ {Item:{id:"minecraft:arrow",Count:5b,tag:{Floating:1b}}}
+execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon item ~ ~280 ~ {Item:{id:"minecraft:arrow",Count:5b}}
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;10853544]}],Flight:2}}}}
 
 ### This rolls the chance for an anvil to fall (Can roll between 0-9)
