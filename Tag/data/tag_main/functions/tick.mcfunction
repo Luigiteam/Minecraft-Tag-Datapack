@@ -205,20 +205,29 @@ scoreboard players set @e[tag=ClampTrap] trapDestroy 0
 scoreboard players add @e[tag=ClampTrap] gameTimer 1
 scoreboard players add @e[tag=UpgradeClampTrap] gameTimer 1
 
+### Normal trap
 execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. run data merge entity @s {Particle:"block minecraft:air 1 0 0 1"}
+
 execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s if entity @e[type=player,distance=..5] run scoreboard players set @s trapDestroy 1
 execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s if entity @e[type=player,distance=..5] at @e[type=player,distance=..5] run summon minecraft:evoker_fangs ~ ~ ~ {Glowing:1b}
-execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s run effect give @e[type=player,distance=..5] minecraft:slowness 10 10
 
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. run data merge entity @s {Particle:"block air 1 0 0 1"}
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] run scoreboard players add @s trapDestroy 1
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] at @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] run summon minecraft:evoker_fangs ~ ~ ~ {Glowing:1b}
-execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s run effect give @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] slowness 10 15
+execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s run effect give @e[type=player,distance=..5] minecraft:slowness 10 10
+execute as @e[tag=ClampTrap] if score @s gameTimer matches 100.. at @s run effect give @e[type=player,distance=..5] minecraft:jump_boost 10 128 true
 
 execute as @e[tag=ClampTrap,type=area_effect_cloud] if score @s trapDestroy matches 1.. run kill @s
-execute as @e[tag=UpgradeClampTrap,type=area_effect_cloud] if score @s trapDestroy matches 3.. run kill @s
 
+### Upgraded Trap
 execute as @e[tag=UpgradeClamp] unless score @s trapDestroy matches 0.. run scoreboard players set @s trapDestroy 0
+
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. run data merge entity @s {Particle:"block air 1 0 0 1"}
+
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] run scoreboard players add @s trapDestroy 1
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] at @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] run summon minecraft:evoker_fangs ~ ~ ~ {Glowing:1b}
+
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s run effect give @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] jump_boost 10 128 true
+execute as @e[tag=UpgradeClampTrap] if score @s gameTimer matches 60.. at @s run effect give @e[type=player,distance=..5,nbt=!{ActiveEffects:[{Id:2}]}] slowness 20 15
+
+execute as @e[tag=UpgradeClampTrap,type=area_effect_cloud] if score @s trapDestroy matches 3.. run kill @s
 
 # This is how the Clock powerup works
 ## Normal Clock
@@ -546,8 +555,18 @@ execute as @a[nbt={SelectedItem:{id:"minecraft:crossbow",tag:{Floating:1b}}}] ru
 
 execute as @e[type=arrow] at @s if entity @a[distance=..2,scores={crossbowHeld=1..}] run tag @s add lingering
 
-execute as @e[type=arrow,tag=lingering,nbt={inGround:0b}] run scoreboard players set @s arrowEffect 0
+execute as @e[type=arrow,tag=lingering,nbt={inGround:0b}] unless score @s arrowEffect matches 0.. run scoreboard players set @s arrowEffect 0
 
+# execute as @a[nbt={Inventory:[{id:"minecraft:tipped_arrow",tag:{CustomPotionEffects:[{Id:27,ShowParticles:0b,Duration:100,Amplifier:0b,ShowIcon:0b}]}}]}] run give @s arrow 1
+# execute as @a[nbt={Inventory:[{id:"minecraft:tipped_arrow",tag:{CustomPotionEffects:[{Id:27,ShowParticles:0b,Duration:100,Amplifier:0b,ShowIcon:0b}]}}]}] run clear @s tipped_arrow{CustomPotionEffects:[{Id:27,ShowParticles:0b,Duration:100,Ambient:0b,ShowIcon:0b}]}
+
+execute as @e[type=arrow,tag=lingering] if score @s arrowEffect matches 0 run data merge entity @s {CustomPotionEffects:[{Id:27,ShowParticles:0b,Duration:100,Ambient:0b,ShowIcon:0b,Amplifier:0}]}
+
+execute as @a[nbt=!{ActiveEffects:[{Id:27,Amplifier:0b}]}] run scoreboard players set @s arrowEffect 0
+
+execute as @a if score @s arrowEffect matches 1 at @s run tp @e[type=area_effect_cloud,tag=arrowCloud,sort=nearest,limit=1] ~ ~ ~
+
+execute as @a[nbt={ActiveEffects:[{Id:27,Amplifier:0b}]}] at @s if score @s arrowEffect matches 0 run function tag_main:powerup_functions/lingering_crossbow/arrow
 execute as @e[type=arrow,tag=lingering,nbt={inGround:1b}] at @s if score @s arrowEffect matches 0 run function tag_main:powerup_functions/lingering_crossbow/arrow
 
 execute as @a if score @s crossbowHeld matches 1.. run scoreboard players remove @s crossbowHeld 1

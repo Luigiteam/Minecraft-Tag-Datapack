@@ -94,6 +94,8 @@ scoreboard objectives add arrowEffect dummy
 
 scoreboard objectives add crossbowHeld dummy
 
+scoreboard objectives add arrowHit dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
