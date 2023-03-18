@@ -85,6 +85,17 @@ scoreboard objectives add heartBeatSound dummy
 scoreboard objectives add deathDetector deathCount
 scoreboard objectives add hp health
 
+scoreboard objectives add clockStorage dummy
+
+scoreboard objectives add elytraDestroy dummy
+scoreboard objectives add elytraDelay dummy
+
+scoreboard objectives add arrowEffect dummy
+
+scoreboard objectives add crossbowHeld dummy
+
+scoreboard objectives add arrowHit dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
@@ -103,12 +114,14 @@ scoreboard players set winnerTimer gameTimer 0
 
 scoreboard players set tnt gameTimer 0
 
-scoreboard players set nOne Numbers -1
+scoreboard players set -1 Numbers -1
 
-scoreboard players set One Numbers 1
-scoreboard players set Two Numbers 2
-scoreboard players set Three Numbers 3
-scoreboard players set Four Numbers 4
+scoreboard players set 1 Numbers 1
+scoreboard players set 2 Numbers 2
+scoreboard players set 3 Numbers 3
+scoreboard players set 4 Numbers 4
+scoreboard players set 5 Numbers 5
+scoreboard players set 30 Numbers 30
 
 scoreboard players set SpeedTimer Numbers 200
 scoreboard players set FireworkCooldown Numbers 600
@@ -120,10 +133,15 @@ scoreboard players set taggers Numbers 0
 scoreboard players set spectators Numbers 0
 scoreboard players set frozenRunners Numbers 0
 
+scoreboard players set clock_storage Numbers 0
+
 scoreboard players set worldBorderSize Numbers 100
 scoreboard players set worldBorderSizeGet Numbers 100
 scoreboard players set halfWBS Numbers 0
 scoreboard players set nHalfWBS Numbers 0
+
+scoreboard players set maxHeight Numbers 125
+scoreboard players set minDepth Numbers 0
 
 scoreboard players set yDistance Toggle 1
 
@@ -154,6 +172,7 @@ scoreboard players set upgradeModule Toggle 1
 ##
 
 scoreboard players set num Rand 0
+scoreboard players set drop Rand 0
 scoreboard players set anvil Rand 0
 scoreboard players set set Rand 0
 
@@ -228,6 +247,7 @@ worldborder damage buffer 0.4
 worldborder damage amount 5
 
 data modify storage death Pos set value [0.0d,0.0d,0.0d]
-data modify storage snowball_motion Motion set value [0.0d,0.0d,0.0d]
+data modify storage clock_storage Upgrade set value 0b
+data modify storage math_holder Slot set value [0.0d,0.0d,0.0d]
 
 tellraw @a {"text":"Tag 1.6 Loaded!","color":"32e65c"}
