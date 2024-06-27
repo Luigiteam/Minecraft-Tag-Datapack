@@ -38,6 +38,8 @@ execute as @a if score @s textTrigger matches 5 run function tag_main:text_reado
 
 execute as @a if score @s textTrigger matches 6 run function tag_main:text_readouts/height_depth_settings
 
+execute as @a if score @s textTrigger matches 7 run function tag_main:text_readouts/sound_settings/powerup_sounds
+
 # Hide-and-Seek
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 store result score runners Numbers run execute if entity @e[tag=runner,tag=!spectate]
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if score runners Numbers matches 0 run scoreboard players add winnerTimer gameTimer 1
@@ -450,6 +452,9 @@ execute as @e[type=item,nbt={Item:{id:"minecraft:ender_eye",tag:{Floating:1b}}}]
 
 execute as @e[type=item,nbt={Item:{id:"minecraft:bow",tag:{Floating:1b}}}] at @s if score @s gameTimer >= FireworksCooldown Numbers run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;10853544]}],Flight:2}}}}
 
+execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer matches 300 at @s run playsound block.note_block.didgeridoo ambient @a[scores={powerupSounds=1}] ~ ~ ~ 1 2.0
+execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer matches 300 at @s run playsound block.note_block.guitar ambient @a[scores={powerupSounds=2}] ~ ~ ~ 1 1.0
+
 execute as @e[type=item,nbt={Item:{tag:{Floating:1b}}}] if score @s gameTimer >= FireworkCooldown Numbers run scoreboard players set @s gameTimer 0
 
 # This resets the score for Sneak
@@ -557,8 +562,6 @@ execute as @e[type=arrow] at @s if entity @a[distance=..2,scores={crossbowHeld=1
 
 execute as @e[type=arrow,tag=lingering,nbt={inGround:0b}] unless score @s arrowEffect matches 0.. run scoreboard players set @s arrowEffect 0
 
-# execute as @a[nbt={Inventory:[{id:"minecraft:tipped_arrow",tag:{CustomPotionEffects:[{Id:27,ShowParticles:0b,Duration:100,Amplifier:0b,ShowIcon:0b}]}}]}] run give @s arrow 1
-# execute as @a[nbt={Inventory:[{id:"minecraft:tipped_arrow",tag:{CustomPotionEffects:[{Id:27,ShowParticles:0b,Duration:100,Amplifier:0b,ShowIcon:0b}]}}]}] run clear @s tipped_arrow{CustomPotionEffects:[{Id:27,ShowParticles:0b,Duration:100,Ambient:0b,ShowIcon:0b}]}
 
 execute as @e[type=arrow,tag=lingering] if score @s arrowEffect matches 0 run data merge entity @s {CustomPotionEffects:[{Id:27,ShowParticles:0b,Duration:100,Ambient:0b,ShowIcon:0b,Amplifier:0}]}
 

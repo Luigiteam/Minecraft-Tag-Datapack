@@ -136,6 +136,7 @@ time set day
 # This forces default if a person doesn't have a specific sound selected
 execute as @a unless score @s playerRevelerSound matches 0.. run scoreboard players set @s playerRevelerSound 1
 execute as @a unless score @s heartBeatSound matches 0.. run scoreboard players set @s heartBeatSound 1
+execute as @a unless score @s powerupSounds matches 0.. run scoreboard players set @s powerupSounds 0
 
 # This sets the world border
 execute at @e[type=marker,tag=tpSpawn] run worldborder center ~ ~

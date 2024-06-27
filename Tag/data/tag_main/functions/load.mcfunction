@@ -96,6 +96,8 @@ scoreboard objectives add crossbowHeld dummy
 
 scoreboard objectives add arrowHit dummy
 
+scoreboard objectives add powerupSounds dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart -1
 
