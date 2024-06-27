@@ -1,0 +1,5 @@
+data merge entity @e[limit=1,type=item,sort=nearest,nbt={Item:{id:"minecraft:ender_eye",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}}] {Item:{id:"minecraft:ender_eye",components:{"minecraft:custom_name":'[{"text":"Eye of Recalling","color":"green"}]',"minecraft:lore":['[{"text":"This will teleport you to a random person,"}]','[{"text":"but then recalls you back after 5 seconds."}]'],"minecraft:enchantment_glint_override":1b,"minecraft:custom_data":{Floating:1b,Upgrade:1b},"minecraft:food":{nutrition:3,saturation:0,can_always_eat:true,eat_seconds:1000000}}}}
+
+summon firework_rocket ~ ~5 ~ {LifeTime:20,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;8453919],fade_colors:[I;8453919]}], flight_duration:1b}}}}
+
+kill @s

@@ -1,4 +1,0 @@
-kill @e[type=item,nbt={Item:{id:"minecraft:wooden_sword",Count:1b,tag:{Floating:1b}}},sort=nearest,limit=1]
-summon item ~ ~ ~ {Item:{id:"minecraft:wooden_sword",Count:1b,tag:{Floating:1b,Damage:56,display:{Name:'[{"text":"Super Knockback Stick","italic":false}]',Lore:['[{"text":"This is a more powerful","italic":false}]','[{"text":"version of the original","italic":false}]','[{"text":"Knockback Stick with more","italic":false}]','[{"text":"durability!","italic":false}]']},Enchantments:[{id:"knockback",lvl:10}]}}}
-summon minecraft:firework_rocket ~ ~4 ~ {LifeTime:0,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:0,Trail:1,Colors:[I;11743532],FadeColors:[I;14188952]}],Flight:2}}}}
-kill @s
