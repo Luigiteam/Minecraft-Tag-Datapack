@@ -12,6 +12,7 @@ tag @a remove tagger
 tag @a remove runner
 tag @a remove spectate
 
+execute as @a unless score @s teamChoose matches -1.. run scoreboard players set @s teamChoose 0
 execute as @a[scores={teamChoose=-1}] run tag @s add spectate
 
 execute as @a[scores={teamChoose=0}] run function tag_main:start_teams
@@ -89,13 +90,13 @@ bossbar set runnertimer players @a
 # This gives the player's scores for their respective effects
 execute as @a[scores={effectTrigger=1..}] run scoreboard players operation @s effectType = @s effectTrigger
 tag @a add noEffect
-give @a[scores={effectType=1}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:1b}]
-give @a[scores={effectType=2}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:2b}]
-give @a[scores={effectType=3}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:3b}]
-give @a[scores={effectType=4}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:4b}]
-give @a[scores={effectType=5}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:5b}]
+give @a[scores={effectType=1}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:1b}]
+give @a[scores={effectType=2}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:2b}]
+give @a[scores={effectType=3}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:3b}]
+give @a[scores={effectType=4}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:4b}]
+give @a[scores={effectType=5}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:5b}]
 
-execute if score gameMode Toggle matches 5 run give @a[tag=tagger] warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b},minecraft:enchantment_glint_override=1,minecraft:custom_name='[{"text":"Runner Tracker"}]'] 1
+execute if score gameMode Toggle matches 5 run give @a[tag=tagger] warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Runner Tracker"}]'] 1
 
 # Insane mode stuff
 execute if score Insane Toggle matches 1 run scoreboard players set PowerupCooldown Numbers 200

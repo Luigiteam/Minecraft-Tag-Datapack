@@ -97,6 +97,7 @@ scoreboard objectives add arrowHit dummy
 scoreboard objectives add powerupSounds dummy
 
 scoreboard objectives add guiState dummy
+scoreboard objectives add guiDelay dummy
 
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
@@ -156,7 +157,6 @@ scoreboard players set Insane Toggle 0
 scoreboard players set gameMode Toggle 1
 
 ## Powerup Toggles
-scoreboard players set settingSet optionsSelect 0
 
 scoreboard players set kbStick Toggle 1
 scoreboard players set clampTrap Toggle 1
@@ -170,8 +170,6 @@ scoreboard players set punchBow Toggle 1
 scoreboard players set allDisabled Toggle 0
 
 scoreboard players set upgradeModule Toggle 1
-
-##
 
 scoreboard players set num Rand 0
 scoreboard players set drop Rand 0
@@ -188,6 +186,10 @@ scoreboard players set Mode optionsSelect 0
 scoreboard players set Rounds round 0
 
 scoreboard players set build Build 0
+
+scoreboard players set @a teamChoose 0
+scoreboard players set @a guiState 1
+scoreboard players set @a guiDelay 3
 
 # Adds the teams
 ## team Taggers
@@ -245,6 +247,7 @@ gamerule keepInventory true
 
 scoreboard objectives setdisplay list wins
 
+worldborder set 30000000 1
 worldborder damage buffer 0.4
 worldborder damage amount 5
 

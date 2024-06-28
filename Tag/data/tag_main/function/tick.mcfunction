@@ -1,5 +1,7 @@
 execute as @a unless score @s guiState matches 0.. run scoreboard players set @s guiState 0
+execute as @a unless score @s guiDelay matches 0.. run scoreboard players set @s guiDelay 0
 execute as @a at @s if score State gameStart matches 0 run function tag_main:inventory_gui/gui_state
+execute as @a if score @s guiDelay matches 1.. run scoreboard players remove @s guiDelay 1
 
 
 execute store result score worldBorderSizeGet Numbers run worldborder get
