@@ -1,8 +1,7 @@
-execute as @a unless score @s guiState matches 0.. run scoreboard players set @s guiState 0
-execute as @a unless score @s guiDelay matches 0.. run scoreboard players set @s guiDelay 0
+execute as @a unless score @s guiState matches 0.. run scoreboard players set @s guiState 1
+execute as @a unless score @s guiDelay matches 0.. run scoreboard players set @s guiDelay 3
 execute as @a at @s if score State gameStart matches 0 run function tag_main:inventory_gui/gui_state
 execute as @a if score @s guiDelay matches 1.. run scoreboard players remove @s guiDelay 1
-
 
 execute store result score worldBorderSizeGet Numbers run worldborder get
 execute if score State gameStart matches 1.. if score worldBorderSizeGet Numbers < worldBorderSize Numbers run worldborder add 1
@@ -158,7 +157,7 @@ execute as @a[tag=runner,scores={heartBeatSpeed=3,heartBeatTimer=5..}] run score
 execute if score Timer gameTimer matches 1201.. run bossbar set runnertimer color yellow
 
 execute if score Timer gameTimer matches 1200 run bossbar set runnertimer color red
-execute if score Timer gameTimer matches 1200 run tellraw @a "1 Minute Remaining"
+execute if score State gameStart matches 1 if score Timer gameTimer matches 1200 run tellraw @a "1 Minute Remaining"
 
 # Pre-Game
 execute if score State gameStart matches 0 as @e[tag=tpOptions] at @s if entity @a[distance=..7,gamemode=!adventure] run gamemode adventure @a
@@ -271,6 +270,7 @@ execute store result bossbar runnertimer value run scoreboard players get Timer 
 
 # This checks for the timer of taggers so they can get speed after 10 seconds (200 ticks)
 scoreboard players set @a[tag=!tagger] gameTimer 0
+execute if score State gameStart matches 0 run scoreboard players set @a gameTimer 0
 
 execute if score State gameStart matches 1 as @a[tag=tagger] if score @s gameTimer < SpeedTimer Numbers run scoreboard players add @s gameTimer 1
 
