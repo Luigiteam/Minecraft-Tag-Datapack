@@ -159,7 +159,7 @@ scoreboard players set gameMode Toggle 1
 ## Powerup Toggles
 
 scoreboard players set kbStick Toggle 1
-scoreboard players set clampTrap Toggle 1
+scoreboard players set fangTrap Toggle 1
 scoreboard players set potionInvis Toggle 1
 scoreboard players set elytra Toggle 1
 scoreboard players set clock Toggle 1
@@ -170,6 +170,8 @@ scoreboard players set punchBow Toggle 1
 scoreboard players set allDisabled Toggle 0
 
 scoreboard players set upgradeModule Toggle 1
+
+scoreboard players set tog Toggle 0
 
 scoreboard players set num Rand 0
 scoreboard players set drop Rand 0
@@ -188,7 +190,7 @@ scoreboard players set Rounds round 0
 scoreboard players set build Build 0
 
 scoreboard players set @a teamChoose 0
-scoreboard players set @a guiState 1
+scoreboard players set @a guiState 2
 scoreboard players set @a guiDelay 3
 
 # Adds the teams

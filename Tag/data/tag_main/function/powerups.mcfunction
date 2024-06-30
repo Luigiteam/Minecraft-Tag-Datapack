@@ -55,16 +55,16 @@ execute if score @e[tag=positioned,limit=1,type=marker] xDistance <= nHalfWBS Nu
 
 # This is when the powerup and Firework spawn
 ## Item 1 (Wooden Sword)
-execute if score pow Rand matches 13..15 if score kbStick Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:wooden_sword",Count:1b,components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:enchantments":{levels:{"minecraft:knockback":5}},"minecraft:damage":58,"minecraft:custom_name":'{"text":"Knockback Stick","color":"red","italic":false}'}}}
+execute if score pow Rand matches 13..15 if score kbStick Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:wooden_sword",count:1b,components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:enchantments":{levels:{"minecraft:knockback":5}},"minecraft:damage":58,"minecraft:custom_name":'{"text":"Knockback Stick","color":"red","italic":false}'}}}
 execute if score pow Rand matches 13..15 if score kbStick Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;11743532], fade_colors:[I;14188952]}], flight_duration:2b}}}}
 
 ## Item 2 (Fang Trap)
-execute if score pow Rand matches 10..12 if score clampTrap Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:polar_bear_spawn_egg",Count:1b,components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:custom_name":'{"text":"Fang Trap","color":"gold","italic":false}',"minecraft:entity_data":{id:"area_effect_cloud",Tags:[ClampTrap],Particle:{type:"entity_effect",color:[1f,.7f,0f,1f]},Age:0,WaitTime:0,Duration:6000,Radius:4.5f}, "minecraft:lore":['[{"text":"Right click on any block to set this trap up about 5","italic":false}]','[{"text":"block radius... But be careful, you may walk into your","italic":false}]','[{"text":"own trap...","italic":false}]']}}}
+execute if score pow Rand matches 10..12 if score fangTrap Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:polar_bear_spawn_egg",count:1b,components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:custom_name":'{"text":"Fang Trap","color":"gold","italic":false}',"minecraft:entity_data":{id:"area_effect_cloud",Tags:[ClampTrap],Particle:{type:"entity_effect",color:[1f,.7f,0f,1f]},Age:0,WaitTime:0,Duration:6000,Radius:4.5f}, "minecraft:lore":['[{"text":"Right click on any block to set this trap up about 5","italic":false}]','[{"text":"block radius... But be careful, you may walk into your","italic":false}]','[{"text":"own trap...","italic":false}]']}}}
 
-execute if score pow Rand matches 10..12 if score clampTrap Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;15435844], fade_colors:[I;11250603]}], flight_duration:2b}}}}
+execute if score pow Rand matches 10..12 if score fangTrap Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;15435844], fade_colors:[I;11250603]}], flight_duration:2b}}}}
 
 ## Item 3 (Potion of Invisibility)
-execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:splash_potion",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b},"minecraft:custom_name":'{"text":"Potion of Invisibility","italic":false}',"minecraft:lore":['[{"text":"This gives the user invisibility when applied,"}]','[{"text":"removing the glowing effect as well for a short time"}]'],"minecraft:potion_contents":{custom_color:16777215,custom_effects:[{id:"invisibility",duration:310,ambient:1b,show_particles:0b}]}}}}
+execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:splash_potion",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b},"minecraft:custom_name":'{"text":"Potion of Invisibility","italic":false,"color": "gray"}',"minecraft:lore":['[{"text":"This gives the user invisibility when applied,"}]','[{"text":"removing the glowing effect as well for a short time"}]'],"minecraft:potion_contents":{custom_color:16777215,custom_effects:[{id:"invisibility",duration:310,ambient:1b,show_particles:0b}]}}}}
 execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;5394769], fade_colors:[I;15790320]}], flight_duration:2b}}}}
 
 ## Item 4 (Elytra of Soaring)
@@ -73,7 +73,7 @@ execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 at @e[
 
 ## Item 5 (Clock of Destiny)
 execute if score pow Rand matches 23..27 if score clock Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:clock",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b,Value:0b},"minecraft:enchantment_glint_override":1b,"minecraft:custom_name":'[{"text":"Clock of Destiny","italic":false,"color":"yellow"}]',"minecraft:lore":['[{"text":"Right click this to...","italic":false}]','[{"text":"Runners decrease the timer by 30 seconds","italic":false}]','[{"text":"Taggers increase the timer by 30 seconds","italic":false}]'],"minecraft:food":{nutrition:0,saturation:0.0,eat_seconds:1000000,can_always_eat:true}}}}
-execute if score pow Rand matches 23..27 if score clock Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:"firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:1,Colors:[I;14602026]}],Flight:2}}}}
+execute if score pow Rand matches 23..27 if score clock Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;16711485],fade_colors:[I;16711485]}], flight_duration:2b}}}}
 
 ## Item 6 (Snowball of Destruction)
 execute if score pow Rand matches 7..9 if score snowball Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:snowball",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:enchantment_glint_override":1b,"minecraft:custom_name":'[{"text":"Snowball of Destruction","italic":false,"color":"aqua"}]',"minecraft:lore":['[{"text":"It\'s so cold that blocks around it break too","italic":false}]']}}}
@@ -89,16 +89,16 @@ execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;13882323]}], flight_duration:2b}}}}
 
 ### This rolls the chance for an anvil to fall (Can roll between 0-9)
-function tag_main:random
-scoreboard players operation anvil Rand += total Rand
-scoreboard players set total Rand 0
+# function tag_main:random
+scoreboard players set anvil Rand 0
+# scoreboard players set total Rand 0
 
 execute if score anvil Rand matches 7..9 at @e[tag=positioned,type=marker] run summon minecraft:falling_block ~ ~200 ~ {BlockState:{Name:"anvil"}}
 
 # This starts the cooldown and kill the position armorstands
 execute if score pow Rand matches 13..15 if score kbStick Toggle matches 1 run scoreboard players set PowerupTimer gameTimer 0
 
-execute if score pow Rand matches 10..12 if score clampTrap Toggle matches 1 run scoreboard players set PowerupTimer gameTimer 0
+execute if score pow Rand matches 10..12 if score fangTrap Toggle matches 1 run scoreboard players set PowerupTimer gameTimer 0
 
 execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 run scoreboard players set PowerupTimer gameTimer 0
 
@@ -133,22 +133,22 @@ execute if score anvil Rand matches 0..6 if score pow Rand matches 0..3 if score
 
 execute if score anvil Rand matches 0..6 if score pow Rand matches 4..6 if score punchBow Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"gray"}
 
-# With an Anvil spawning
-execute if score anvil Rand matches 7..9 if score pow Rand matches 13..15 if score kbStick Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF76A5"}
+# # With an Anvil spawning
+# execute if score anvil Rand matches 7..9 if score pow Rand matches 13..15 if score kbStick Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF76A5"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 10..12 if score clampTrap Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFC54D"}
+# execute if score anvil Rand matches 7..9 if score pow Rand matches 10..12 if score clampTrap Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFC54D"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#B8B8B8"}
+# execute if score anvil Rand matches 7..9 if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#B8B8B8"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 19..22 if score elytra Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF8DFF"}
+# execute if score anvil Rand matches 7..9 if score pow Rand matches 19..22 if score elytra Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF8DFF"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 23..27 if score clock Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFFF90"}
+# execute if score anvil Rand matches 7..9 if score pow Rand matches 23..27 if score clock Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFFF90"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 7..9 if score snowball Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#88FFFF"}
+# execute if score anvil Rand matches 7..9 if score pow Rand matches 7..9 if score snowball Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#88FFFF"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"#BDFF9C"}
+# execute if score anvil Rand matches 7..9 if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"#BDFF9C"}
 
-execute if score anvil Rand matches 7..9 if score pow Rand matches 4..6 if score punchBow Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"gray"}
+# execute if score anvil Rand matches 7..9 if score pow Rand matches 4..6 if score punchBow Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"gray"}
 
 
 scoreboard players set anvil Rand 0

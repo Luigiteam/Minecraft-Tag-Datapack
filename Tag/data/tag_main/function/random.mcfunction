@@ -1,0 +1,1 @@
+execute store result score set Rand run random roll 0..9
