@@ -102,7 +102,7 @@ scoreboard objectives add guiDelay dummy
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
 
-scoreboard players set Timer gameTimer 0
+scoreboard players set Timer gameTimer 2400
 scoreboard players set EndTimer gameTimer 2400
 scoreboard players set TimerMin gameTimer 2400
 
@@ -190,7 +190,7 @@ scoreboard players set Rounds round 0
 scoreboard players set build Build 0
 
 scoreboard players set @a teamChoose 0
-scoreboard players set @a guiState 2
+scoreboard players set @a guiState 1
 scoreboard players set @a guiDelay 3
 
 # Adds the teams
@@ -255,6 +255,7 @@ worldborder damage amount 5
 
 data modify storage death Pos set value [0.0d,0.0d,0.0d]
 data modify storage clock_storage Upgrade set value 0b
+data modify storage timer Minutes set value 0
 data modify storage math_holder Slot set value [0.0d,0.0d,0.0d]
 
 tellraw @a {"text":"Tag 2.0E Loaded!","color":"#32e65c"}
