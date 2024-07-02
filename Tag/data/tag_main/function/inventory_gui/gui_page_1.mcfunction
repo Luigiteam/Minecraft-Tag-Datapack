@@ -2,7 +2,7 @@ clear @s *
 
 # Item
 item replace entity @s hotbar.0 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 1"}']
-item replace entity @s hotbar.1 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 2!"}'] 2
+item replace entity @s hotbar.1 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 2!"}',minecraft:lore=['{"text": "Game Modes"}','{"text": "Powerups"}','{"text": "Effects"}']] 2
 
 # Items for World Border
 item replace entity @s container.11 with lime_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Increase Size By 10","italic": false,"color": "green"}]'] 10
@@ -24,13 +24,16 @@ item replace entity @s container.23 with red_stained_glass_pane[minecraft:custom
 item replace entity @s container.24 with red_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Decreases timer by 1 minute","italic": false,"color": "red"}]'] 60
 
 # Items for Teams
-execute if score @s teamChoose matches 2 run item replace entity @s container.29 with leather_boots[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to join Runners!","color": "green"}]',minecraft:lore=['[{"text": "Keep in mind that if everyone is a runner,"}]','[{"text": "a tagger is chosen at random"}]'],minecraft:enchantment_glint_override=1b] 1
-execute unless score @s teamChoose matches 2 run item replace entity @s container.29 with leather_boots[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to join Runners!","color": "green"}]',minecraft:lore=['[{"text": "Keep in mind that if everyone is a runner,"}]','[{"text": "a tagger is chosen at random"}]'],minecraft:enchantment_glint_override=0b] 1
+execute if score @s teamChoose matches 0 run item replace entity @s container.28 with minecraft:ominous_bottle[minecraft:custom_name='{"text": "Click me to join a random team!"}',minecraft:enchantment_glint_override=1b]
+execute unless score @s teamChoose matches 0 run item replace entity @s container.28 with minecraft:ominous_bottle[minecraft:custom_name='{"text": "Click me to join a random team!"}']
 
-execute if score @s teamChoose matches 1 run item replace entity @s container.31 with iron_sword[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to join Taggers!","color": "red"}]',minecraft:lore=['[{"text": "Keep in mind that if everyone is tagger,"}]','[{"text": "a runner is chosen at random"}]'],minecraft:enchantment_glint_override=1b] 1
-execute unless score @s teamChoose matches 1 run item replace entity @s container.31 with iron_sword[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to join Taggers!","color": "red"}]',minecraft:lore=['[{"text": "Keep in mind that if everyone is tagger,"}]','[{"text": "a runner is chosen at random"}]'],minecraft:enchantment_glint_override=0b] 1
+execute if score @s teamChoose matches 2 run item replace entity @s container.30 with leather_boots[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to join Runners!","color": "green"}]',minecraft:lore=['[{"text": "Keep in mind that if everyone is a runner,"}]','[{"text": "a tagger is chosen at random"}]'],minecraft:enchantment_glint_override=1b] 1
+execute unless score @s teamChoose matches 2 run item replace entity @s container.30 with leather_boots[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to join Runners!","color": "green"}]',minecraft:lore=['[{"text": "Keep in mind that if everyone is a runner,"}]','[{"text": "a tagger is chosen at random"}]'],minecraft:enchantment_glint_override=0b] 1
 
-execute if score @s teamChoose matches -1 run item replace entity @s container.33 with ender_eye[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to be a spectator!","color": "yellow"}]',minecraft:enchantment_glint_override=1b] 1
-execute unless score @s teamChoose matches -1 run item replace entity @s container.33 with ender_eye[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to be a spectator!","color": "yellow"}]',minecraft:enchantment_glint_override=0b] 1
+execute if score @s teamChoose matches 1 run item replace entity @s container.32 with iron_sword[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to join Taggers!","color": "red"}]',minecraft:lore=['[{"text": "Keep in mind that if everyone is tagger,"}]','[{"text": "a runner is chosen at random"}]'],minecraft:enchantment_glint_override=1b] 1
+execute unless score @s teamChoose matches 1 run item replace entity @s container.32 with iron_sword[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to join Taggers!","color": "red"}]',minecraft:lore=['[{"text": "Keep in mind that if everyone is tagger,"}]','[{"text": "a runner is chosen at random"}]'],minecraft:enchantment_glint_override=0b] 1
+
+execute if score @s teamChoose matches -1 run item replace entity @s container.34 with ender_eye[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to be a spectator!","color": "yellow"}]',minecraft:enchantment_glint_override=1b] 1
+execute unless score @s teamChoose matches -1 run item replace entity @s container.34 with ender_eye[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to be a spectator!","color": "yellow"}]',minecraft:enchantment_glint_override=0b] 1
 
 scoreboard players set @s guiUpdate 0

@@ -1,7 +1,7 @@
 clear @s *
 
 # Items for hotbar
-item replace entity @s hotbar.0 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 1"}']
+item replace entity @s hotbar.0 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 1"}',minecraft:lore=['{"text": "World Border Size"}','{"text": "Timer Length"}','{"text": "Teams"}']]
 item replace entity @s hotbar.1 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 2!"}'] 2
 
 # Items for gamemode change

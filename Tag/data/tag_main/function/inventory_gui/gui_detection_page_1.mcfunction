@@ -14,8 +14,10 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:23b,id:"minecraft:red_stained_
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:24b,id:"minecraft:red_stained_glass_pane"}]}] run function tag_main:inventory_gui/setting_functions/timer/remove {ticks:1200}
 
 # Detection for Teams
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:29b,id:"minecraft:leather_boots"}]}] run function tag_main:inventory_gui/setting_functions/teams/runner
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:28b}]}] run function tag_main:inventory_gui/setting_functions/teams/random
 
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:31b,id:"minecraft:iron_sword"}]}] run function tag_main:inventory_gui/setting_functions/teams/tagger
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:30b,id:"minecraft:leather_boots"}]}] run function tag_main:inventory_gui/setting_functions/teams/runner
 
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:33b,id:"minecraft:ender_eye"}]}] run function tag_main:inventory_gui/setting_functions/teams/spec
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:32b,id:"minecraft:iron_sword"}]}] run function tag_main:inventory_gui/setting_functions/teams/tagger
+
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:34b,id:"minecraft:ender_eye"}]}] run function tag_main:inventory_gui/setting_functions/teams/spec
