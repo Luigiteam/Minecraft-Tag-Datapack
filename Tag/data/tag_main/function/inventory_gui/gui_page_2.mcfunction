@@ -49,8 +49,24 @@ execute if score eyeTeleport Toggle matches 1 run item replace entity @s contain
 execute if score punchBow Toggle matches 0 run item replace entity @s container.26 with bow[minecraft:custom_data={Kill:1b},minecraft:custom_name='{"text": "Punching Bow","color": "dark_gray"}',minecraft:lore=['[{"text": "DISABLED","color": "red"}]','{"text": "Just a bow with Punch 2, It can be used to tag people!"}']] 1
 execute if score punchBow Toggle matches 1 run item replace entity @s container.26 with bow[minecraft:custom_data={Kill:1b},minecraft:custom_name='{"text": "Punching Bow","color": "dark_gray"}',minecraft:lore=['[{"text": "ENABLED","color": "green"}]','{"text": "Just a bow with Punch 2, It can be used to tag people!"}'],minecraft:enchantment_glint_override=1b] 1
 
-# Item for page change
-item replace entity @s container.27 with minecraft:paper[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me for page 1"}]'] 1
-item replace entity @s container.35 with minecraft:paper[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me for page 1"}]'] 1
+# Items for Effects
+execute if score effect Toggle matches 0 run item replace entity @s container.28 with gray_dye[minecraft:custom_name='{"text": "Effects Selection"}',minecraft:lore=['{"text": "Effects are abilities that give a potion effect."}','{"text": "During a round, right click the Effect Activator to activate the effect!"}','{"text": "Hover over the options to see what they do!"}','{"text": "DISABLED","color": "red"}']]
+execute if score effect Toggle matches 1 run item replace entity @s container.28 with lime_dye[minecraft:custom_name='{"text": "Effects Selection"}',minecraft:lore=['{"text": "Effects are abilities that give a potion effect."}','{"text": "During a round, right click the Effect Activator to activate the effect!"}','{"text": "Hover over the options to see what they do!"}','{"text": "ENABLED","color": "green"}'],minecraft:enchantment_glint_override=1b]
+
+
+execute if score @s effectType matches 1 run item replace entity @s container.29 with potion[minecraft:potion_contents={custom_color:16646020,potion:"awkward",custom_effects:[{id:jump_boost,amplifier:2,duration:140}]},minecraft:custom_name='{"text": "Leaping Effect","color": "#FDFF84"}',minecraft:enchantment_glint_override=1b,minecraft:lore=['{"text":"SELECTED","color": "green"}']]
+execute unless score @s effectType matches 1 run item replace entity @s container.29 with potion[minecraft:potion_contents={custom_color:16646020,potion:"awkward",custom_effects:[{id:jump_boost,amplifier:2,duration:140}]},minecraft:custom_name='{"text": "Leaping Effect","color": "#FDFF84"}']
+
+execute if score @s effectType matches 2 run item replace entity @s container.30 with potion[minecraft:potion_contents={custom_color:2445989,potion:"awkward",custom_effects:[{id:absorption,amplifier:4,duration:600}]},minecraft:custom_name='{"text": "Absorption Effect","color": "#2552A5"}',minecraft:enchantment_glint_override=1b,minecraft:lore=['{"text":"SELECTED","color": "green"}']]
+execute unless score @s effectType matches 2 run item replace entity @s container.30 with potion[minecraft:potion_contents={custom_color:2445989,potion:"awkward",custom_effects:[{id:absorption,amplifier:4,duration:600}]},minecraft:custom_name='{"text": "Absorption Effect","color": "#2552A5"}']
+
+execute if score @s effectType matches 3 run item replace entity @s container.31 with potion[minecraft:potion_contents={custom_color:14270531,potion:"awkward",custom_effects:[{id:haste,amplifier:4,duration:300},{id:"night_vision",amplifier:0,duration:300}]},minecraft:custom_name='{"text": "Haste Effect","color": "#D9C043"}',minecraft:enchantment_glint_override=1b,minecraft:lore=['{"text":"SELECTED","color": "green"}']]
+execute unless score @s effectType matches 3 run item replace entity @s container.31 with potion[minecraft:potion_contents={custom_color:14270531,potion:"awkward",custom_effects:[{id:haste,amplifier:4,duration:300},{id:"night_vision",amplifier:0,duration:300}]},minecraft:custom_name='{"text": "Haste Effect","color": "#D9C043"}']
+
+execute if score @s effectType matches 4 run item replace entity @s container.32 with potion[minecraft:potion_contents={custom_color:9643043,potion:"awkward",custom_effects:[{id:strength,amplifier:1,duration:100}]},minecraft:custom_name='{"text": "Strength Effect","color": "#FF2423"}',minecraft:enchantment_glint_override=1b,minecraft:lore=['{"text":"SELECTED","color": "green"}']]
+execute unless score @s effectType matches 4 run item replace entity @s container.32 with potion[minecraft:potion_contents={custom_color:9643043,potion:"awkward",custom_effects:[{id:strength,amplifier:1,duration:100}]},minecraft:custom_name='{"text": "Strength Effect","color": "#FF2423"}']
+
+execute if score @s effectType matches 5 run item replace entity @s container.33 with potion[minecraft:potion_contents={custom_color:13565951,potion:"awkward",custom_effects:[{id:levitation,amplifier:2,duration:100}]},minecraft:custom_name='{"text": "Levitation Effect","color": "#CEFFFF"}',minecraft:enchantment_glint_override=1b,minecraft:lore=['{"text":"SELECTED","color": "green"}']]
+execute unless score @s effectType matches 5 run item replace entity @s container.33 with potion[minecraft:potion_contents={custom_color:13565951,potion:"awkward",custom_effects:[{id:levitation,amplifier:2,duration:100}]},minecraft:custom_name='{"text": "Levitation Effect","color": "#CEFFFF"}']
 
 scoreboard players set @s guiUpdate 0

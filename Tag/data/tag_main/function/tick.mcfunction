@@ -295,6 +295,8 @@ execute as @a[tag=runner] if score Insane Toggle matches 1 run effect give @s do
 
 # This gives effects to everyone
 ## Carrot on the stick stuff
+execute as @a unless score @s effectType matches 1.. run scoreboard players set @s effectType 1
+
 execute as @a[scores={effectTimer=1..},tag=noEffect] if score State gameStart matches 1.. run scoreboard players remove @s effectTimer 1
 
 execute as @a[tag=!noEffect,scores={effectUse=1..,effectTimer=1..}] run tellraw @s "You cannot use this right now"

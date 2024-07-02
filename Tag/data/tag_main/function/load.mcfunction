@@ -172,6 +172,8 @@ scoreboard players set allDisabled Toggle 0
 
 scoreboard players set upgradeModule Toggle 1
 
+scoreboard players set effect Toggle 1
+
 scoreboard players set tog Toggle 0
 
 scoreboard players set num Rand 0
@@ -191,7 +193,7 @@ scoreboard players set Rounds round 0
 scoreboard players set build Build 0
 
 scoreboard players set @a teamChoose 0
-scoreboard players set @a guiState 1
+scoreboard players set @a guiState 2
 scoreboard players set @a guiDelay 3
 scoreboard players set @a guiUpdate 1
 
