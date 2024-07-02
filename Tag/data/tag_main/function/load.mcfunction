@@ -98,6 +98,7 @@ scoreboard objectives add powerupSounds dummy
 
 scoreboard objectives add guiState dummy
 scoreboard objectives add guiDelay dummy
+scoreboard objectives add guiUpdate dummy
 
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
@@ -192,6 +193,7 @@ scoreboard players set build Build 0
 scoreboard players set @a teamChoose 0
 scoreboard players set @a guiState 1
 scoreboard players set @a guiDelay 3
+scoreboard players set @a guiUpdate 1
 
 # Adds the teams
 ## team Taggers

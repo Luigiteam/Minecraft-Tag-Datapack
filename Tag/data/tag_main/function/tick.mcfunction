@@ -1,5 +1,6 @@
 execute as @a unless score @s guiState matches 0.. run scoreboard players set @s guiState 1
 execute as @a unless score @s guiDelay matches 0.. run scoreboard players set @s guiDelay 3
+execute as @a unless score @s guiUpdate matches 0.. run scoreboard players set @s guiUpdate 1
 execute as @a at @s if score State gameStart matches 0 run function tag_main:inventory_gui/gui_state
 execute as @a if score @s guiDelay matches 1.. run scoreboard players remove @s guiDelay 1
 
@@ -583,9 +584,6 @@ execute as @e[type=marker,tag=particle,tag=processed,scores={gameTimer=1..}] at 
 execute as @e[type=marker,tag=particle,tag=processed,scores={markerTimer=10..}] run scoreboard players set @s markerTimer 1
 execute as @e[type=marker,tag=particle,tag=processed,scores={gameTimer=1..}] run scoreboard players remove @s gameTimer 1
 execute as @e[type=marker,tag=particle,tag=processed,scores={gameTimer=..0}] run kill @s
-
-## Gamemode Change
-execute if score State gameStart matches ..0 if score Mode optionsSelect matches 1.. run function tag_main:game_options/mode_change
 
 # This checks if the runners are done running
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 1..2 run function tag_main:winners

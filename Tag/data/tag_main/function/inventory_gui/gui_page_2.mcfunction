@@ -1,4 +1,9 @@
 clear @s *
+
+# Items for hotbar
+item replace entity @s hotbar.0 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 1"}']
+item replace entity @s hotbar.1 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 2!"}']
+
 # Items for gamemode change
 item replace entity @s container.10 with map[minecraft:custom_name='[{"text": "Game Modes"}]',minecraft:lore=['[{"text": "Hover over the modes to learn more about them!"}]','[{"text": "Click on one to select it."}]'],minecraft:custom_data={Kill:1b}]
 
@@ -47,3 +52,5 @@ execute if score punchBow Toggle matches 1 run item replace entity @s container.
 # Item for page change
 item replace entity @s container.27 with minecraft:paper[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me for page 1"}]'] 1
 item replace entity @s container.35 with minecraft:paper[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me for page 1"}]'] 1
+
+scoreboard players set @s guiUpdate 0

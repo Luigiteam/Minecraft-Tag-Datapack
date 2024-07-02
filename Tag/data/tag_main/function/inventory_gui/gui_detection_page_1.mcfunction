@@ -1,3 +1,6 @@
+# Detection for hotbar items
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:1b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:2}
+
 # Detection for World Border
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:11b,id:"minecraft:lime_stained_glass_pane"}]}] run function tag_main:inventory_gui/setting_functions/world_border/add {Amount:10}
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:12b,id:"minecraft:lime_stained_glass_pane"}]}] run function tag_main:inventory_gui/setting_functions/world_border/add {Amount:5}
@@ -16,7 +19,3 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:29b,id:"minecraft:leather_boot
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:31b,id:"minecraft:iron_sword"}]}] run function tag_main:inventory_gui/setting_functions/teams/tagger
 
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:33b,id:"minecraft:ender_eye"}]}] run function tag_main:inventory_gui/setting_functions/teams/spec
-
-# Detection for Pages
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:27b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:2}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:35b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:2}
