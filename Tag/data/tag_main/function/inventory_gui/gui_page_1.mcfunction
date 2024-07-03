@@ -1,8 +1,10 @@
 clear @s *
+scoreboard players set @s guiUpdate 0
 
 # Item
 item replace entity @s hotbar.0 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 1"}']
 item replace entity @s hotbar.1 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 2!"}',minecraft:lore=['{"text": "Game Modes"}','{"text": "Powerups"}','{"text": "Effects"}']] 2
+item replace entity @s hotbar.2 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 3"}',minecraft:lore=['{"text": "Tools"}']] 3
 
 # Items for World Border
 item replace entity @s container.11 with lime_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Increase Size By 10","italic": false,"color": "green"}]'] 10
@@ -35,5 +37,3 @@ execute unless score @s teamChoose matches 1 run item replace entity @s containe
 
 execute if score @s teamChoose matches -1 run item replace entity @s container.34 with ender_eye[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to be a spectator!","color": "yellow"}]',minecraft:enchantment_glint_override=1b] 1
 execute unless score @s teamChoose matches -1 run item replace entity @s container.34 with ender_eye[minecraft:custom_data={Kill:1b},minecraft:custom_name='[{"text": "Click me to be a spectator!","color": "yellow"}]',minecraft:enchantment_glint_override=0b] 1
-
-scoreboard players set @s guiUpdate 0

@@ -103,7 +103,7 @@ scoreboard objectives add guiUpdate dummy
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
 
-scoreboard players set Timer gameTimer 2400
+scoreboard players set Timer gameTimer 4200
 scoreboard players set EndTimer gameTimer 2400
 scoreboard players set TimerMin gameTimer 2400
 
@@ -144,7 +144,7 @@ scoreboard players set worldBorderSizeGet Numbers 100
 scoreboard players set halfWBS Numbers 0
 scoreboard players set nHalfWBS Numbers 0
 
-scoreboard players set maxHeight Numbers 125
+scoreboard players set maxHeight Numbers 225
 scoreboard players set minDepth Numbers 0
 
 scoreboard players set yDistance Toggle 1
@@ -156,6 +156,8 @@ scoreboard players set PowerUps Toggle 1
 scoreboard players set Insane Toggle 0
 
 scoreboard players set gameMode Toggle 1
+
+scoreboard players set maxHeight Toggle 1
 
 ## Powerup Toggles
 
@@ -193,7 +195,7 @@ scoreboard players set Rounds round 0
 scoreboard players set build Build 0
 
 scoreboard players set @a teamChoose 0
-scoreboard players set @a guiState 2
+scoreboard players set @a guiState 1
 scoreboard players set @a guiDelay 3
 scoreboard players set @a guiUpdate 1
 

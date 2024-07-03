@@ -1,8 +1,11 @@
 clear @s *
+scoreboard players set @s guiUpdate 0
 
 # Items for hotbar
 item replace entity @s hotbar.0 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 1"}',minecraft:lore=['{"text": "World Border Size"}','{"text": "Timer Length"}','{"text": "Teams"}']]
 item replace entity @s hotbar.1 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 2!"}'] 2
+item replace entity @s hotbar.2 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 3"}',minecraft:lore=['{"text": "Tools"}']] 3
+
 
 # Items for gamemode change
 item replace entity @s container.10 with map[minecraft:custom_name='[{"text": "Game Modes"}]',minecraft:lore=['[{"text": "Hover over the modes to learn more about them!"}]','[{"text": "Click on one to select it."}]'],minecraft:custom_data={Kill:1b}]
@@ -68,5 +71,3 @@ execute unless score @s effectType matches 4 run item replace entity @s containe
 
 execute if score @s effectType matches 5 run item replace entity @s container.33 with potion[minecraft:potion_contents={custom_color:13565951,potion:"awkward",custom_effects:[{id:levitation,amplifier:2,duration:100}]},minecraft:custom_name='{"text": "Levitation Effect","color": "#CEFFFF"}',minecraft:enchantment_glint_override=1b,minecraft:lore=['{"text":"SELECTED","color": "green"}']]
 execute unless score @s effectType matches 5 run item replace entity @s container.33 with potion[minecraft:potion_contents={custom_color:13565951,potion:"awkward",custom_effects:[{id:levitation,amplifier:2,duration:100}]},minecraft:custom_name='{"text": "Levitation Effect","color": "#CEFFFF"}']
-
-scoreboard players set @s guiUpdate 0
