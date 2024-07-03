@@ -145,7 +145,7 @@ scoreboard players set halfWBS Numbers 0
 scoreboard players set nHalfWBS Numbers 0
 
 scoreboard players set maxHeight Numbers 225
-scoreboard players set minDepth Numbers 0
+scoreboard players set minDepth Numbers 15
 
 scoreboard players set yDistance Toggle 1
 
@@ -158,6 +158,7 @@ scoreboard players set Insane Toggle 0
 scoreboard players set gameMode Toggle 1
 
 scoreboard players set maxHeight Toggle 1
+scoreboard players set minDepth Toggle 1
 
 ## Powerup Toggles
 
@@ -265,3 +266,4 @@ data modify storage timer Minutes set value 0
 data modify storage math_holder Slot set value [0.0d,0.0d,0.0d]
 
 tellraw @a {"text":"Tag 2.0E Loaded!","color":"#32e65c"}
+tellraw @a {"text": "Open the inventory to see the settings of Tag!","color": "#32e65c"}

@@ -461,10 +461,10 @@ execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s 
 
 # Extras
 ## Artifical Height/Void limit
-execute as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run setblock ~ ~-2 ~ air destroy
-execute as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run tp @s ~ ~-1 ~
+execute if score maxHeight Toggle matches 1 as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run setblock ~ ~-2 ~ air destroy
+execute if score maxHeight Toggle matches 1 as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run tp @s ~ ~-1 ~
 
-execute as @a[tag=!heightOP] at @s unless score @s yDistance > minDepth Numbers if score @s elytraDestroy matches ..0 if score State gameStart matches 1.. if block ~ ~ ~ air run effect give @s levitation 1 4 true
+execute if score minDepth Toggle matches 1 as @a[tag=!heightOP] at @s unless score @s yDistance > minDepth Numbers if score @s elytraDestroy matches ..0 if score State gameStart matches 1.. if block ~ ~ ~ air run effect give @s levitation 1 4 true
 
 ## Upgrade Core Stuff
 ### Drop Core on Tagger Death

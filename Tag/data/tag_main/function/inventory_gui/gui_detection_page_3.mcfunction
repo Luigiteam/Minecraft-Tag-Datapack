@@ -19,3 +19,12 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:22b}]}] run function tag_main:
 
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:23b}]}] run function tag_main:inventory_gui/setting_functions/world_height/remove {amount:5,pitch:0.8}
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:24b}]}] run function tag_main:inventory_gui/setting_functions/world_height/remove {amount:10,pitch:0.6}
+
+# Detection for Depth
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:29b}]}] run function tag_main:inventory_gui/setting_functions/world_depth/add {amount:10,pitch:1.2f}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:30b}]}] run function tag_main:inventory_gui/setting_functions/world_depth/add {amount:5,pitch:1.0f}
+
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:31b}]}] run function tag_main:inventory_gui/setting_functions/world_depth/toggle
+
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:32b}]}] run function tag_main:inventory_gui/setting_functions/world_depth/remove {amount:5,pitch:0.8}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:33b}]}] run function tag_main:inventory_gui/setting_functions/world_depth/remove {amount:10,pitch:0.6}
