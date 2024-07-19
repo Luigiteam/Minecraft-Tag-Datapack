@@ -100,6 +100,7 @@ scoreboard objectives add guiState dummy
 scoreboard objectives add guiDelay dummy
 scoreboard objectives add guiUpdate dummy
 
+scoreboard objectives add playerJoin dummy
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
 
@@ -149,7 +150,7 @@ scoreboard players set minDepth Numbers 15
 
 scoreboard players set yDistance Toggle 1
 
-scoreboard players set Tools Toggle 0
+scoreboard players set Tools Toggle 4
 
 scoreboard players set PowerUps Toggle 1
 
@@ -195,10 +196,14 @@ scoreboard players set Rounds round 0
 
 scoreboard players set build Build 0
 
+item replace entity @a hotbar.8 with lime_dye[] 1
+
 scoreboard players set @a teamChoose 0
 scoreboard players set @a guiState 1
-scoreboard players set @a guiDelay 3
+scoreboard players set @a guiDelay 5
 scoreboard players set @a guiUpdate 1
+
+scoreboard players set @a playerJoin 0
 
 # Adds the teams
 ## team Taggers
@@ -266,4 +271,4 @@ data modify storage timer Minutes set value 0
 data modify storage math_holder Slot set value [0.0d,0.0d,0.0d]
 
 tellraw @a {"text":"Tag 2.0E Loaded!","color":"#32e65c"}
-tellraw @a {"text": "Open the inventory to see the settings of Tag!","color": "#32e65c"}
+# tellraw @a [{"text": "Click ","color": "#32e65c"},{"text": "This ","underlined": true,"clickEvent": {"action": "run_command","value": "/function tag_main:begin"}},{"text": " to begin!"}]

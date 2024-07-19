@@ -1,5 +1,7 @@
 scoreboard players set settingSet optionsSelect 0
 
+scoreboard players set @s guiUpdate 1
+
 execute if score minDepth Toggle matches 1 run scoreboard players set settingSet optionsSelect 1
 execute if score settingSet optionsSelect matches 1 if score minDepth Toggle matches 1 run scoreboard players set minDepth Toggle 0
 execute if score settingSet optionsSelect matches 1 if score minDepth Toggle matches 0 run playsound block.note_block.cow_bell ambient @s ~ ~ ~ 1 1.0

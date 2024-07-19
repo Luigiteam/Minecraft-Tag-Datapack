@@ -5,3 +5,5 @@ execute if score minDepth Numbers matches 30.. run scoreboard players set minDep
 $playsound minecraft:block.note_block.bit ambient @s ~ ~ ~ 50 $(pitch)
 
 tellraw @a [{"text": "The min Depth is "},{"score": {"name": "minDepth","objective": "Numbers"},"color": "light_purple"},{"text": " Blocks."}]
+
+scoreboard players set @s guiUpdate 1

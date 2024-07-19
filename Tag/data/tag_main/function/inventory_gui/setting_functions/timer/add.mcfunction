@@ -6,4 +6,6 @@ execute if score Timer gameTimer matches 12000.. run scoreboard players set Time
 
 scoreboard players operation temp gameTimer = Timer gameTimer
 
+scoreboard players set @s guiUpdate 1
+
 tellraw @a [{"text": "The timer has increased to "},{"score": {"name": "Timer","objective": "gameTimer"},"color": "light_purple"},{"text": " ticks"}]

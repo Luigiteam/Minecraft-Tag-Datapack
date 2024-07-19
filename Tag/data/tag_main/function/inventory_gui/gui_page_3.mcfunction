@@ -25,8 +25,8 @@ execute unless score Tools Toggle matches 4 run item replace entity @s container
 execute if score Tools Toggle matches 5 run item replace entity @s container.15 with minecraft:diamond_pickaxe[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text": "Diamond Tools"}',minecraft:custom_data={Kill:1b}]
 execute unless score Tools Toggle matches 5 run item replace entity @s container.15 with minecraft:diamond_pickaxe[minecraft:custom_name='{"text": "Diamond Tools"}',minecraft:custom_data={Kill:1b}]
 
-execute if score Tools Toggle matches 6 run item replace entity @s container.16 with minecraft:netherite_ingot[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text": "Netherite Tools"}',minecraft:custom_data={Kill:1b}]
-execute unless score Tools Toggle matches 6 run item replace entity @s container.16 with minecraft:netherite_ingot[minecraft:custom_name='{"text": "Netherite Tools"}',minecraft:custom_data={Kill:1b}]
+execute if score Tools Toggle matches 6 run item replace entity @s container.16 with minecraft:netherite_pickaxe[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text": "Netherite Tools"}',minecraft:custom_data={Kill:1b}]
+execute unless score Tools Toggle matches 6 run item replace entity @s container.16 with minecraft:netherite_pickaxe[minecraft:custom_name='{"text": "Netherite Tools"}',minecraft:custom_data={Kill:1b}]
 
 # World Hight Settings
 item replace entity @s container.20 with lime_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Increase Height By 10","italic": false,"color": "green"}]'] 10
@@ -45,7 +45,7 @@ item replace entity @s container.30 with lime_stained_glass_pane[minecraft:custo
 
 execute if score minDepth Toggle matches 1 run item replace entity @s container.31 with deepslate[custom_data={Floating:1b,Kill:1b},custom_name='{"text":"World Depth Settings","italic":false,"color": "aqua"}',minecraft:enchantment_glint_override=1b]
 execute if score minDepth Toggle matches 0 run item replace entity @s container.31 with deepslate[custom_data={Floating:1b,Kill:1b},custom_name='{"text":"World Depth Settings","italic":false}']
-item modify entity @s container.31 {function:"minecraft:set_lore",entity:"this",lore:[[{text:"The Min World Depth is currently ",italic:false,"color":"white"},{score:{name:"maxHeight",objective:"Numbers"},"color":"light_purple"},{text:" blocks"}],[{text:"This forces players over the Depth limit."}],[{text:"Click the deepslate to enable/disable"}]],mode:"replace_all"}
+item modify entity @s container.31 {function:"minecraft:set_lore",entity:"this",lore:[[{text:"The Min World Depth is currently ",italic:false,"color":"white"},{score:{name:"minDepth",objective:"Numbers"},"color":"light_purple"},{text:" blocks"}],[{text:"This forces players over the Depth limit."}],[{text:"Click the deepslate to enable/disable"}]],mode:"replace_all"}
 
 item replace entity @s container.32 with red_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Decrease Depth By 5","italic": false,"color": "red"}]'] 5
 item replace entity @s container.33 with red_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Decrease Depth By 10","italic": false,"color": "red"}]'] 10

@@ -1,4 +1,6 @@
-clear @a
+scoreboard players set State gameStart 1
+
+clear @a *
 
 kill @e[type=marker,tag=tpSpawn]
 summon marker ~ ~ ~ {Tags:[tpSpawn]}
@@ -147,4 +149,3 @@ worldborder set 100 1
 execute at @e[type=marker,tag=tpSpawn] run spreadplayers ~ ~ 30 60 true @a
 
 gamemode survival @a
-scoreboard players set State gameStart 1

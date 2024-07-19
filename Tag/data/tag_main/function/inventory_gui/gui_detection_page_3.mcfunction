@@ -3,6 +3,8 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:0b}]}] run function tag_main:i
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:1b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:2}
 
 # Detection for Tools
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:9b}]}] run scoreboard players set @s guiUpdate 1
+
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:10b}]}] run function tag_main:inventory_gui/setting_functions/tools/change {type:0}
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:11b}]}] run function tag_main:inventory_gui/setting_functions/tools/change {type:1}
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:12b}]}] run function tag_main:inventory_gui/setting_functions/tools/change {type:2}

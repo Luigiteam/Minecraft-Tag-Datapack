@@ -5,3 +5,5 @@ execute if score maxHeight Numbers matches ..150 run scoreboard players set maxH
 $playsound minecraft:block.note_block.bit ambient @s ~ ~ ~ 50 $(pitch)
 
 tellraw @a [{"text": "The max Height is "},{"score": {"name": "maxHeight","objective": "Numbers"},"color": "light_purple"},{"text": " Blocks."}]
+
+scoreboard players set @s guiUpdate 1

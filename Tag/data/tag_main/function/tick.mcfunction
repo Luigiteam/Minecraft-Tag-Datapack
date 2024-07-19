@@ -1,8 +1,4 @@
-execute as @a unless score @s guiState matches 0.. run scoreboard players set @s guiState 1
-execute as @a unless score @s guiDelay matches 0.. run scoreboard players set @s guiDelay 3
-execute as @a unless score @s guiUpdate matches 0.. run scoreboard players set @s guiUpdate 1
-execute as @a at @s if score State gameStart matches 0 run function tag_main:inventory_gui/gui_state
-execute as @a if score @s guiDelay matches 1.. run scoreboard players remove @s guiDelay 1
+# execute if score State gameStart matches 1 as @a if entity @s[nbt={Inventory:[{components:{"minecraft:custom_data":{Kill:1b}}}]}] run clear @s *
 
 execute store result score worldBorderSizeGet Numbers run worldborder get
 execute if score State gameStart matches 1.. if score worldBorderSizeGet Numbers < worldBorderSize Numbers run worldborder add 1
@@ -18,32 +14,11 @@ scoreboard players enable @a teamChoose
 scoreboard players enable @a giveBook
 scoreboard players enable @a textTrigger
 
-execute as @a at @s if score @s giveBook matches 1.. run function tag_main:settings
-
-#execute at @e[type=marker,tag=spawn] if score State gameStart matches 1.. run tp @a[distance=..20,gamemode=survival] @e[tag=tpSpawn,type=marker,limit=1,sort=nearest]
-
-#execute at @e[type=marker,tag=spawn] run kill @e[type=item,distance=..15]
-
 execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}},scores={gameTimer=100..}] run kill @s
 
 execute if score State gameStart matches 1 if score Insane Toggle matches 1 run scoreboard players add tnt gameTimer 1
 execute if score tnt gameTimer matches 300.. as @a[tag=!freeze,scores={blindTimer=..0}] at @s run summon tnt ~ ~ ~ {fuse:60s}
 execute if score tnt gameTimer matches 300.. run scoreboard players set tnt gameTimer 0
-
-# Text Triggers
-execute as @a if score @s textTrigger matches 1 run function tag_main:text_readouts/powerup_description
-
-execute as @a if score @s textTrigger matches 2 run function tag_main:text_readouts/powerup_changeout
-
-execute as @a if score @s textTrigger matches 3 run function tag_main:text_readouts/sound_settings/player_revealer
-
-execute as @a if score @s textTrigger matches 4 run function tag_main:text_readouts/sound_settings/heartbeat
-
-execute as @a if score @s textTrigger matches 5 run function tag_main:text_readouts/effect_changer
-
-execute as @a if score @s textTrigger matches 6 run function tag_main:text_readouts/height_depth_settings
-
-execute as @a if score @s textTrigger matches 7 run function tag_main:text_readouts/sound_settings/powerup_sounds
 
 # Hide-and-Seek
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 store result score runners Numbers run execute if entity @e[tag=runner,tag=!spectate]
@@ -173,11 +148,6 @@ execute at @a[tag=tagger] as @a[tag=runner,sort=nearest,limit=1] store result sc
 scoreboard players operation yResults yDistance = @a[tag=tagger] yDistance
 execute at @a[tag=tagger] as @a[tag=runner,sort=nearest,limit=1] run scoreboard players operation yResults yDistance -= @s yDistance
 
-execute if score yDistance Toggle matches 1 as @a[tag=tagger] if score yResults yDistance matches ..-1 run title @s actionbar {"text": "The nearest runner is above you"}
-execute if score yDistance Toggle matches 1 as @a[tag=tagger] if score yResults yDistance matches 0 run title @s actionbar {"text": "The nearest runner is the same level as you"}
-execute if score yDistance Toggle matches 1 as @a[tag=tagger] if score yResults yDistance matches 1.. run title @s actionbar {"text": "The nearest runner is under you"}
-
-
 ## Detection & Effects
 
 # This is the fundunmentals for the Elytra of Soaring
@@ -206,7 +176,7 @@ execute at @e[type=marker,tag=snowballs] unless entity @e[type=snowball,distance
 execute at @e[type=marker,tag=snowballs] unless entity @e[type=snowball,distance=..2] run effect give @a[distance=..10] slowness 5 2 true
 kill @e[type=marker,tag=snowballs]
 execute at @e[type=snowball,nbt={Item:{components:{"minecraft:custom_data":{Floating:1b}}}}] run summon minecraft:marker ~ ~ ~ {Tags:["snowballs"]}
-# This is some clamp trap stuff
+# This is some Fang trap stuff
 scoreboard players set @e[tag=ClampTrap] trapDestroy 0
 
 ## This activates the trap when a person is above it
@@ -591,3 +561,14 @@ execute as @e[type=marker,tag=particle,tag=processed,scores={gameTimer=..0}] run
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 1..2 run function tag_main:winners
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 3 run function tag_main:winning/reverse_time_check
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 4..5 run function tag_main:winners
+
+# GUI
+execute as @a unless score @s playerJoin matches 0.. run scoreboard players set @a playerJoin 0
+execute as @a unless score @s playerJoin matches 50.. run scoreboard players add @s playerJoin 1
+
+execute as @a unless score @s guiState matches 0.. run scoreboard players set @s guiState 1
+execute as @a unless score @s guiDelay matches 0.. run scoreboard players set @s guiDelay 3
+execute as @a unless score @s guiUpdate matches 0.. run scoreboard players set @s guiUpdate 1
+execute as @a if score State gameStart matches 1 run scoreboard players set @s guiUpdate 0
+execute as @a at @s if score State gameStart matches -1..0 run function tag_main:inventory_gui/gui_state
+execute as @a if score @s guiDelay matches 1.. run scoreboard players remove @s guiDelay 1

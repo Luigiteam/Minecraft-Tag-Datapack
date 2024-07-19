@@ -11,3 +11,5 @@ execute if score gameMode Toggle matches 2 run tellraw @a [{"text": "The Current
 execute if score gameMode Toggle matches 3 run tellraw @a [{"text": "The Current Gamemode is now "},{"text": "Reverse Tag","color": "green"}]
 execute if score gameMode Toggle matches 4 run tellraw @a [{"text": "The Current Gamemode is now "},{"text": "Infection Tag","color": "red"}]
 execute if score gameMode Toggle matches 5 run tellraw @a [{"text": "The Current Gamemode is now "},{"text": "Hide and Seek","color": "gray"}]
+
+scoreboard players set @a[scores={guiState=2}] guiUpdate 1

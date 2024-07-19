@@ -4,8 +4,9 @@ scoreboard players set @s guiUpdate 0
 # Item
 item replace entity @s hotbar.0 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 1"}']
 item replace entity @s hotbar.1 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 2!"}',minecraft:lore=['{"text": "Game Modes"}','{"text": "Powerups"}','{"text": "Effects"}']] 2
-item replace entity @s hotbar.2 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 3"}',minecraft:lore=['{"text": "Tools"}']] 3
+item replace entity @s hotbar.2 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 3"}',minecraft:lore=['{"text": "Tools"}','[{"text": "Height Settings"}]','[{"text": "Depth Settings"}]']] 3
 
+item replace entity @s hotbar.8 with lime_dye[minecraft:custom_name='{"text": "Click me to Start the Game!"}'] 1
 # Items for World Border
 item replace entity @s container.11 with lime_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Increase Size By 10","italic": false,"color": "green"}]'] 10
 item replace entity @s container.12 with lime_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Increase Size By 5","italic": false,"color": "green"}]'] 5

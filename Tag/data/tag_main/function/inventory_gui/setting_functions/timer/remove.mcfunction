@@ -6,4 +6,6 @@ scoreboard players operation temp gameTimer = Timer gameTimer
 
 playsound minecraft:block.note_block.bit ambient @s ~ ~ ~ 50 0.5
 
+scoreboard players set @s guiUpdate 1
+
 tellraw @a [{"text": "The timer has decreased to "},{"score": {"name": "Timer","objective": "gameTimer"},"color": "light_purple"},{"text": " ticks"}]

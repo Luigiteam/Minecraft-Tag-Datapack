@@ -15,3 +15,5 @@ execute if score Tools Toggle matches 3 run tellraw @a {"text": "Everyone will g
 execute if score Tools Toggle matches 4 run tellraw @a {"text": "Everyone will get Iron Tools"}
 execute if score Tools Toggle matches 5 run tellraw @a {"text": "Everyone will get Diamond Tools"}
 execute if score Tools Toggle matches 6 run tellraw @a {"text": "Everyone will get Netherite Tools"}
+
+scoreboard players set @a[scores={guiState=3}] guiUpdate 1
