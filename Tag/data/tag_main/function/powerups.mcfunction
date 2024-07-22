@@ -17,17 +17,7 @@ execute as @a[tag=posTemp] at @s run tp @e[tag=POS4,type=marker] ~-15 ~ ~-15
 
 # This picks which powerup is choosen
 ## Range 0-27
-execute store result score pow Rand run random roll 0..9
-scoreboard players operation pow Rand += total Rand
-scoreboard players set total Rand 0
-
-execute store result score pow Rand run random roll 0..9
-scoreboard players operation pow Rand += total Rand
-scoreboard players set total Rand 0
-
-execute store result score pow Rand run random roll 0..9
-scoreboard players operation pow Rand += total Rand
-scoreboard players set total Rand 0
+execute store result score pow Rand run random value 0..27
 
 # This checks for any armor stand that is outside the world border and tp's them above the player
 execute as @s store result score @s xDistance run data get entity @s Pos[0]
@@ -77,7 +67,7 @@ execute if score pow Rand matches 23..27 if score clock Toggle matches 1 at @e[t
 
 ## Item 6 (Snowball of Destruction)
 execute if score pow Rand matches 7..9 if score snowball Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:snowball",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:enchantment_glint_override":1b,"minecraft:custom_name":'[{"text":"Snowball of Destruction","italic":false,"color":"aqua"}]',"minecraft:lore":['[{"text":"It\'s so cold that blocks around it break too","italic":false}]']}}}
-execute if score pow Rand matches 7..9 if score snowball Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;16711485]}], flight_duration:2b}}}}
+execute if score pow Rand matches 7..9 if score snowball Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;6719955]}], flight_duration:1b}}}}
 
 ## Item 7 (Eye of Teleportation)
 execute if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:ender_eye",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:custom_name":'[{"text":"Eye of Teleportation","italic":false,"color":"green"}]',"minecraft:lore":['[{"text":"This Powerup allows you to tp to any","italic":false}]','[{"text":"person randomly","italic":false}]'],"minecraft:enchantment_glint_override":1b,"minecraft:food":{nutrition:2,saturation:0.0,eat_seconds:1000000,can_always_eat:true}}}}
@@ -87,13 +77,6 @@ execute if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 at 
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:bow",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:damage":379,"minecraft:custom_name":'[{"text":"Punching Bow","italic":false}]',"minecraft:enchantments":{punch:2}}}}
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon item ~ ~280 ~ {Item:{id:"minecraft:arrow",count:5b}}
 execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;13882323]}], flight_duration:2b}}}}
-
-### This rolls the chance for an anvil to fall (Can roll between 0-9)
-# function tag_main:random
-scoreboard players set anvil Rand 0
-# scoreboard players set total Rand 0
-
-execute if score anvil Rand matches 7..9 at @e[tag=positioned,type=marker] run summon minecraft:falling_block ~ ~200 ~ {BlockState:{Name:"anvil"}}
 
 # This starts the cooldown and kill the position armorstands
 execute if score pow Rand matches 13..15 if score kbStick Toggle matches 1 run scoreboard players set PowerupTimer gameTimer 0
@@ -116,40 +99,21 @@ execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 run sc
 kill @e[tag=positioned,type=marker]
 kill @e[tag=posRandom,type=marker]
 
-#When No Anvil is spawning
-execute if score anvil Rand matches 0..6 if score pow Rand matches 13..15 if score kbStick Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF71A2"}
+execute if score pow Rand matches 13..15 if score kbStick Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF71A2"}
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 10..12 if score clampTrap Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"gold"}
+execute if score pow Rand matches 10..12 if score clampTrap Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"gold"}
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 run tellraw @a "A Powerup has spawned somewhere"
+execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 run tellraw @a "A Powerup has spawned somewhere"
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 19..22 if score elytra Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"light_purple"}
+execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"light_purple"}
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 23..27 if score clock Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"yellow"}
+execute if score pow Rand matches 23..27 if score clock Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"yellow"}
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 7..9 if score snowball Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"aqua"}
+execute if score pow Rand matches 7..9 if score snowball Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"aqua"}
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"green"}
+execute if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"green"}
 
-execute if score anvil Rand matches 0..6 if score pow Rand matches 4..6 if score punchBow Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"gray"}
-
-# # With an Anvil spawning
-# execute if score anvil Rand matches 7..9 if score pow Rand matches 13..15 if score kbStick Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF76A5"}
-
-# execute if score anvil Rand matches 7..9 if score pow Rand matches 10..12 if score clampTrap Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFC54D"}
-
-# execute if score anvil Rand matches 7..9 if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#B8B8B8"}
-
-# execute if score anvil Rand matches 7..9 if score pow Rand matches 19..22 if score elytra Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FF8DFF"}
-
-# execute if score anvil Rand matches 7..9 if score pow Rand matches 23..27 if score clock Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#FFFF90"}
-
-# execute if score anvil Rand matches 7..9 if score pow Rand matches 7..9 if score snowball Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere...","color":"#88FFFF"}
-
-# execute if score anvil Rand matches 7..9 if score pow Rand matches 0..3 if score eyeTeleport Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"#BDFF9C"}
-
-# execute if score anvil Rand matches 7..9 if score pow Rand matches 4..6 if score punchBow Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"gray"}
-
+execute if score pow Rand matches 4..6 if score punchBow Toggle matches 1 run tellraw @a {"text":"A Powerup has spawned somewhere","color":"gray"}
 
 scoreboard players set anvil Rand 0
 

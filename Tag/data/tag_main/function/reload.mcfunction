@@ -1,7 +1,9 @@
 kill @e[type=marker,tag=tpSpawn]
 
+scoreboard players set @a guiDelay 5
+
 # Resetting Fake PLayers
-scoreboard players set State gameStart -1
+scoreboard players set State gameStart 0
 
 scoreboard players set Timer gameTimer 0
 scoreboard players set EndTimer gameTimer 2400

@@ -1,10 +1,3 @@
-scoreboard players set State gameStart 1
-
-clear @a *
-
-kill @e[type=marker,tag=tpSpawn]
-summon marker ~ ~ ~ {Tags:[tpSpawn]}
-execute at @e[tag=tpSpawn,type=marker] run spawnpoint @a ~ ~ ~
 
 # Assigns the tags
 team leave @a
@@ -23,12 +16,11 @@ execute as @a[scores={teamChoose=1}] run tag @s add tagger
 
 execute as @a[scores={teamChoose=2}] run tag @s add runner
 
-execute store result score players Numbers run execute if entity @a[tag=!spectate]
-execute store result score runners Numbers run execute if entity @a[tag=runner,tag=!spectate]
-execute store result score taggers Numbers run execute if entity @a[tag=tagger,tag=!spectate]
+execute store result score runners Numbers run execute if entity @a[tag=runner]
+execute store result score taggers Numbers run execute if entity @a[tag=tagger]
 
-execute if score runners Numbers = players Numbers run tag @r[tag=!spectate] add teamChangeToTagger
-execute if score taggers Numbers = players Numbers run tag @r[tag=!spectate] add teamChangeToRunner
+execute if score runners Numbers = players Numbers run tag @r[tag=!spectate,limit=1] add teamChangeToTagger
+execute if score taggers Numbers = players Numbers run tag @r[tag=!spectate,limit=1] add teamChangeToRunner
 
 execute as @a[tag=teamChangeToTagger] run tag @s remove runner
 execute as @a[tag=teamChangeToTagger] run tag @s add tagger
@@ -37,6 +29,25 @@ execute as @a[tag=teamChangeToTagger] run tag @s remove teamChangeToTagger
 execute as @a[tag=teamChangeToRunner] run tag @s remove tagger
 execute as @a[tag=teamChangeToRunner] run tag @s add runner
 execute as @a[tag=teamChangeToRunner] run tag @s remove teamChangeToRunner
+
+execute if score gameMode Toggle matches 1 unless score runners Numbers matches 1.. run function tag_main:errors/not_enough_runners {need:1}
+execute if score gameMode Toggle matches 2 unless score runners Numbers matches 2.. run function tag_main:errors/not_enough_runners {need:2}
+
+execute if score gameMode Toggle matches 1 unless score runners Numbers matches 1.. run return fail
+execute if score gameMode Toggle matches 2 unless score runners Numbers matches 2.. run return fail
+
+execute if score gameMode Toggle matches 1..2 unless score taggers Numbers matches 1.. run function tag_main:errors/not_enough_taggers {need:1}
+execute if score gameMode Toggle matches 1..5 unless score taggers Numbers matches 1.. run return fail
+
+
+###
+scoreboard players set State gameStart 1
+
+clear @a *
+
+kill @e[type=marker,tag=tpSpawn]
+summon marker ~ ~ ~ {Tags:[tpSpawn]}
+execute at @e[tag=tpSpawn,type=marker] run spawnpoint @a ~ ~ ~
 
 # This sets the timers up
 scoreboard players operation Timer gameTimer = EndTimer gameTimer
@@ -144,8 +155,8 @@ execute as @a unless score @s powerupSounds matches 0.. run scoreboard players s
 # This sets the world border
 execute at @e[type=marker,tag=tpSpawn] run worldborder center ~ ~
 
-worldborder set 100 1
+worldborder set 1000 1
 
-execute at @e[type=marker,tag=tpSpawn] run spreadplayers ~ ~ 30 60 true @a
+execute at @e[type=marker,tag=tpSpawn,tag=!tpOP] run spreadplayers ~ ~ 30 60 true @a
 
-gamemode survival @a
+gamemode survival @a[tag=!tpOP]

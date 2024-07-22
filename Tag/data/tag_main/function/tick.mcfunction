@@ -245,8 +245,8 @@ execute if score State gameStart matches 0 run scoreboard players set @a gameTim
 
 execute if score State gameStart matches 1 as @a[tag=tagger] if score @s gameTimer < SpeedTimer Numbers run scoreboard players add @s gameTimer 1
 
-execute if score PowerUps Toggle matches 1 if score State gameStart matches 1 if score PowerupTimer gameTimer < PowerupCooldown Numbers run scoreboard players add PowerupTimer gameTimer 1
-execute if score allDisabled Toggle matches 0 if score PowerupTimer gameTimer >= PowerupCooldown Numbers as @e[type=marker,tag=spawn] run function tag_main:powerups
+execute if score allDisabled Toggle matches 0 if score State gameStart matches 1 if score PowerupTimer gameTimer < PowerupCooldown Numbers run scoreboard players add PowerupTimer gameTimer 1
+execute if score allDisabled Toggle matches 0 if score PowerupTimer gameTimer >= PowerupCooldown Numbers as @e[type=marker,tag=tpSpawn] run function tag_main:powerups
 
 execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 1..2 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer > SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 0 true
 execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 1..2 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 1 true
@@ -566,9 +566,11 @@ execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 
 execute as @a unless score @s playerJoin matches 0.. run scoreboard players set @a playerJoin 0
 execute as @a unless score @s playerJoin matches 50.. run scoreboard players add @s playerJoin 1
 
+execute if score State gameStart matches 0 run worldborder set 30000000 1
+
 execute as @a unless score @s guiState matches 0.. run scoreboard players set @s guiState 1
 execute as @a unless score @s guiDelay matches 0.. run scoreboard players set @s guiDelay 3
 execute as @a unless score @s guiUpdate matches 0.. run scoreboard players set @s guiUpdate 1
 execute as @a if score State gameStart matches 1 run scoreboard players set @s guiUpdate 0
-execute as @a at @s if score State gameStart matches -1..0 run function tag_main:inventory_gui/gui_state
+execute as @a[tag=!pageOP] at @s if score State gameStart matches -1..0 run function tag_main:inventory_gui/gui_state
 execute as @a if score @s guiDelay matches 1.. run scoreboard players remove @s guiDelay 1

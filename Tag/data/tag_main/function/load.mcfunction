@@ -196,8 +196,6 @@ scoreboard players set Rounds round 0
 
 scoreboard players set build Build 0
 
-item replace entity @a hotbar.8 with lime_dye[] 1
-
 scoreboard players set @a teamChoose 0
 scoreboard players set @a guiState 1
 scoreboard players set @a guiDelay 5
