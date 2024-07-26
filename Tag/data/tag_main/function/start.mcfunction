@@ -8,6 +8,7 @@ tag @a remove runner
 tag @a remove spectate
 
 execute as @a unless score @s teamChoose matches -1.. run scoreboard players set @s teamChoose 0
+
 execute as @a[scores={teamChoose=-1}] run tag @s add spectate
 
 execute as @a[scores={teamChoose=0}] run function tag_main:start_teams
@@ -18,6 +19,7 @@ execute as @a[scores={teamChoose=2}] run tag @s add runner
 
 execute store result score runners Numbers run execute if entity @a[tag=runner]
 execute store result score taggers Numbers run execute if entity @a[tag=tagger]
+execute store result score players Numbers run execute if entity @a[tag=!spectate]
 
 execute if score runners Numbers = players Numbers run tag @r[tag=!spectate,limit=1] add teamChangeToTagger
 execute if score taggers Numbers = players Numbers run tag @r[tag=!spectate,limit=1] add teamChangeToRunner
@@ -29,6 +31,10 @@ execute as @a[tag=teamChangeToTagger] run tag @s remove teamChangeToTagger
 execute as @a[tag=teamChangeToRunner] run tag @s remove tagger
 execute as @a[tag=teamChangeToRunner] run tag @s add runner
 execute as @a[tag=teamChangeToRunner] run tag @s remove teamChangeToRunner
+
+execute store result score runners Numbers run execute if entity @a[tag=runner]
+execute store result score taggers Numbers run execute if entity @a[tag=tagger]
+execute store result score players Numbers run execute if entity @a[tag=!spectate]
 
 execute if score gameMode Toggle matches 1 unless score runners Numbers matches 1.. run function tag_main:errors/not_enough_runners {need:1}
 execute if score gameMode Toggle matches 2 unless score runners Numbers matches 2.. run function tag_main:errors/not_enough_runners {need:2}
