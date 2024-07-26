@@ -198,7 +198,7 @@ scoreboard players set build Build 0
 
 scoreboard players set @a teamChoose 0
 scoreboard players set @a guiState 1
-scoreboard players set @a guiDelay 5
+scoreboard players set @a guiDelay 1
 scoreboard players set @a guiUpdate 1
 
 scoreboard players set @a playerJoin 0

@@ -1,7 +1,3 @@
-# Detection for Hotbar
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:0b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:1}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:2b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:3}
-
 # Detection for Gamemodes
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:10b}]}] run scoreboard players set @s guiUpdate 1
 
@@ -31,3 +27,10 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:30b}]}] run function tag_main:
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:31b}]}] run function tag_main:inventory_gui/setting_functions/effect/change {effect:3}
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:32b}]}] run function tag_main:inventory_gui/setting_functions/effect/change {effect:4}
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:33b}]}] run function tag_main:inventory_gui/setting_functions/effect/change {effect:5}
+
+# Detection for Hotbar
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:0b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:1}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:2b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:3}
+
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:8b}]}] run function tag_main:start
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:8b}]}] run clear @a *

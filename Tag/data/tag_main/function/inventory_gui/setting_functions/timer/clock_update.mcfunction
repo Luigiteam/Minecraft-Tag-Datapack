@@ -1,4 +1,4 @@
-execute store result storage timer Minutes int 0.00083335 run scoreboard players get Timer gameTimer
+execute store result storage timer Minutes int 0.00083335 run scoreboard players get EndTimer gameTimer
 execute store result score minutes gameTimer run data get storage timer Minutes 1
 
 execute if score temp gameTimer matches 1200.. run scoreboard players remove temp gameTimer 1200

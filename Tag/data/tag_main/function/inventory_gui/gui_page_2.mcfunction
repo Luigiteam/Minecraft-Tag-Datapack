@@ -6,7 +6,7 @@ item replace entity @s hotbar.0 with minecraft:paper[minecraft:custom_data={Kill
 item replace entity @s hotbar.1 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 2!"}'] 2
 item replace entity @s hotbar.2 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 3"}',minecraft:lore=['{"text": "Tools"}','[{"text": "Height Settings"}]','[{"text": "Depth Settings"}]']] 3
 
-
+item replace entity @s hotbar.8 with lime_dye[minecraft:custom_name='{"text": "Click me to Start the Game!"}',minecraft:custom_data={Kill:1b}] 1
 # Items for gamemode change
 item replace entity @s container.10 with map[minecraft:custom_name='[{"text": "Game Modes"}]',minecraft:lore=['[{"text": "Hover over the modes to learn more about them!"}]','[{"text": "Click on one to select it."}]'],minecraft:custom_data={Kill:1b}]
 

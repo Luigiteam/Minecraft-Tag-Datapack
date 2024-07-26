@@ -4,6 +4,7 @@ item replace entity @s hotbar.0 with minecraft:paper[minecraft:custom_data={Kill
 item replace entity @s hotbar.1 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 2!"}',minecraft:lore=['{"text": "Game Modes"}','{"text": "Powerups"}','{"text": "Effects"}']] 2
 item replace entity @s hotbar.2 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 3!"}'] 3
 
+item replace entity @s hotbar.8 with lime_dye[minecraft:custom_name='{"text": "Click me to Start the Game!"}',minecraft:custom_data={Kill:1b}] 1
 # Items for tools
 item replace entity @s container.9 with map[minecraft:custom_name='{"text": "Tools Settings"}',minecraft:lore=['{"text": "these options change what level of tools"}','{"text": "you get from the start of the round"}','{"text": "You start with a sword, axe, and a pickaxe"}']]
 

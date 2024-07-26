@@ -46,7 +46,7 @@ execute if score gameMode Toggle matches 1..2 unless score taggers Numbers match
 execute if score gameMode Toggle matches 1..5 unless score taggers Numbers matches 1.. run return fail
 
 
-###
+
 scoreboard players set State gameStart 1
 
 clear @a *

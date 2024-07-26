@@ -562,6 +562,7 @@ execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 3 run function tag_main:winning/reverse_time_check
 execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 if score gameMode Toggle matches 4..5 run function tag_main:winners
 
+
 # GUI
 execute as @a unless score @s playerJoin matches 0.. run scoreboard players set @a playerJoin 0
 execute as @a unless score @s playerJoin matches 50.. run scoreboard players add @s playerJoin 1

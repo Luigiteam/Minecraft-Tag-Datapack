@@ -8,5 +8,7 @@ bossbar set runnertimer players
 
 scoreboard players add @a[tag=winner] wins 1
 
+function tag_main:reload
+
 tellraw @a ["","The winner is ",{"selector":"@a[tag=winner]","color":"gold"},{"text": "!"}]
 tellraw @a " "
