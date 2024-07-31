@@ -21,8 +21,8 @@ execute store result score runners Numbers run execute if entity @a[tag=runner]
 execute store result score taggers Numbers run execute if entity @a[tag=tagger]
 execute store result score players Numbers run execute if entity @a[tag=!spectate]
 
-execute if score runners Numbers = players Numbers run tag @r[tag=!spectate,limit=1] add teamChangeToTagger
-execute if score taggers Numbers = players Numbers run tag @r[tag=!spectate,limit=1] add teamChangeToRunner
+execute if score runners Numbers = players Numbers run tag @r[tag=!spectate,limit=1,scores={teamChoose=0}] add teamChangeToTagger
+execute if score taggers Numbers = players Numbers run tag @r[tag=!spectate,limit=1,scores={teamChoose=0}] add teamChangeToRunner
 
 execute as @a[tag=teamChangeToTagger] run tag @s remove runner
 execute as @a[tag=teamChangeToTagger] run tag @s add tagger
