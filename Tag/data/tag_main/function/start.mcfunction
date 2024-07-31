@@ -38,11 +38,17 @@ execute store result score players Numbers run execute if entity @a[tag=!spectat
 
 execute if score gameMode Toggle matches 1 unless score runners Numbers matches 1.. run function tag_main:errors/not_enough_runners {need:1}
 execute if score gameMode Toggle matches 2 unless score runners Numbers matches 2.. run function tag_main:errors/not_enough_runners {need:2}
+execute if score gameMode Toggle matches 3 unless score runners Numbers matches 1.. run function tag_main:errors/not_enough_runners {need:1}
+execute if score gameMode Toggle matches 4 unless score runners Numbers matches 2.. run function tag_main:errors/not_enough_runners {need:2}
+execute if score gameMode Toggle matches 5 unless score runners Numbers matches 1.. run function tag_main:errors/not_enough_runners {need:1}
 
 execute if score gameMode Toggle matches 1 unless score runners Numbers matches 1.. run return fail
 execute if score gameMode Toggle matches 2 unless score runners Numbers matches 2.. run return fail
+execute if score gameMode Toggle matches 3 unless score runners Numbers matches 1.. run return fail
+execute if score gameMode Toggle matches 4 unless score runners Numbers matches 2.. run return fail
+execute if score gameMode Toggle matches 5 unless score runners Numbers matches 1.. run return fail
 
-execute if score gameMode Toggle matches 1..2 unless score taggers Numbers matches 1.. run function tag_main:errors/not_enough_taggers {need:1}
+execute if score gameMode Toggle matches 1..5 unless score taggers Numbers matches 1.. run function tag_main:errors/not_enough_taggers {need:1}
 execute if score gameMode Toggle matches 1..5 unless score taggers Numbers matches 1.. run return fail
 
 

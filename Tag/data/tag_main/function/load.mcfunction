@@ -140,8 +140,8 @@ scoreboard players set frozenRunners Numbers 0
 
 scoreboard players set clock_storage Numbers 0
 
-scoreboard players set worldBorderSize Numbers 100
-scoreboard players set worldBorderSizeGet Numbers 100
+scoreboard players set worldBorderSize Numbers 150
+scoreboard players set worldBorderSizeGet Numbers 150
 scoreboard players set halfWBS Numbers 0
 scoreboard players set nHalfWBS Numbers 0
 
@@ -189,7 +189,6 @@ scoreboard players set yResults yDistance 0
 
 scoreboard players set Selection optionsSelect 0
 scoreboard players set Change optionsSelect 0
-scoreboard players set seekType optionsSelect 0
 scoreboard players set Mode optionsSelect 0
 
 scoreboard players set Rounds round 0

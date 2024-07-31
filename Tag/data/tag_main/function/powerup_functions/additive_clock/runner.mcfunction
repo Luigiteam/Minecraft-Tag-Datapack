@@ -17,7 +17,7 @@ scoreboard players add timeAdd Numbers 600
 
 scoreboard players operation Timer gameTimer -= timeAdd Numbers
 
-clear @s clock[minecraft:custom_name='{"text":"Additive Clock of Destiny"}'] 1
+clear @s clock[minecraft:custom_name='{"text":"Additive Clock of Destiny","color":"yellow","italic":false}'] 1
 
 execute store result storage math_holder Slot[0] double 1.0 run scoreboard players get timeAdd Numbers
 execute store result storage math_holder Slot[0] double 0.05 run data get storage math_holder Slot[0] 1.0

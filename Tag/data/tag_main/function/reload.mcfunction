@@ -18,6 +18,8 @@ scoreboard players set Type Rand 0
 
 scoreboard players set yResults yDistance 0
 
+scoreboard players set @a teamChoose 0
+
 gamerule keepInventory true
 
 #This sets the worldborder back to default

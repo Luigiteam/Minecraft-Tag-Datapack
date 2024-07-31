@@ -24,7 +24,7 @@ execute if score tnt gameTimer matches 300.. run scoreboard players set tnt game
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 store result score runners Numbers run execute if entity @e[tag=runner,tag=!spectate]
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if score runners Numbers matches 0 run scoreboard players add winnerTimer gameTimer 1
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if score runners Numbers matches 1.. run scoreboard players set winnerTimer gameTimer 1
-execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if score winnerTimer gameTimer matches 10.. run function tag_main:winning/infection_tagger_win
+execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if score winnerTimer gameTimer matches 5.. run function tag_main:winning/infection_tagger_win
 
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run scoreboard players remove @s blindTimer 1
 
@@ -62,9 +62,11 @@ execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=2,heartBeatSound=2
 
 execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=3,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 1 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
 execute as @a[tag=runner,tag=!spectate,scores={heartBeatSpeed=3,heartBeatSound=2}] at @s if score @s heartBeatTimer matches 5 run playsound block.note_block.basedrum ambient @s ~ ~ ~ 1 0.707107 1
+
 # Infection Tag
 execute if score State gameStart matches 1 if score gameMode Toggle matches 4 store result score taggers Numbers run execute if entity @a[tag=tagger]
 execute if score State gameStart matches 1 if score gameMode Toggle matches 4 if score taggers Numbers = players Numbers run function tag_main:winning/infection_tagger_win
+
 # Reverse Tag
 execute if score State gameStart matches 1 if score gameMode Toggle matches 3 run scoreboard players add @a[tag=tagger] reverseTime 1
 
@@ -89,7 +91,7 @@ execute at @a[tag=freeze] run particle minecraft:block{block_state:"minecraft:bl
 execute as @e[tag=freezeCheck,type=marker] at @s if score @s oid = @p[tag=freeze] oid run tp @p[tag=freeze,limit=1,sort=nearest,distance=1..] @s
 
 # This is some code that needs to run all the time
-execute if score State gameStart matches 0.. run effect give @a saturation 1000000 255 true
+execute if score State gameStart matches 0.. run effect give @a saturation infinite 255 true
 
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @a[nbt=!{active_effects:[{id:"minecraft:invisibility"}]}] minecraft:glowing 1 0 true
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @e[type=armor_stand,tag=decoy,nbt=!{active_effects:[{id:"minecraft:invisibility"}]}] minecraft:glowing 1 0 true
@@ -495,8 +497,8 @@ execute as @a unless score @s eyeTimer matches 1.. run scoreboard players set @s
 
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:ender_eye",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}},distance=..1] run function tag_main:powerup_upgrades/eye_of_recalling
 
-execute as @a if score @s eyeTimer matches ..101 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run tp @p @s
-execute as @a if score @s eyeTimer matches ..101 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run kill @s
+execute as @a if score @s eyeTimer matches ..100 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run tp @p @s
+execute as @a if score @s eyeTimer matches ..100 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run kill @s
 
 execute as @e[type=marker,tag=recall] at @s run particle glow ~ ~ ~ 0.3 0.3 0.3 0.5 5 force
 
@@ -566,6 +568,8 @@ execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 
 # GUI
 execute as @a unless score @s playerJoin matches 0.. run scoreboard players set @a playerJoin 0
 execute as @a unless score @s playerJoin matches 50.. run scoreboard players add @s playerJoin 1
+
+execute as @a[tag=pageOP] run scoreboard players set @s guiDelay 2
 
 execute if score State gameStart matches 0 run worldborder set 30000000 1
 
