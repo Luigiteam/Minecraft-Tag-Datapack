@@ -325,76 +325,86 @@ execute as @a[scores={effectLostWarped=100..},tag=tagger] run give @s warped_fun
 execute as @a[scores={effectLostWarped=100..},tag=tagger] run scoreboard players set @s effectLostWarped 0
 
 ## This shows how much time is left to use your effect on the xp bar
+
+execute as @a[scores={effectTimer=400..}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=400..}] run xp set @s 219 points
 execute as @a[scores={effectTimer=400..}] run xp set @s 20 levels
-execute as @a[scores={effectTimer=400..}] run xp set @s 61 points
 
+execute as @a[scores={effectTimer=380}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=380}] run xp set @s 208 points
 execute as @a[scores={effectTimer=380}] run xp set @s 19 levels
-execute as @a[scores={effectTimer=380}] run xp set @s 54 points
 
+execute as @a[scores={effectTimer=360}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=360}] run xp set @s 197 points
 execute as @a[scores={effectTimer=360}] run xp set @s 18 levels
-execute as @a[scores={effectTimer=360}] run xp set @s 42 points
 
+execute as @a[scores={effectTimer=340}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=340}] run xp set @s 186 points
 execute as @a[scores={effectTimer=340}] run xp set @s 17 levels
-execute as @a[scores={effectTimer=340}] run xp set @s 36 points
 
-### 29.6
+execute as @a[scores={effectTimer=320}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=320}] run xp set @s 175 points
 execute as @a[scores={effectTimer=320}] run xp set @s 16 levels
-execute as @a[scores={effectTimer=320}] run xp set @s 30 points
 
+execute as @a[scores={effectTimer=300}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=300}] run xp set @s 164 points
 execute as @a[scores={effectTimer=300}] run xp set @s 15 levels
-execute as @a[scores={effectTimer=300}] run xp set @s 26 points
 
+execute as @a[scores={effectTimer=280}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=280}] run xp set @s 153 points
 execute as @a[scores={effectTimer=280}] run xp set @s 14 levels
-execute as @a[scores={effectTimer=280}] run xp set @s 23 points
 
+execute as @a[scores={effectTimer=260}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=260}] run xp set @s 142 points
 execute as @a[scores={effectTimer=260}] run xp set @s 13 levels
-execute as @a[scores={effectTimer=260}] run xp set @s 20 points
 
-### 17.4
+execute as @a[scores={effectTimer=240}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=240}] run xp set @s 131 points
 execute as @a[scores={effectTimer=240}] run xp set @s 12 levels
-execute as @a[scores={effectTimer=240}] run xp set @s 17 points
 
+execute as @a[scores={effectTimer=220}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=220}] run xp set @s 120 points
 execute as @a[scores={effectTimer=220}] run xp set @s 11 levels
-execute as @a[scores={effectTimer=220}] run xp set @s 15 points
 
-### 12.5
+execute as @a[scores={effectTimer=200}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=200}] run xp set @s 109 points
 execute as @a[scores={effectTimer=200}] run xp set @s 10 levels
-execute as @a[scores={effectTimer=200}] run xp set @s 12 points
 
-### 10.35
+execute as @a[scores={effectTimer=180}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=180}] run xp set @s 98 points
 execute as @a[scores={effectTimer=180}] run xp set @s 9 levels
-execute as @a[scores={effectTimer=180}] run xp set @s 10 points
 
-### 8.4
+execute as @a[scores={effectTimer=160}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=160}] run xp set @s 87 points
 execute as @a[scores={effectTimer=160}] run xp set @s 8 levels
-execute as @a[scores={effectTimer=160}] run xp set @s 8 points
 
-### 6.65
+execute as @a[scores={effectTimer=140}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=140}] run xp set @s 76 points
 execute as @a[scores={effectTimer=140}] run xp set @s 7 levels
-execute as @a[scores={effectTimer=140}] run xp set @s 6 points
 
-### 5.1
+execute as @a[scores={effectTimer=120}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=120}] run xp set @s 65 points
 execute as @a[scores={effectTimer=120}] run xp set @s 6 levels
-execute as @a[scores={effectTimer=120}] run xp set @s 5 points
 
-### 3.75
+execute as @a[scores={effectTimer=100}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=100}] run xp set @s 54 points
 execute as @a[scores={effectTimer=100}] run xp set @s 5 levels
-execute as @a[scores={effectTimer=100}] run xp set @s 4 points
 
-### 2.6
+execute as @a[scores={effectTimer=80}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=80}] run xp set @s 43 points
 execute as @a[scores={effectTimer=80}] run xp set @s 4 levels
-execute as @a[scores={effectTimer=80}] run xp set @s 3 points
 
-### 1.65
+execute as @a[scores={effectTimer=60}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=60}] run xp set @s 32 points
 execute as @a[scores={effectTimer=60}] run xp set @s 3 levels
-execute as @a[scores={effectTimer=60}] run xp set @s 2 points
 
-### 0.9
+execute as @a[scores={effectTimer=40}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=40}] run xp set @s 21 points
 execute as @a[scores={effectTimer=40}] run xp set @s 2 levels
-execute as @a[scores={effectTimer=40}] run xp set @s 1 points
 
+execute as @a[scores={effectTimer=20}] run xp set @s 42 levels
+execute as @a[scores={effectTimer=20}] run xp set @s 10 points
 execute as @a[scores={effectTimer=20}] run xp set @s 1 levels
-execute as @a[scores={effectTimer=20}] run xp set @s 0 points
 
 execute as @a[scores={effectTimer=..0}] if score State gameStart matches 1.. run xp set @s 0 levels
 execute as @a[scores={effectTimer=..0}] if score State gameStart matches 1.. run xp set @s 0 points
