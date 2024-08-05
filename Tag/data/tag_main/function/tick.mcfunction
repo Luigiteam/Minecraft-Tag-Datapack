@@ -1,5 +1,3 @@
-# execute if score State gameStart matches 1 as @a if entity @s[nbt={Inventory:[{components:{"minecraft:custom_data":{Kill:1b}}}]}] run clear @s *
-
 execute store result score worldBorderSizeGet Numbers run worldborder get
 execute if score State gameStart matches 1.. if score worldBorderSizeGet Numbers < worldBorderSize Numbers run worldborder add 1
 execute if score State gameStart matches 1.. if score worldBorderSizeGet Numbers > worldBorderSize Numbers run worldborder add -1
@@ -30,11 +28,9 @@ execute as @a[tag=tagger,scores={blindTimer=0..300}] run scoreboard players remo
 
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run effect give @s blindness 10 0 true
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run effect give @s slowness 1 127 true
-execute as @a[tag=tagger,scores={blindTimer=0..300}] run effect give @s jump_boost 1 128 true
 
 execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s slowness
 execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s blindness
-execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s jump_boost
 
 ## Heartbeat
 execute as @a[tag=runner] at @s if entity @a[tag=tagger,distance=31..] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 0
@@ -491,7 +487,7 @@ execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",count:1,component
 execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",count:1,components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}}] if score @s gameTimer matches 5 at @s run function tag_main:powerup_functions/multishot_snowball/multishot_snowball
 
 #### Eye of Recalling
-execute as @a at @s if entity @e[type=minecraft:eye_of_ender,nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}},sort=nearest,limit=1,distance=..3] run advancement grant @s only tag_main:recalling_eye
+execute as @a at @s if entity @e[nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}},sort=nearest,limit=1,distance=..3] run advancement grant @s only tag_main:recalling_eye
 
 execute as @a unless score @s eyeTimer matches 1.. run scoreboard players set @s eyeTimer 0
 
