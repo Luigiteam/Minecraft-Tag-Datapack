@@ -1,3 +1,6 @@
+execute as @a[tag=spectate] at @s run tp @s @e[type=marker,limit=1,tag=tpSpawn]
+execute as @a[tag=spectate] at @s run tag @s remove spectate
+
 kill @e[type=marker,tag=tpSpawn]
 
 scoreboard players set @a guiDelay 5
@@ -18,7 +21,7 @@ scoreboard players set Type Rand 0
 
 scoreboard players set yResults yDistance 0
 
-scoreboard players set @a teamChoose 0
+# scoreboard players set @a teamChoose 0
 
 gamerule keepInventory true
 

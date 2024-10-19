@@ -119,14 +119,14 @@ scoreboard players set winnerTimer gameTimer 0
 
 scoreboard players set tnt gameTimer 0
 
-scoreboard players set -1 Numbers -1
+# scoreboard players set -1 Numbers -1
 
-scoreboard players set 1 Numbers 1
+# scoreboard players set 1 Numbers 1
 scoreboard players set 2 Numbers 2
-scoreboard players set 3 Numbers 3
-scoreboard players set 4 Numbers 4
-scoreboard players set 5 Numbers 5
-scoreboard players set 30 Numbers 30
+# scoreboard players set 3 Numbers 3
+# scoreboard players set 4 Numbers 4
+# scoreboard players set 5 Numbers 5
+# scoreboard players set 30 Numbers 30
 
 scoreboard players set SpeedTimer Numbers 200
 scoreboard players set FireworkCooldown Numbers 600

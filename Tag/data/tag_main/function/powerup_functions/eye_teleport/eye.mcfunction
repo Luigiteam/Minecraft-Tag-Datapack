@@ -1,5 +1,5 @@
 execute if score @s eyeTimer matches 1.. run tellraw @s "You can't use this yet..."
-execute if score @s eyeTimer matches 1.. if entity @e[type=eye_of_ender] run give @s ender_eye[minecraft:custom_data={Floating:1b,Upgrade:0b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Eye of Teleportation","italic":false,"color":"green"}]',minecraft:lore=['[{"text":"This Powerup allows you to tp to any","italic":false}]','[{"text":"person randomly","italic":false}]'],minecraft:food={nutrition:2,saturation:0.0,eat_seconds:1000000,can_always_eat:true}] 1
+execute if score @s eyeTimer matches 1.. run give @s ender_eye[minecraft:custom_data={Floating:1b,Upgrade:0b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Eye of Teleportation","italic":false,"color":"green"}]',minecraft:lore=['[{"text":"This Powerup allows you to tp to any","italic":false}]','[{"text":"person randomly","italic":false}]'],minecraft:food={nutrition:2,saturation:0.0,eat_seconds:1000000,can_always_eat:true}] 1
 
 execute if score @s eyeTimer matches ..0 run tag @s add exclude
 execute if score @s eyeTimer matches ..0 run tp @s @r[tag=!exclude,limit=1,sort=random]
@@ -8,6 +8,6 @@ execute if score @s eyeTimer matches ..0 run tag @s remove exclude
 execute if score @s eyeTimer matches ..0 run scoreboard players set @s eyeTimer 100
 
 execute if entity @e[type=eye_of_ender] run kill @n[type=eye_of_ender,nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}}]
-execute unless entity @e[type=eye_of_ender] run clear @s ender_eye[minecraft:custom_data={Floating:1b,Upgrade:1b}] 1
+execute unless entity @e[type=eye_of_ender] run clear @s ender_eye[minecraft:custom_data={Floating:1b,Upgrade:0b}] 1
 
 advancement revoke @s only tag_main:eye

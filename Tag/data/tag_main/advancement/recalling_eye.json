@@ -4,7 +4,7 @@
       "trigger": "minecraft:using_item",
       "conditions": {
         "item": {
-          "items": "minecraft:ender_eye",        
+          "items": "minecraft:ender_eye",
           "components": {
            "minecraft:food": {
              "nutrition": 3,

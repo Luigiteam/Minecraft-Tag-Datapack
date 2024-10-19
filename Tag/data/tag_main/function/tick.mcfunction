@@ -296,7 +296,7 @@ execute as @a[scores={effectLost=100..}] run scoreboard players set @s effectLos
 
 ### This checks if an individual has no effect
 execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{active_effects:[{id:"minecraft:jump_boost"}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=2},nbt=!{active_effects:[{id:"minecraft:absorption"}]}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=2}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{active_effects:[{id:"minecraft:haste"}]}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{active_effects:[{id:"minecraft:strength"}]}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{active_effects:[{id:"minecraft:levitation"}]}] run tag @s add noEffect
@@ -497,7 +497,7 @@ execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",count:1,component
 execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",count:1,components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}}] if score @s gameTimer matches 5 at @s run function tag_main:powerup_functions/multishot_snowball/multishot_snowball
 
 #### Eye of Recalling
-execute as @a at @s if entity @e[nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}},sort=nearest,limit=1,distance=..3] run advancement grant @s only tag_main:recalling_eye
+execute as @a at @s if entity @e[nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}},sort=nearest,limit=1,distance=..3,type=!item] run advancement grant @s only tag_main:recalling_eye
 
 execute as @a unless score @s eyeTimer matches 1.. run scoreboard players set @s eyeTimer 0
 
@@ -542,8 +542,6 @@ execute as @e[type=arrow,tag=lingering,nbt={inGround:1b}] at @s if score @s arro
 execute as @a[nbt=!{active_effects:[{id:"minecraft:unluck",amplifier:1b}]}] run scoreboard players set @s arrowEffect 0
 execute as @a[nbt={active_effects:[{id:"minecraft:unluck",amplifier:1b}]}] run scoreboard players set @s arrowEffect 1
 
-#execute as @e[type=area_effect_cloud,tag=poison_cloud] at @s if entity @a[sort=nearest,limit=1] run tp @s @a[sort=nearest,limit=1]
-
 execute as @a at @s if score @s arrowEffect matches 1 run function tag_main:powerup_functions/lingering_crossbow/arrow
 execute as @e[type=arrow,tag=lingering,nbt={inGround:1b}] at @s if score @s arrowEffect matches 0 run function tag_main:powerup_functions/lingering_crossbow/arrow
 
@@ -573,11 +571,15 @@ execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 
 
 # GUI
 execute as @a unless score @s playerJoin matches 0.. run scoreboard players set @a playerJoin 0
+execute as @a if score @s playerJoin matches 49 run playsound block.note_block.pling ambient @s ~ ~ ~ 50 1.5
+execute as @a if score @s playerJoin matches 49 run tellraw @s {"text":"Welcome! To get started, please open your inventory to start a round!"}
 execute as @a unless score @s playerJoin matches 50.. run scoreboard players add @s playerJoin 1
 
 execute as @a[tag=pageOP] run scoreboard players set @s guiDelay 2
 
 execute if score State gameStart matches 0 run worldborder set 30000000 1
+
+execute as @a[tag=!tagger,tag=!runner] if score @s playerJoin matches ..49 if score State gameStart matches 1 run tag @s add spectate
 
 execute as @a unless score @s guiState matches 0.. run scoreboard players set @s guiState 1
 execute as @a unless score @s guiDelay matches 0.. run scoreboard players set @s guiDelay 3

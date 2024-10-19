@@ -1,8 +1,8 @@
 ## Jump Boost
 execute if score @s effectType matches 1 run effect give @s jump_boost 7 2 false
 
-## Absorption
-execute if score @s effectType matches 2 run effect give @s absorption 30 4 false
+## Slowness
+execute if score @s effectType matches 2 at @s run effect give @a[distance=1..5] slowness 5 4 false
 
 ## Haste
 execute if score @s effectType matches 3 run effect give @s haste 15 4 false
