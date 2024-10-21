@@ -18,6 +18,6 @@
     }
   },
   "rewards": {
-    "function": "tag_main:powerup_functions/eye_of_recalling/eye_of_recalling"
+    "function": "tag_main:powerup_functions/eye_of_recalling/activate"
   }
 }

@@ -7,6 +7,10 @@ execute if score State gameStart matches 1.. unless score worldBorderSizeGet Num
 execute if score State gameStart matches 1 run gamemode spectator @a[tag=spectate]
 execute as @a[tag=spectate,gamemode=spectator] run tag @s remove spectator
 
+execute as @a unless score @s eyeTimer matches 0.. run scoreboard players set @s eyeTimer 0
+execute as @a unless score @s messageDelay matches 0.. run scoreboard players set @s messageDelay 0
+execute as @a if score @s messageDelay matches 1.. run scoreboard players remove @s messageDelay 1
+
 scoreboard players enable @a effectTrigger
 scoreboard players enable @a teamChoose
 scoreboard players enable @a giveBook
@@ -27,9 +31,11 @@ execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run scoreboard players remove @s blindTimer 1
 
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run effect give @s blindness 10 0 true
-execute as @a[tag=tagger,scores={blindTimer=0..300}] run effect give @s slowness 1 127 true
+execute as @a[tag=tagger,scores={blindTimer=0..300}] run attribute @s generic.movement_speed modifier add tag_main:ready_or_not -1 add_value
+execute as @a[tag=tagger,scores={blindTimer=0..300}] run attribute @s generic.jump_strength modifier add tag_main:ready_or_not -1 add_value
 
-execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s slowness
+execute as @a[tag=tagger,scores={blindTimer=0}] run attribute @s generic.movement_speed modifier remove tag_main:ready_or_not
+execute as @a[tag=tagger,scores={blindTimer=0}] run attribute @s generic.jump_strength modifier remove tag_main:ready_or_not
 execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s blindness
 
 ## Heartbeat
@@ -497,14 +503,12 @@ execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",count:1,component
 execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",count:1,components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}}] if score @s gameTimer matches 5 at @s run function tag_main:powerup_functions/multishot_snowball/multishot_snowball
 
 #### Eye of Recalling
-execute as @a at @s if entity @e[nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}},sort=nearest,limit=1,distance=..3,type=!item] run advancement grant @s only tag_main:recalling_eye
 
-execute as @a unless score @s eyeTimer matches 1.. run scoreboard players set @s eyeTimer 0
+execute as @e[type=eye_of_ender,nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}}] at @s as @p at @s run function tag_main:powerup_functions/eye_of_recalling/activate
+
+execute as @a at @s if entity @e[nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}},sort=nearest,limit=1,distance=..3,type=eye_of_ender] run advancement grant @s only tag_main:recalling_eye
 
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:ender_eye",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}},distance=..1] run function tag_main:powerup_upgrades/eye_of_recalling
-
-execute as @a if score @s eyeTimer matches ..100 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run tp @p @s
-execute as @a if score @s eyeTimer matches ..100 at @s as @e[tag=recall,type=marker] if score @s oid = @p oid run kill @s
 
 execute as @e[type=marker,tag=recall] at @s run particle glow ~ ~ ~ 0.3 0.3 0.3 0.5 5 force
 
@@ -526,6 +530,10 @@ execute as @a if score @s eyeTimer matches 181 at @s run playsound block.note_bl
 execute as @a if score @s eyeTimer matches 161 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.6
 execute as @a if score @s eyeTimer matches 141 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 1.8
 execute as @a if score @s eyeTimer matches 121 at @s run playsound block.note_block.bit ambient @s ~ ~ ~ 1 2.0
+
+execute as @a[tag=recallPick] if score @s eyeTimer matches ..100 at @s run tp @s @e[type=marker,tag=recall,limit=1,sort=nearest]
+execute as @a[tag=recallPick] if score @s eyeTimer matches ..100 at @s run kill @e[type=marker,tag=recall]
+execute as @a[tag=recallPick] if score @s eyeTimer matches ..100 run tag @s remove recallPick
 
 #### Lingering Crossbow
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[type=item,distance=..1,nbt={Item:{id:"minecraft:bow",components:{"minecraft:custom_data":{Floating:1b}}}}] run function tag_main:powerup_upgrades/lingering_crossbow

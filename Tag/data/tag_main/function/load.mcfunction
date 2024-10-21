@@ -101,6 +101,9 @@ scoreboard objectives add guiDelay dummy
 scoreboard objectives add guiUpdate dummy
 
 scoreboard objectives add playerJoin dummy
+
+scoreboard objectives add messageDelay dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
 
@@ -266,6 +269,7 @@ data modify storage death Pos set value [0.0d,0.0d,0.0d]
 data modify storage clock_storage Upgrade set value 0b
 data modify storage timer Minutes set value 0
 data modify storage math_holder Slot set value [0.0d,0.0d,0.0d]
+data modify storage recall oid set value [0]
 
 tellraw @a {"text":"Tag 2.0E Loaded!","color":"#32e65c"}
 # tellraw @a [{"text": "Click ","color": "#32e65c"},{"text": "This ","underlined": true,"clickEvent": {"action": "run_command","value": "/function tag_main:begin"}},{"text": " to begin!"}]
