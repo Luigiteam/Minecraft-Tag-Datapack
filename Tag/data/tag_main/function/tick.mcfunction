@@ -31,12 +31,12 @@ execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run scoreboard players remove @s blindTimer 1
 
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run effect give @s blindness 10 0 true
-execute as @a[tag=tagger,scores={blindTimer=0..300}] run attribute @s generic.movement_speed modifier add tag_main:ready_or_not -1 add_value
-execute as @a[tag=tagger,scores={blindTimer=0..300}] run attribute @s generic.jump_strength modifier add tag_main:ready_or_not -1 add_value
+execute as @a[tag=tagger,scores={blindTimer=0..300}] run attribute @s minecraft:movement_speed modifier add tag_main:ready_or_not -1 add_value
+execute as @a[tag=tagger,scores={blindTimer=0..300}] run attribute @s minecraft:jump_strength modifier add tag_main:ready_or_not -1 add_value
 
-execute as @a[tag=tagger,scores={blindTimer=0}] run attribute @s generic.movement_speed modifier remove tag_main:ready_or_not
-execute as @a[tag=tagger,scores={blindTimer=0}] run attribute @s generic.jump_strength modifier remove tag_main:ready_or_not
-execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s blindness
+execute as @a[tag=tagger,scores={blindTimer=0}] run attribute @s minecraft:movement_speed modifier remove tag_main:ready_or_not
+execute as @a[tag=tagger,scores={blindTimer=0}] run attribute @s minecraft:jump_strength modifier remove tag_main:ready_or_not 
+execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s minecraft:blindness
 
 ## Heartbeat
 execute as @a[tag=runner] at @s if entity @a[tag=tagger,distance=31..] if score State gameStart matches 1.. if score gameMode Toggle matches 5 run scoreboard players set @s heartBeatSpeed 0
@@ -175,6 +175,10 @@ execute as @a[tag=!airborne,nbt={OnGround:1b}] if score @s airTime matches 50.. 
 
 scoreboard players set @a[nbt=!{Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}]}] airTime 0
 
+# Clock of Destiny
+execute as @a[nbt={active_effects:[{id:"minecraft:luck",amplifier:1b}]},tag=runner] run function tag_main:powerup_functions/clock_trigger/clock_runner
+execute as @a[nbt={active_effects:[{id:"minecraft:luck",amplifier:1b}]},tag=tagger] run function tag_main:powerup_functions/clock_trigger/clock_tagger
+
 # This is how the Snowball works
 execute at @e[type=marker,tag=snowballs] unless entity @e[type=snowball,distance=..2] run fill ~-2 ~-3 ~-2 ~2 ~3 ~2 air destroy
 execute at @e[type=marker,tag=snowballs] unless entity @e[type=snowball,distance=..2] run effect give @a[distance=..10] slowness 5 2 true
@@ -292,17 +296,17 @@ tag @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",components:{"minecr
 execute as @a[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]},scores={effectType=1..}] run scoreboard players set @s effectLost 0
 execute if score State gameStart matches 1.. as @a[nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]},scores={effectType=1..}] run scoreboard players add @s effectLost 1
 
-execute as @a[scores={effectLost=100..,effectType=1}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator","color":"aqua","italic":false}]']
-execute as @a[scores={effectLost=100..,effectType=2}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:2b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator","color":"aqua","italic":false}]']
-execute as @a[scores={effectLost=100..,effectType=3}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:3b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator","color":"aqua","italic":false}]']
-execute as @a[scores={effectLost=100..,effectType=4}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:4b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator","color":"aqua","italic":false}]']
-execute as @a[scores={effectLost=100..,effectType=5}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:5b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator","color":"aqua","italic":false}]']
+execute as @a[scores={effectLost=100..,effectType=1}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Jump Boost)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_jumping"]
+execute as @a[scores={effectLost=100..,effectType=2}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:2b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Slowness)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_slowness"]
+execute as @a[scores={effectLost=100..,effectType=3}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:3b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Haste)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_haste"]
+execute as @a[scores={effectLost=100..,effectType=4}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:4b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Strength)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_strength"]
+execute as @a[scores={effectLost=100..,effectType=5}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:5b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Levitation)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_levitation"]
 
 execute as @a[scores={effectLost=100..}] run scoreboard players set @s effectLost 0
 
 ### This checks if an individual has no effect
 execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{active_effects:[{id:"minecraft:jump_boost"}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=2}] run tag @s add noEffect
+execute as @a[tag=!noEffect,scores={effectType=2}] unless entity @a[nbt={active_effects:[{id:"minecraft:slowness"}]}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{active_effects:[{id:"minecraft:haste"}]}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{active_effects:[{id:"minecraft:strength"}]}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{active_effects:[{id:"minecraft:levitation"}]}] run tag @s add noEffect
