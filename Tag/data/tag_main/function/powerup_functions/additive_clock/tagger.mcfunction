@@ -17,8 +17,6 @@ scoreboard players add timeAdd Numbers 600
 
 scoreboard players operation Timer gameTimer += timeAdd Numbers
 
-clear @s clock[minecraft:custom_name='{"text":"Additive Clock of Destiny","color":"yellow","italic":false}'] 1
-
 execute store result storage math_holder Slot[0] double 1.0 run scoreboard players get timeAdd Numbers
 execute store result storage math_holder Slot[0] double 0.05 run data get storage math_holder Slot[0] 1.0
 execute store result score timeAdd Numbers run data get storage math_holder Slot[0] 1
@@ -29,4 +27,4 @@ data modify storage math_holder Slot[0] set value 0.0d
 
 execute if score set Rand >= min Numbers if score set Rand matches ..128 run scoreboard players set Timer gameTimer 1
 
-advancement revoke @s only tag_main:add_clock_tagger
+effect clear @s luck

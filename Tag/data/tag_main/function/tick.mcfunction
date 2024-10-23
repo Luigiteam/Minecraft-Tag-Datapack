@@ -500,6 +500,9 @@ execute as @a if score @s elytraDestroy matches ..0 run tag @s remove falling
 #### Additive Clock of Destiny
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:clock",components:{"minecraft:custom_data":{Floating:1b}}}},distance=..1] run function tag_main:powerup_upgrades/additive_clock
 
+execute as @a[tag=runner,nbt={active_effects:[{id:"minecraft:luck",amplifier:2b}]}] run function tag_main:powerup_functions/additive_clock/runner
+execute as @a[tag=tagger,nbt={active_effects:[{id:"minecraft:luck",amplifier:2b}]}] run function tag_main:powerup_functions/additive_clock/tagger
+
 #### Multi-Snowball of Destruction
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[nbt={Item:{id:"minecraft:snowball",count:1,components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}},distance=..1] run function tag_main:powerup_upgrades/muti_snowball
 
