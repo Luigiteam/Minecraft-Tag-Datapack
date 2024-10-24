@@ -311,7 +311,7 @@ execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{active_effects:[{id:"min
 execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{active_effects:[{id:"minecraft:strength"}]}] run tag @s add noEffect
 execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{active_effects:[{id:"minecraft:levitation"}]}] run tag @s add noEffect
 
-## Warped fungus on a stick
+## Player Revealer
 ### This gives the effect
 execute as @a[tag=tagger,scores={effectTimer=1..,effectUseWarped=1..}] run tellraw @s "You cannot use this right now"
 
@@ -331,7 +331,7 @@ tag @e[type=item,nbt={Item:{id:"minecraft:warped_fungus_on_a_stick",components:{
 
 execute as @a[nbt={Inventory:[{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]},tag=tagger] run scoreboard players set @s effectLostWarped 0
 execute if score State gameStart matches 1.. as @a[tag=tagger,nbt=!{Inventory:[{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]},scores={effectType=1..}] run scoreboard players add @s effectLostWarped 1
-execute as @a[scores={effectLostWarped=100..},tag=tagger] run give @s warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Runner Tracker","italic":false}]']
+execute as @a[scores={effectLostWarped=100..},tag=tagger] run give @s warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Runner Tracker","italic":false}]',minecraft:item_model="main:tag_player_revealer",minecraft:use_cooldown={seconds:5}]
 execute as @a[scores={effectLostWarped=100..},tag=tagger] run scoreboard players set @s effectLostWarped 0
 
 ## This shows how much time is left to use your effect on the xp bar
@@ -480,7 +480,7 @@ execute as @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{Kill:1b}
 #### Upside-Down Elytra
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}},distance=..1] run function tag_main:powerup_upgrades/upside_down_elytra
 
-execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}]}] unless entity @s[tag=falling] run scoreboard players set @s elytraDestroy 45
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b},"minecraft:item_model":"main:tag_updown_elytra"}}]}] unless entity @s[tag=falling] run scoreboard players set @s elytraDestroy 45
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}]}] unless entity @s[tag=falling] run scoreboard players set @s elytraDelay 0
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}]}] unless entity @s[tag=falling] run item replace entity @s armor.chest with minecraft:elytra[minecraft:custom_data={Floating:1b,Upgrade:1b},minecraft:enchantments={binding_curse:1s}]
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}]}] unless entity @s[tag=falling] run tag @s add falling
