@@ -206,8 +206,8 @@ execute as @e[tag=UpgradeFang] unless score @s trapDestroy matches 0.. run score
 
 execute as @e[tag=UpgradeFang] if score @s gameTimer matches 60.. run data merge entity @s {Particle:{type:"entity_effect",color:[1f,.7f,0f,0f]}}
 
-execute as @e[tag=UpgradeFang] if score @s gameTimer matches 60.. at @s unless entity @e[type=player,distance=..5,nbt={active_effects:[{id:"minecraft:slowness"}]}] run scoreboard players add @s trapDestroy 1
 execute as @e[tag=UpgradeFang] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{active_effects:[{id:"minecraft:slowness"}]}] at @e[type=player,distance=..5,nbt=!{active_effects:[{id:"minecraft:slowness"}]}] run summon minecraft:evoker_fangs ~ ~ ~ {Glowing:1b}
+execute as @e[tag=UpgradeFang] if score @s gameTimer matches 60.. at @s if entity @e[type=player,distance=..5,nbt=!{active_effects:[{id:"minecraft:slowness"}]}] run scoreboard players add @s trapDestroy 1
 
 execute as @e[tag=UpgradeFang] if score @s gameTimer matches 60.. at @s run effect give @e[type=player,distance=..5,nbt=!{active_effects:[{id:"minecraft:slowness"}]}] slowness 20 15
 
@@ -480,7 +480,7 @@ execute as @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{Kill:1b}
 #### Upside-Down Elytra
 execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}},distance=..1] run function tag_main:powerup_upgrades/upside_down_elytra
 
-execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b},"minecraft:item_model":"main:tag_updown_elytra"}}]}] unless entity @s[tag=falling] run scoreboard players set @s elytraDestroy 45
+execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}]}] unless entity @s[tag=falling] run scoreboard players set @s elytraDestroy 45
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}]}] unless entity @s[tag=falling] run scoreboard players set @s elytraDelay 0
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}]}] unless entity @s[tag=falling] run item replace entity @s armor.chest with minecraft:elytra[minecraft:custom_data={Floating:1b,Upgrade:1b},minecraft:enchantments={binding_curse:1s}]
 execute as @a[nbt={Inventory:[{Slot:102b,id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}]}] unless entity @s[tag=falling] run tag @s add falling
