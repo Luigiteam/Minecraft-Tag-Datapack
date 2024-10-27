@@ -115,11 +115,11 @@ bossbar set runnertimer players @a
 # This gives the player's scores for their respective effects
 execute as @a[scores={effectTrigger=1..}] run scoreboard players operation @s effectType = @s effectTrigger
 tag @a add noEffect
-give @a[scores={effectType=1}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:1b}]
-give @a[scores={effectType=2}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:2b}]
-give @a[scores={effectType=3}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:3b}]
-give @a[scores={effectType=4}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:4b}]
-give @a[scores={effectType=5}] minecraft:carrot_on_a_stick[minecraft:enchantment_glint_override=1b,minecraft:custom_name='{"text":"Effect Activator","italic":false,"color":"aqua"}',minecraft:custom_data={Floating:1b,Type:5b}]
+give @a[scores={effectType=1}] carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Jump Boost)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_jumping"]
+give @a[scores={effectType=2}] carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:2b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Slowness)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_slowness"]
+give @a[scores={effectType=3}] carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:3b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Haste)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_haste"]
+give @a[scores={effectType=4}] carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:4b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Strength)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_strength"]
+give @a[scores={effectType=5}] carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:5b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Levitation)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_levitation"]
 
 execute if score gameMode Toggle matches 5 run give @a[tag=tagger] warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Runner Tracker"}]'] 1
 

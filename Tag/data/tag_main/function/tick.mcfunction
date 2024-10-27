@@ -31,9 +31,11 @@ execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run scoreboard players remove @s blindTimer 1
 
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run effect give @s blindness 10 0 true
+execute as @a[tag=tagger,scores={blindTimer=0..300}] run item replace entity @s armor.head with oak_button[minecraft:enchantments={binding_curse:1s},minecraft:equippable={slot:"head",camera_overlay:"minecraft:block/dirt"}]
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run attribute @s minecraft:movement_speed modifier add tag_main:ready_or_not -1 add_value
 execute as @a[tag=tagger,scores={blindTimer=0..300}] run attribute @s minecraft:jump_strength modifier add tag_main:ready_or_not -1 add_value
 
+execute as @a[tag=tagger,scores={blindTimer=0}] run clear @s oak_button[minecraft:enchantments={binding_curse:1s}] 1
 execute as @a[tag=tagger,scores={blindTimer=0}] run attribute @s minecraft:movement_speed modifier remove tag_main:ready_or_not
 execute as @a[tag=tagger,scores={blindTimer=0}] run attribute @s minecraft:jump_strength modifier remove tag_main:ready_or_not 
 execute as @a[tag=tagger,scores={blindTimer=0}] run effect clear @s minecraft:blindness
