@@ -1,3 +1,5 @@
-advancement revoke @s only tag_main:recalling_eye
-execute unless score @s messageDelay matches 1.. run tellraw @s "A recall is still in effect, please wait until that one is done."
-execute unless score @s messageDelay matches 1.. run scoreboard players set @s messageDelay 20
+effect clear @s luck
+
+summon item ~ ~ ~ {Item:{id:"minecraft:glow_berries",components:{"minecraft:custom_name":'[{"text":"Eye of Recalling","color":"green"}]',"minecraft:lore":['[{"text":"This will teleport you to a random person,"}]','[{"text":"but then recalls you back after 5 seconds."}]'],"minecraft:enchantment_glint_override":1b,"minecraft:custom_data":{Floating:1b,Upgrade:1b},"minecraft:food":{nutrition:3,saturation:0,can_always_eat:true},"minecraft:item_model":"minecraft:ender_eye","minecraft:consumable":{consume_seconds:3.0f,animation:"bow",has_consume_particles:false,sound:"entity.enderman.teleport",on_consume_effects:[{type:"apply_effects",effects:[{id:"minecraft:luck",amplifier:4b,duration:100,show_particles:false,show_icon:false}]},{type:"play_sound",sound:"entity.enderman.teleport"}]},"minecraft:use_cooldown":{seconds:10,cooldown_group:"tag:tp"},"minecraft:food":{can_always_eat:true,nutrition:0,saturation:0.0f}}}}
+
+tellraw @s "A recall is still in effect, please wait until that one is done."

@@ -215,8 +215,6 @@ execute as @e[tag=UpgradeFang] if score @s gameTimer matches 60.. at @s run effe
 
 execute as @e[tag=UpgradeFang,type=area_effect_cloud] if score @s trapDestroy matches 3.. run kill @s
 
-advancement revoke @a only tag_main:clock_runner
-
 # This makes the powerups glow in their color
 
 execute as @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{Floating:1b}}}}] run data merge entity @s {Glowing:1b}
@@ -240,7 +238,7 @@ team join Yellow @e[type=item,nbt={Item:{id:"minecraft:clock",components:{"minec
 team join aqua @e[type=item,nbt={Item:{id:"minecraft:snowball",components:{"minecraft:custom_data":{Floating:1b}}}}]
 
 ## Eye of Teleportation
-team join green @e[type=item,nbt={Item:{id:"minecraft:ender_eye",components:{"minecraft:custom_data":{Floating:1b}}}}]
+team join green @e[type=item,nbt={Item:{id:"minecraft:glow_berries",components:{"minecraft:custom_data":{Floating:1b}}}}]
 
 ## Punching Bow
 team join gray @e[type=item,nbt={Item:{id:"minecraft:bow",components:{"minecraft:custom_data":{Floating:1b}}}}]
@@ -449,6 +447,7 @@ execute as @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{Floating
 # This is part of the eye of teleportation cooldown
 execute as @a if score @s eyeTimer matches 1.. run scoreboard players remove @s eyeTimer 1
 
+execute as @a[nbt={active_effects:[{id:"minecraft:luck",amplifier:3b}]}] at @s run function tag_main:powerup_functions/eye_teleport/eye
 # Extras
 ## Artifical Height/Void limit
 execute if score maxHeight Toggle matches 1 as @a[tag=!heightOP] at @s unless score @s yDistance <= maxHeight Numbers if score State gameStart matches 1.. run setblock ~ ~-2 ~ air destroy
@@ -512,12 +511,9 @@ execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",count:1,component
 execute as @e[type=snowball,nbt={Item:{id:"minecraft:snowball",count:1,components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}}] if score @s gameTimer matches 5 at @s run function tag_main:powerup_functions/multishot_snowball/multishot_snowball
 
 #### Eye of Recalling
+execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:glow_berries",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}},distance=..1] run function tag_main:powerup_upgrades/eye_of_recalling
 
-execute as @e[type=eye_of_ender,nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}}] at @s as @p at @s run function tag_main:powerup_functions/eye_of_recalling/activate
-
-execute as @a at @s if entity @e[nbt={Item:{components:{"minecraft:custom_data":{Floating:1b,Upgrade:1b}}}},sort=nearest,limit=1,distance=..3,type=eye_of_ender] run advancement grant @s only tag_main:recalling_eye
-
-execute as @e[type=item,nbt={Item:{id:"minecraft:player_head",count:1,components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:ender_eye",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b}}}},distance=..1] run function tag_main:powerup_upgrades/eye_of_recalling
+execute as @a[nbt={active_effects:[{id:"minecraft:luck",amplifier:4b}]}] at @s run function tag_main:powerup_functions/eye_of_recalling/activate
 
 execute as @e[type=marker,tag=recall] at @s run particle glow ~ ~ ~ 0.3 0.3 0.3 0.5 5 force
 
