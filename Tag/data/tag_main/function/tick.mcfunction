@@ -95,7 +95,10 @@ execute at @a[tag=freeze] run particle minecraft:block{block_state:"minecraft:bl
 execute as @e[tag=freezeCheck,type=marker] at @s if score @s oid = @p[tag=freeze] oid run tp @p[tag=freeze,limit=1,sort=nearest,distance=1..] @s
 
 # This is some code that needs to run all the time
-execute if score State gameStart matches 0.. run effect give @a saturation infinite 255 true
+execute if score State gameStart matches 0.. run effect give @a[nbt=!{active_effects:[{id:"minecraft:poison"}]}] saturation 2 2 true
+
+execute as @a[nbt={active_effects:[{id:"minecraft:poison"}]},scores={hungerLevel=7..}] run effect give @s minecraft:hunger 20 255 true
+execute as @a[scores={hungerLevel=..6}] run effect clear @s minecraft:hunger
 
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @a[nbt=!{active_effects:[{id:"minecraft:invisibility"}]}] minecraft:glowing 1 0 true
 execute if score State gameStart matches 1.. if score gameMode Toggle matches 1..2 run effect give @e[type=armor_stand,tag=decoy,nbt=!{active_effects:[{id:"minecraft:invisibility"}]}] minecraft:glowing 1 0 true
@@ -277,39 +280,27 @@ execute as @a unless score @s effectType matches 1.. run scoreboard players set 
 
 execute as @a[scores={effectTimer=1..},tag=noEffect] if score State gameStart matches 1.. run scoreboard players remove @s effectTimer 1
 
-execute as @a[tag=!noEffect,scores={effectUse=1..,effectTimer=1..}] run tellraw @s "You cannot use this right now"
-execute as @a[tag=noEffect,scores={effectUse=1..}] run tellraw @s "You cannot use this right now"
-
-execute as @a[scores={effectTimer=1}] at @s run playsound block.note_block.pling ambient @s ~ ~ ~ 1.0 2.0
-tellraw @a[scores={effectTimer=1}] "You can use your effect now!"
-execute as @a[tag=noEffect,scores={effectTimer=..0,effectUse=1..},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}}] run function tag_main:effect
-scoreboard players set @a effectUse 0
-
 ### This gives players their carrot on a stick for effects
-execute as @a store result score @s effectAmount run clear @s carrot_on_a_stick[custom_data={Floating:1b}] 0
-execute as @a[scores={effectAmount=2..}] run clear @s carrot_on_a_stick[custom_data={Floating:1b}] 1
+execute as @e[type=item,nbt={Item:{id:"minecraft:potion",components:{"minecraft:custom_data":{Floating:1b,effect:1b}}}},tag=!processed] run data modify entity @s Owner set from entity @s Thrower
+execute as @e[type=item,nbt={Item:{id:"minecraft:potion",components:{"minecraft:custom_data":{Floating:1b,effect:1b}}}},tag=!processed] run data modify entity @s PickupDelay set value 0
+tag @e[type=item,nbt={Item:{id:"minecraft:potion",components:{"minecraft:custom_data":{Floating:1b,Effect:1b}}}},tag=!processed] add processed
 
-execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}},tag=!processed] run data modify entity @s Owner set from entity @s Thrower
-execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}},tag=!processed] run data modify entity @s PickupDelay set value 0
-tag @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}},tag=!processed] add processed
+execute as @a[nbt={Inventory:[{id:"minecraft:potion",components:{"minecraft:custom_data":{Floating:1b,Effect:1b}}}]},scores={effectType=1..}] run scoreboard players set @s effectLost 0
+execute if score State gameStart matches 1.. as @a[nbt=!{Inventory:[{id:"minecraft:potion",components:{"minecraft:custom_data":{Floating:1b,Effect:1b}}}]},scores={effectType=1..}] run scoreboard players add @s effectLost 1
 
-execute as @a[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]},scores={effectType=1..}] run scoreboard players set @s effectLost 0
-execute if score State gameStart matches 1.. as @a[nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]},scores={effectType=1..}] run scoreboard players add @s effectLost 1
+execute as @a[scores={effectLost=100..,effectType=1}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_jumping",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Jump Boost)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:jump_boost",amplifier:2b,duration:140,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
 
-execute as @a[scores={effectLost=100..,effectType=1}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Jump Boost)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_jumping"]
-execute as @a[scores={effectLost=100..,effectType=2}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:2b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Slowness)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_slowness"]
-execute as @a[scores={effectLost=100..,effectType=3}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:3b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Haste)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_haste"]
-execute as @a[scores={effectLost=100..,effectType=4}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:4b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Strength)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_strength"]
-execute as @a[scores={effectLost=100..,effectType=5}] run give @s carrot_on_a_stick[minecraft:custom_data={Floating:1b,Type:5b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Effect Activator (Levitation)","color":"aqua","italic":false}]',minecraft:item_model="main:tag_levitation"]
+execute as @a[scores={effectLost=100..,effectType=2}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_slowness",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Slowness to Others)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:luck",amplifier:5b,duration:100,show_particles:false,show_icon:false,ambient:true}]},!minecraft:use_remainder] 1
+
+execute as @a[scores={effectLost=100..,effectType=3}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:20,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_haste",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Haste)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:haste",amplifier:4b,duration:300,show_particles:false,show_icon:true,ambient:true},{id:"minecraft:night_vision",amplifier:0,duration:300,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
+
+execute as @a[scores={effectLost=100..,effectType=4}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_strength",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Strength)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:strength",amplifier:1b,duration:100,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
+
+execute as @a[scores={effectLost=100..,effectType=5}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_levitation",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Levitation)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:levitation",amplifier:2b,duration:100,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
+
+execute as @a[nbt={active_effects:[{id:"minecraft:luck",amplifier:5b}]}] at @s run function tag_main:effect
 
 execute as @a[scores={effectLost=100..}] run scoreboard players set @s effectLost 0
-
-### This checks if an individual has no effect
-execute as @a[tag=!noEffect,scores={effectType=1},nbt=!{active_effects:[{id:"minecraft:jump_boost"}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=2}] unless entity @a[nbt={active_effects:[{id:"minecraft:slowness"}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=3},nbt=!{active_effects:[{id:"minecraft:haste"}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=4},nbt=!{active_effects:[{id:"minecraft:strength"}]}] run tag @s add noEffect
-execute as @a[tag=!noEffect,scores={effectType=5},nbt=!{active_effects:[{id:"minecraft:levitation"}]}] run tag @s add noEffect
 
 ## Player Revealer
 ### This gives the effect

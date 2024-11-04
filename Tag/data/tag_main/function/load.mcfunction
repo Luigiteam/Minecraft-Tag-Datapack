@@ -104,6 +104,8 @@ scoreboard objectives add playerJoin dummy
 
 scoreboard objectives add messageDelay dummy
 
+scoreboard objectives add hungerLevel food
+
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
 
