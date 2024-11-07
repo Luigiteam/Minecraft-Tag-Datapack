@@ -288,127 +288,113 @@ tag @e[type=item,nbt={Item:{id:"minecraft:potion",components:{"minecraft:custom_
 execute as @a[nbt={Inventory:[{id:"minecraft:potion",components:{"minecraft:custom_data":{Floating:1b,Effect:1b}}}]},scores={effectType=1..}] run scoreboard players set @s effectLost 0
 execute if score State gameStart matches 1.. as @a[nbt=!{Inventory:[{id:"minecraft:potion",components:{"minecraft:custom_data":{Floating:1b,Effect:1b}}}]},scores={effectType=1..}] run scoreboard players add @s effectLost 1
 
-execute as @a[scores={effectLost=100..,effectType=1}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_jumping",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Jump Boost)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:jump_boost",amplifier:2b,duration:140,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
+execute as @a[scores={effectLost=5..,effectType=1}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_jumping",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Jump Boost)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:jump_boost",amplifier:2b,duration:140,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
 
-execute as @a[scores={effectLost=100..,effectType=2}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_slowness",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Slowness to Others)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:luck",amplifier:5b,duration:100,show_particles:false,show_icon:false,ambient:true}]},!minecraft:use_remainder] 1
+execute as @a[scores={effectLost=5..,effectType=2}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_slowness",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Slowness to Others)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:luck",amplifier:5b,duration:100,show_particles:false,show_icon:false,ambient:true}]},!minecraft:use_remainder] 1
 
-execute as @a[scores={effectLost=100..,effectType=3}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:20,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_haste",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Haste)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:haste",amplifier:4b,duration:300,show_particles:false,show_icon:true,ambient:true},{id:"minecraft:night_vision",amplifier:0,duration:300,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
+execute as @a[scores={effectLost=5..,effectType=3}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:20,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_haste",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Haste)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:haste",amplifier:4b,duration:300,show_particles:false,show_icon:true,ambient:true},{id:"minecraft:night_vision",amplifier:0,duration:300,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
 
-execute as @a[scores={effectLost=100..,effectType=4}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_strength",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Strength)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:strength",amplifier:1b,duration:100,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
+execute as @a[scores={effectLost=5..,effectType=4}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_strength",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Strength)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:strength",amplifier:1b,duration:100,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
 
-execute as @a[scores={effectLost=100..,effectType=5}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_levitation",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Levitation)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:levitation",amplifier:2b,duration:100,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
+execute as @a[scores={effectLost=5..,effectType=5}] run give @s potion[minecraft:custom_data={Floating:1b,Effect:1b},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"intentionally_empty"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"},minecraft:item_model="main:tag_levitation",minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Effect Activator (Levitation)","color":"aqua","italic":false}]',minecraft:potion_contents={custom_effects:[{id:"minecraft:levitation",amplifier:2b,duration:100,show_particles:false,show_icon:true,ambient:true}]},!minecraft:use_remainder] 1
 
 execute as @a[nbt={active_effects:[{id:"minecraft:luck",amplifier:5b}]}] at @s run function tag_main:effect
 
-execute as @a[scores={effectLost=100..}] run scoreboard players set @s effectLost 0
+execute as @a[scores={effectLost=5..}] run scoreboard players set @s effectLost 0
 
 ## Player Revealer
 ### This gives the effect
-execute as @a[tag=tagger,scores={effectTimer=1..,effectUseWarped=1..}] run tellraw @s "You cannot use this right now"
+execute as @a[tag=tagger,nbt={active_effects:[{id:"minecraft:luck",amplifier:6b}]}] as @s at @s run function tag_main:effect_warped
 
-execute as @a[tag=tagger,scores={effectTimer=..0,effectUseWarped=1..},nbt={SelectedItem:{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}}] at @s run function tag_main:effect_warped
+execute if score State gameStart matches 1.. as @a[tag=tagger] if score @s effectLostWarped matches 1.. at @s run function tag_main:effect_give
 
-scoreboard players set @a effectUseWarped 0
 
-### This gives the warped stick to taggers
-execute as @a store result score @s effectAmount run clear @s warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b}] 0
-execute as @a[scores={effectAmount=2..}] run clear @s warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b}] 1
-
-execute as @a[tag=runner,nbt={Inventory:[{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]}] run clear @s warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b}] 1
-
-execute as @e[type=item,nbt={Item:{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}},tag=!processed] run data modify entity @s Owner set from entity @s Thrower
-execute as @e[type=item,nbt={Item:{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}},tag=!processed] run data modify entity @s PickupDelay set value 0
-tag @e[type=item,nbt={Item:{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}},tag=!processed] add processed
-
-execute as @a[nbt={Inventory:[{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]},tag=tagger] run scoreboard players set @s effectLostWarped 0
-execute if score State gameStart matches 1.. as @a[tag=tagger,nbt=!{Inventory:[{id:"minecraft:warped_fungus_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}]},scores={effectType=1..}] run scoreboard players add @s effectLostWarped 1
-execute as @a[scores={effectLostWarped=100..},tag=tagger] run give @s warped_fungus_on_a_stick[minecraft:custom_data={Floating:1b},minecraft:enchantment_glint_override=1b,minecraft:custom_name='[{"text":"Runner Tracker","italic":false}]',minecraft:item_model="main:tag_player_revealer",minecraft:use_cooldown={seconds:5}]
-execute as @a[scores={effectLostWarped=100..},tag=tagger] run scoreboard players set @s effectLostWarped 0
+execute as @a[tag=runner] run clear @s glow_berries[minecraft:custom_name='[{"text":"Runner Tracker","italic":false}]']
 
 ## This shows how much time is left to use your effect on the xp bar
 
-execute as @a[scores={effectTimer=400..}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=400..}] run xp set @s 219 points
-execute as @a[scores={effectTimer=400..}] run xp set @s 20 levels
+# execute as @a[scores={effectTimer=400..}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=400..}] run xp set @s 219 points
+# execute as @a[scores={effectTimer=400..}] run xp set @s 20 levels
 
-execute as @a[scores={effectTimer=380}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=380}] run xp set @s 208 points
-execute as @a[scores={effectTimer=380}] run xp set @s 19 levels
+# execute as @a[scores={effectTimer=380}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=380}] run xp set @s 208 points
+# execute as @a[scores={effectTimer=380}] run xp set @s 19 levels
 
-execute as @a[scores={effectTimer=360}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=360}] run xp set @s 197 points
-execute as @a[scores={effectTimer=360}] run xp set @s 18 levels
+# execute as @a[scores={effectTimer=360}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=360}] run xp set @s 197 points
+# execute as @a[scores={effectTimer=360}] run xp set @s 18 levels
 
-execute as @a[scores={effectTimer=340}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=340}] run xp set @s 186 points
-execute as @a[scores={effectTimer=340}] run xp set @s 17 levels
+# execute as @a[scores={effectTimer=340}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=340}] run xp set @s 186 points
+# execute as @a[scores={effectTimer=340}] run xp set @s 17 levels
 
-execute as @a[scores={effectTimer=320}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=320}] run xp set @s 175 points
-execute as @a[scores={effectTimer=320}] run xp set @s 16 levels
+# execute as @a[scores={effectTimer=320}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=320}] run xp set @s 175 points
+# execute as @a[scores={effectTimer=320}] run xp set @s 16 levels
 
-execute as @a[scores={effectTimer=300}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=300}] run xp set @s 164 points
-execute as @a[scores={effectTimer=300}] run xp set @s 15 levels
+# execute as @a[scores={effectTimer=300}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=300}] run xp set @s 164 points
+# execute as @a[scores={effectTimer=300}] run xp set @s 15 levels
 
-execute as @a[scores={effectTimer=280}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=280}] run xp set @s 153 points
-execute as @a[scores={effectTimer=280}] run xp set @s 14 levels
+# execute as @a[scores={effectTimer=280}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=280}] run xp set @s 153 points
+# execute as @a[scores={effectTimer=280}] run xp set @s 14 levels
 
-execute as @a[scores={effectTimer=260}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=260}] run xp set @s 142 points
-execute as @a[scores={effectTimer=260}] run xp set @s 13 levels
+# execute as @a[scores={effectTimer=260}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=260}] run xp set @s 142 points
+# execute as @a[scores={effectTimer=260}] run xp set @s 13 levels
 
-execute as @a[scores={effectTimer=240}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=240}] run xp set @s 131 points
-execute as @a[scores={effectTimer=240}] run xp set @s 12 levels
+# execute as @a[scores={effectTimer=240}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=240}] run xp set @s 131 points
+# execute as @a[scores={effectTimer=240}] run xp set @s 12 levels
 
-execute as @a[scores={effectTimer=220}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=220}] run xp set @s 120 points
-execute as @a[scores={effectTimer=220}] run xp set @s 11 levels
+# execute as @a[scores={effectTimer=220}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=220}] run xp set @s 120 points
+# execute as @a[scores={effectTimer=220}] run xp set @s 11 levels
 
-execute as @a[scores={effectTimer=200}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=200}] run xp set @s 109 points
-execute as @a[scores={effectTimer=200}] run xp set @s 10 levels
+# execute as @a[scores={effectTimer=200}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=200}] run xp set @s 109 points
+# execute as @a[scores={effectTimer=200}] run xp set @s 10 levels
 
-execute as @a[scores={effectTimer=180}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=180}] run xp set @s 98 points
-execute as @a[scores={effectTimer=180}] run xp set @s 9 levels
+# execute as @a[scores={effectTimer=180}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=180}] run xp set @s 98 points
+# execute as @a[scores={effectTimer=180}] run xp set @s 9 levels
 
-execute as @a[scores={effectTimer=160}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=160}] run xp set @s 87 points
-execute as @a[scores={effectTimer=160}] run xp set @s 8 levels
+# execute as @a[scores={effectTimer=160}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=160}] run xp set @s 87 points
+# execute as @a[scores={effectTimer=160}] run xp set @s 8 levels
 
-execute as @a[scores={effectTimer=140}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=140}] run xp set @s 76 points
-execute as @a[scores={effectTimer=140}] run xp set @s 7 levels
+# execute as @a[scores={effectTimer=140}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=140}] run xp set @s 76 points
+# execute as @a[scores={effectTimer=140}] run xp set @s 7 levels
 
-execute as @a[scores={effectTimer=120}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=120}] run xp set @s 65 points
-execute as @a[scores={effectTimer=120}] run xp set @s 6 levels
+# execute as @a[scores={effectTimer=120}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=120}] run xp set @s 65 points
+# execute as @a[scores={effectTimer=120}] run xp set @s 6 levels
 
-execute as @a[scores={effectTimer=100}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=100}] run xp set @s 54 points
-execute as @a[scores={effectTimer=100}] run xp set @s 5 levels
+# execute as @a[scores={effectTimer=100}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=100}] run xp set @s 54 points
+# execute as @a[scores={effectTimer=100}] run xp set @s 5 levels
 
-execute as @a[scores={effectTimer=80}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=80}] run xp set @s 43 points
-execute as @a[scores={effectTimer=80}] run xp set @s 4 levels
+# execute as @a[scores={effectTimer=80}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=80}] run xp set @s 43 points
+# execute as @a[scores={effectTimer=80}] run xp set @s 4 levels
 
-execute as @a[scores={effectTimer=60}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=60}] run xp set @s 32 points
-execute as @a[scores={effectTimer=60}] run xp set @s 3 levels
+# execute as @a[scores={effectTimer=60}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=60}] run xp set @s 32 points
+# execute as @a[scores={effectTimer=60}] run xp set @s 3 levels
 
-execute as @a[scores={effectTimer=40}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=40}] run xp set @s 21 points
-execute as @a[scores={effectTimer=40}] run xp set @s 2 levels
+# execute as @a[scores={effectTimer=40}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=40}] run xp set @s 21 points
+# execute as @a[scores={effectTimer=40}] run xp set @s 2 levels
 
-execute as @a[scores={effectTimer=20}] run xp set @s 42 levels
-execute as @a[scores={effectTimer=20}] run xp set @s 10 points
-execute as @a[scores={effectTimer=20}] run xp set @s 1 levels
+# execute as @a[scores={effectTimer=20}] run xp set @s 42 levels
+# execute as @a[scores={effectTimer=20}] run xp set @s 10 points
+# execute as @a[scores={effectTimer=20}] run xp set @s 1 levels
 
-execute as @a[scores={effectTimer=..0}] if score State gameStart matches 1.. run xp set @s 0 levels
-execute as @a[scores={effectTimer=..0}] if score State gameStart matches 1.. run xp set @s 0 points
+execute as @a if score State gameStart matches 1.. run xp set @s 0 levels
+execute as @a if score State gameStart matches 1.. run xp set @s 0 points
 
 # This checks if an item is over water
 execute as @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{Floating:1b}}}}] at @s if block ~ ~-1 ~ minecraft:water run data merge entity @s {Motion:[0.0,0.3,0.0]}

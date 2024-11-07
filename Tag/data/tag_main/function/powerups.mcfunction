@@ -58,8 +58,8 @@ execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 a
 execute if score pow Rand matches 16..18 if score potionInvis Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;5394769], fade_colors:[I;15790320]}], flight_duration:2b}}}}
 
 ## Item 4 (Elytra of Soaring)
-execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~1 ~ {Item:{id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraftw:custom_name":'[{"text":"Elytra of Soaring","italic":false,"color":"dark_purple"}]',"minecraft:lore":['[{"text":"Put this elytra on and fly up in the air","italic":false}]','[{"text":"Maybe you can catch some people off-guard","italic":false}]']}}}
-execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;12801229,15790320], fade_colors:[I;8073150]}], flight_duration:2b}}}}
+execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 at @e[tag=positioned,type=marker] run summon minecraft:item ~ ~280 ~ {Item:{id:"minecraft:elytra",components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:custom_name":'[{"text":"Elytra of Soaring","italic":false,"color":"dark_purple"}]',"minecraft:lore":['[{"text":"Put this elytra on and fly up in the air","italic":false}]','[{"text":"Maybe you can catch some people off-guard","italic":false}]']}}}
+execute if score pow Rand matches 19..22 if score elytra Toggle matches 1 at @e[tag=positioned,type=marker] run summon firework_rocket ~ ~10 ~ {LifeTime:40,FireworksItem:{id:firework_rocket,components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;12801229,15790320],fade_colors:[I;8073150]}],flight_duration:2b}}}}
 
 ## Item 5 (Clock of Destiny)
 
