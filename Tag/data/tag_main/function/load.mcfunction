@@ -28,8 +28,6 @@ scoreboard objectives add elytraEquip dummy
 
 scoreboard objectives add optionsSelect dummy
 
-scoreboard objectives add effectTrigger trigger
-
 scoreboard objectives add effectTimer dummy
 
 scoreboard objectives add effectType dummy
@@ -106,6 +104,10 @@ scoreboard objectives add messageDelay dummy
 
 scoreboard objectives add hungerLevel food
 
+scoreboard objectives add powMax dummy
+scoreboard objectives add powMin dummy
+scoreboard objectives add powWeight dummy
+
 # Setting Fake PLayers
 scoreboard players set State gameStart 0
 
@@ -176,6 +178,42 @@ scoreboard players set clock Toggle 1
 scoreboard players set snowball Toggle 1
 scoreboard players set eyeTeleport Toggle 1
 scoreboard players set punchBow Toggle 1
+scoreboard players set effectPowerup Toggle 1
+
+scoreboard players set kbStick powWeight 5
+scoreboard players set fangTrap powWeight 4
+scoreboard players set potionInvis powWeight 3
+scoreboard players set elytra powWeight 4
+scoreboard players set clock powWeight 3
+scoreboard players set snowball powWeight 3
+scoreboard players set eyeTeleport powWeight 2
+scoreboard players set punchBow powWeight 3
+scoreboard players set effectPowerup powWeight 5
+
+
+scoreboard players set kbStick powMin 0
+scoreboard players set fangTrap powMin 0
+scoreboard players set potionInvis powMin 0
+scoreboard players set elytra powMin 0
+scoreboard players set clock powMin 0
+scoreboard players set snowball powMin 0
+scoreboard players set eyeTeleport powMin 0
+scoreboard players set punchBow powMin 0
+scoreboard players set effectPowerup powMin 0
+
+scoreboard players set kbStick powMax 0
+scoreboard players set fangTrap powMax 0
+scoreboard players set potionInvis powMax 0
+scoreboard players set elytra powMax 0
+scoreboard players set clock powMax 0
+scoreboard players set snowball powMax 0
+scoreboard players set eyeTeleport powMax 0
+scoreboard players set punchBow powMax 0
+scoreboard players set effectPowerup powMax 0
+
+scoreboard players set total powMax 0
+scoreboard players set total powMin 0
+scoreboard players set temp powMax 0
 
 scoreboard players set allDisabled Toggle 0
 
@@ -187,8 +225,9 @@ scoreboard players set tog Toggle 0
 
 scoreboard players set num Rand 0
 scoreboard players set drop Rand 0
-scoreboard players set anvil Rand 0
+scoreboard players set effect Rand 0
 scoreboard players set set Rand 0
+scoreboard players set rotation Rand 0
 
 scoreboard players set yResults yDistance 0
 
@@ -271,7 +310,6 @@ data modify storage death Pos set value [0.0d,0.0d,0.0d]
 data modify storage clock_storage Upgrade set value 0b
 data modify storage timer Minutes set value 0
 data modify storage math_holder Slot set value [0.0d,0.0d,0.0d]
-data modify storage recall oid set value [0]
+data modify storage main random set value {powMax:0,kbStickMin:0,kbStickMax:0,fangTrapMin:0,fangTrapMax:0,potionInvisMin:0,potionInvisMax:0,elytraMin:0,elytraMax:0,clockMin:0,clockMax:0,snowballMin:0,snowballMax:0,eyeTeleportMin:0,eyeTeleportMax:0,punchBowMin:0,punchBowMax:0,effectPowerupMin:0,effectPowerupMax:0,rotation:0,distance:0,halfBorderDistance:0}
 
 tellraw @a {"text":"Tag 2.0E Loaded!","color":"#32e65c"}
-# tellraw @a [{"text": "Click ","color": "#32e65c"},{"text": "This ","underlined": true,"clickEvent": {"action": "run_command","value": "/function tag_main:begin"}},{"text": " to begin!"}]

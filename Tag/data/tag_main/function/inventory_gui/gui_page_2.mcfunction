@@ -5,6 +5,7 @@ scoreboard players set @s guiUpdate 0
 item replace entity @s hotbar.0 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 1"}',minecraft:lore=['{"text": "World Border Size"}','{"text": "Timer Length"}','{"text": "Teams"}']]
 item replace entity @s hotbar.1 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 2!"}'] 2
 item replace entity @s hotbar.2 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 3"}',minecraft:lore=['{"text": "Tools"}','[{"text": "Height Settings"}]','[{"text": "Depth Settings"}]']] 3
+item replace entity @s hotbar.3 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 4!"}',minecraft:lore=['{"text":"Powerup Probability"}','{"text": ""}','{"text": ""}']] 4
 
 item replace entity @s hotbar.8 with lime_dye[minecraft:custom_name='{"text": "Click me to Start the Game!"}',minecraft:custom_data={Kill:1b}] 1
 # Items for gamemode change
@@ -71,3 +72,6 @@ execute unless score @s effectType matches 4 run item replace entity @s containe
 
 execute if score @s effectType matches 5 run item replace entity @s container.33 with potion[minecraft:item_model="main:tag_levitation",minecraft:potion_contents={custom_color:13565951,potion:"awkward",custom_effects:[{id:levitation,amplifier:2,duration:100}]},minecraft:custom_name='{"text": "Levitation Effect","color": "#CEFFFF"}',minecraft:enchantment_glint_override=1b,minecraft:lore=['{"text":"SELECTED","color": "green"}']]
 execute unless score @s effectType matches 5 run item replace entity @s container.33 with potion[minecraft:item_model="main:tag_levitation",minecraft:potion_contents={custom_color:13565951,potion:"awkward",custom_effects:[{id:levitation,amplifier:2,duration:100}]},minecraft:custom_name='{"text": "Levitation Effect","color": "#CEFFFF"}']
+
+execute if score effectPowerup Toggle matches 1 run item replace entity @s container.35 with potion[minecraft:enchantment_glint_override=true,minecraft:item_model="main:tag_base",minecraft:custom_name='{"text": "Effects can drop as Powerups"}',minecraft:lore=['{"text": "ENABLED","color": "green"}','{"text": "This option allows all 5 effects to be able to drop"}','{"text": "as a one time use powerup."}']]
+execute if score effectPowerup Toggle matches 0 run item replace entity @s container.35 with potion[minecraft:enchantment_glint_override=false,minecraft:item_model="main:tag_base",minecraft:custom_name='{"text": "Effects can drop as Powerups"}',minecraft:lore=['{"text": "DISABLED","color": "red"}','{"text": "This option allows all 5 effects to be able to drop"}','{"text": "as a one time use powerup."}']]

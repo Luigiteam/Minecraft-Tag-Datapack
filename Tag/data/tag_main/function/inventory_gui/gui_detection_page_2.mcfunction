@@ -10,14 +10,15 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:15b}]}] run function tag_main:
 # Detection for Powerup Toggle
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:18b}]}] run scoreboard players set @s guiUpdate 1
 
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:19b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"kbStick"}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:20b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"fangTrap"}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:21b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"potionInvis"}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:22b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"elytra"}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:23b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"clock"}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:24b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"snowball"}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:25b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"eyeTeleport"}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:26b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"punchBow"}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:19b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"kbStick",HiPitch:1.1}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:20b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"fangTrap",HiPitch:1.2}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:21b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"potionInvis",HiPitch:1.3}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:22b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"elytra",HiPitch:1.4}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:23b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"clock",HiPitch:1.5}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:24b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"snowball",HiPitch:1.6}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:25b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"eyeTeleport",HiPitch:1.7}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:26b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"punchBow",HiPitch:1.8}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:35b}]}] run function tag_main:inventory_gui/setting_functions/powerup_toggles/toggle {Type:"effectPowerup",HiPitch:1.9}
 
 # Detection for Effects
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:28b}]}] run function tag_main:inventory_gui/setting_functions/effect/toggle
@@ -31,6 +32,7 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:33b}]}] run function tag_main:
 # Detection for Hotbar
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:0b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:1,pitch:0.8}
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:2b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:3,pitch:1.2}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:3b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:4,pitch:1.4}
 
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:8b}]}] run clear @a *
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:8b}]}] run function tag_main:start

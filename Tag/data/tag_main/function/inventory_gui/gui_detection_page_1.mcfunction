@@ -28,6 +28,7 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:34b}]}] run function tag_main:
 # Detection for hotbar items
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:1b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:2,pitch:1.0}
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:2b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:3,pitch:1.2}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:3b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:4,pitch:1.4}
 
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:8b}]}] run clear @a *
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:8b}]}] run function tag_main:start

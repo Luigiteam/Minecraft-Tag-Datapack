@@ -4,6 +4,14 @@ execute if score State gameStart matches 1.. if score worldBorderSizeGet Numbers
 
 execute if score State gameStart matches 1.. unless score worldBorderSizeGet Numbers matches 60..200 run worldborder set 200
 
+execute if score worldBorderSize Numbers matches ..0 store result score worldBorderSize Numbers run worldborder get
+
+scoreboard players operation halfWBS Numbers = worldBorderSizeGet Numbers
+scoreboard players operation halfWBS Numbers /= 2 Numbers
+execute store result storage main random.halfBorderDistance int 1 run scoreboard players get halfWBS Numbers
+
+execute if score temp powMax matches 0 run function tag_main:powerup_range_check/range_check
+
 execute if score State gameStart matches 1 run gamemode spectator @a[tag=spectate]
 execute as @a[tag=spectate,gamemode=spectator] run tag @s remove spectator
 
@@ -11,12 +19,9 @@ execute as @a unless score @s eyeTimer matches 0.. run scoreboard players set @s
 execute as @a unless score @s messageDelay matches 0.. run scoreboard players set @s messageDelay 0
 execute as @a if score @s messageDelay matches 1.. run scoreboard players remove @s messageDelay 1
 
-scoreboard players enable @a effectTrigger
 scoreboard players enable @a teamChoose
 scoreboard players enable @a giveBook
 scoreboard players enable @a textTrigger
-
-execute as @e[type=item,nbt={Item:{id:"minecraft:carrot_on_a_stick",components:{"minecraft:custom_data":{Floating:1b}}}},scores={gameTimer=100..}] run kill @s
 
 execute if score State gameStart matches 1 if score Insane Toggle matches 1 run scoreboard players add tnt gameTimer 1
 execute if score tnt gameTimer matches 300.. as @a[tag=!freeze,scores={blindTimer=..0}] at @s run summon tnt ~ ~ ~ {fuse:60s}
@@ -257,7 +262,14 @@ execute if score State gameStart matches 0 run scoreboard players set @a gameTim
 execute if score State gameStart matches 1 as @a[tag=tagger] if score @s gameTimer < SpeedTimer Numbers run scoreboard players add @s gameTimer 1
 
 execute if score allDisabled Toggle matches 0 if score State gameStart matches 1 if score PowerupTimer gameTimer < PowerupCooldown Numbers run scoreboard players add PowerupTimer gameTimer 1
-execute if score allDisabled Toggle matches 0 if score PowerupTimer gameTimer >= PowerupCooldown Numbers as @e[type=marker,tag=tpSpawn] run function tag_main:powerups
+
+execute if score allDisabled Toggle matches 0 if score PowerupTimer gameTimer >= PowerupCooldown Numbers store result storage main random.rotation int 1 run random value -45..45
+
+function tag_main:distance_random with storage main random
+
+execute if score allDisabled Toggle matches 0 if score PowerupTimer gameTimer >= PowerupCooldown Numbers as @e[type=marker,tag=tpSpawn] at @s run function tag_main:powerups with storage minecraft:main random
+
+execute if score PowerupTimer gameTimer >= PowerupCooldown Numbers run scoreboard players set PowerupTimer gameTimer 0
 
 execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 1..2 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer > SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 0 true
 execute as @a[tag=tagger] if score Insane Toggle matches 0 if score gameMode Toggle matches 1..2 if score @s gameTimer >= SpeedTimer Numbers if score Timer gameTimer <= SecondRound gameTimer if score Timer gameTimer > LastRound gameTimer run effect give @s speed 1 1 true
@@ -456,6 +468,7 @@ tag @a[nbt=!{active_effects:[{id:"minecraft:invisibility"}]}] remove hidden
 
 execute as @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{Kill:1b}}}}] at @s run kill @e[type=item,nbt={Item:{id:"minecraft:armor_stand"}},distance=..2]
 execute as @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{Kill:1b}}}},nbt=!{Item:{id:"minecraft:glow_berries",components:{"minecraft:custom_data":{Effect:1b}}}}] run kill @s
+clear @a glass_bottle[minecraft:custom_data={Kill:1b}]
 execute as @e[type=item,nbt={Item:{id:"minecraft:glow_berries",components:{"minecraft:custom_data":{Effect:1b}}}}] if score @s gameTimer matches 5.. run kill @s
 
 #### Upside-Down Elytra
@@ -564,13 +577,13 @@ execute if score State gameStart matches 1 if score Timer gameTimer matches ..0 
 
 # GUI
 execute as @a unless score @s playerJoin matches 0.. run scoreboard players set @a playerJoin 0
-execute as @a if score @s playerJoin matches 49 run playsound block.note_block.pling ambient @s ~ ~ ~ 50 1.5
-execute as @a if score @s playerJoin matches 49 run tellraw @s {"text":"Welcome! To get started, please open your inventory to start a round!"}
-execute as @a unless score @s playerJoin matches 50.. run scoreboard players add @s playerJoin 1
+execute as @a if score @s playerJoin matches 20 run playsound block.note_block.pling ambient @s ~ ~ ~ 50 1.5
+execute as @a if score @s playerJoin matches 20 run tellraw @s {"text":"Welcome! To get started, please open your inventory to start a round!"}
+execute as @a unless score @s playerJoin matches 21.. run scoreboard players add @s playerJoin 1
 
 execute as @a[tag=pageOP] run scoreboard players set @s guiDelay 2
 
-execute if score State gameStart matches 0 run worldborder set 30000000 1
+# execute if score State gameStart matches 0 run worldborder set 30000000 1
 
 execute as @a[tag=!tagger,tag=!runner] if score @s playerJoin matches ..49 if score State gameStart matches 1 run tag @s add spectate
 

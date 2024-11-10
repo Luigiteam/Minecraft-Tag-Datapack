@@ -1,0 +1,3 @@
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:0b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:1,pitch:0.8}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:1b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:2,pitch:1.0}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:2b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:3,pitch:1.2}

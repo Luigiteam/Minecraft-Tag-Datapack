@@ -1,0 +1,1 @@
+$execute store result storage minecraft:main random.distance int 1 run random value -$(halfBorderDistance)..$(halfBorderDistance)
