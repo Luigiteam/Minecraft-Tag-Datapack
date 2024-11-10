@@ -5,7 +5,7 @@ scoreboard players set @s guiUpdate 0
 item replace entity @s hotbar.0 with minecraft:map[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "You are currently on page 1"}']
 item replace entity @s hotbar.1 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 2!"}',minecraft:lore=['{"text": "Game Modes"}','{"text": "Powerups"}','{"text": "Effects"}']] 2
 item replace entity @s hotbar.2 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 3"}',minecraft:lore=['{"text": "Tools"}','[{"text": "Height Settings"}]','[{"text": "Depth Settings"}]']] 3
-item replace entity @s hotbar.3 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 4!"}',minecraft:lore=['{"text":"Powerup Probability"}','{"text": ""}','{"text": ""}']] 4
+item replace entity @s hotbar.3 with minecraft:paper[minecraft:custom_data={Kill:1b}, minecraft:custom_name='{"text": "Click me for page 4!"}',minecraft:lore=['{"text":"Powerup Settings"}','{"text": ""}','{"text": ""}']] 4
 
 item replace entity @s hotbar.8 with lime_dye[minecraft:custom_name='{"text": "Click me to Start the Game!"}',minecraft:custom_data={Kill:1b}] 1
 # Items for World Border

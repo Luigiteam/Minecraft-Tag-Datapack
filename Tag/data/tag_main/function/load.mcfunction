@@ -215,8 +215,6 @@ scoreboard players set total powMax 0
 scoreboard players set total powMin 0
 scoreboard players set temp powMax 0
 
-scoreboard players set allDisabled Toggle 0
-
 scoreboard players set upgradeModule Toggle 1
 
 scoreboard players set effect Toggle 1
@@ -237,10 +235,8 @@ scoreboard players set Mode optionsSelect 0
 
 scoreboard players set Rounds round 0
 
-scoreboard players set build Build 0
-
 scoreboard players set @a teamChoose 0
-scoreboard players set @a guiState 1
+scoreboard players set @a guiState 4
 scoreboard players set @a guiDelay 1
 scoreboard players set @a guiUpdate 1
 
