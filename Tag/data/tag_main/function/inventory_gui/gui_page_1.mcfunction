@@ -13,7 +13,7 @@ item replace entity @s container.11 with lime_stained_glass_pane[minecraft:custo
 item replace entity @s container.12 with lime_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Increase Size By 5","italic": false,"color": "green"}]'] 5
 
 item replace entity @s container.13 with barrier[custom_data={Floating:1b,Kill:1b},custom_name='{"text":"Barrier Size Settings","italic":false}']
-item modify entity @s container.13 {function:"minecraft:set_lore",entity:"this",lore:[[{text:"The World Border size is currently ",italic:false,"color":"white"},{score:{name:"worldBorderSize",objective:"Numbers"},"color":"light_purple"},{text:" blocks"}]],mode:"replace_all"}
+item modify entity @s container.13 {function:"minecraft:set_lore",entity:"this",lore:[[{text:"The World Border size is currently ",italic:false,"color":"white"},{score:{name:"worldBorderSize",objective:"Numbers"},"color":"light_purple"},{text:" blocks"}],[{text:"Max: ",color:"white"},{text:"300",color:"light_purple"},{text:" Blocks"}],[{text:"Min: ",color:"white"},{text:"100 ",color:"light_purple"},{text:"Blocks",color:"white"}]],mode:"replace_all"}
 
 item replace entity @s container.14 with red_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Decrease Size By 5","italic": false,"color": "red"}]'] 5
 item replace entity @s container.15 with red_stained_glass_pane[minecraft:custom_data={Floating:1b,Kill:1b},minecraft:custom_name='[{"text":"Decrease Size By 10","italic": false,"color": "red"}]'] 10
