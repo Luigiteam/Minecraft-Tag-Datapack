@@ -11,6 +11,7 @@ scoreboard players operation halfWBS Numbers /= 2 Numbers
 execute store result storage main random.halfBorderDistance int 1 run scoreboard players get halfWBS Numbers
 
 execute if score temp powMax matches 0 run function tag_main:powerup_range_check/range_check
+execute if score State gameStart matches 0 run function tag_main:weight_check
 
 execute if score State gameStart matches 1 run gamemode spectator @a[tag=spectate]
 execute as @a[tag=spectate,gamemode=spectator] run tag @s remove spectator

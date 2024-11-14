@@ -190,6 +190,15 @@ scoreboard players set eyeTeleport powWeight 2
 scoreboard players set punchBow powWeight 3
 scoreboard players set effectPowerup powWeight 5
 
+scoreboard players set kbStick Numbers 5
+scoreboard players set fangTrap Numbers 4
+scoreboard players set potionInvis Numbers 3
+scoreboard players set elytra Numbers 4
+scoreboard players set clock Numbers 3
+scoreboard players set snowball Numbers 3
+scoreboard players set eyeTeleport Numbers 2
+scoreboard players set punchBow Numbers 3
+scoreboard players set effectPowerup Numbers 5
 
 scoreboard players set kbStick powMin 0
 scoreboard players set fangTrap powMin 0
@@ -236,7 +245,7 @@ scoreboard players set Mode optionsSelect 0
 scoreboard players set Rounds round 0
 
 scoreboard players set @a teamChoose 0
-scoreboard players set @a guiState 4
+scoreboard players set @a guiState 1
 scoreboard players set @a guiDelay 1
 scoreboard players set @a guiUpdate 1
 
@@ -307,5 +316,6 @@ data modify storage clock_storage Upgrade set value 0b
 data modify storage timer Minutes set value 0
 data modify storage math_holder Slot set value [0.0d,0.0d,0.0d]
 data modify storage main random set value {powMax:0,kbStickMin:0,kbStickMax:0,fangTrapMin:0,fangTrapMax:0,potionInvisMin:0,potionInvisMax:0,elytraMin:0,elytraMax:0,clockMin:0,clockMax:0,snowballMin:0,snowballMax:0,eyeTeleportMin:0,eyeTeleportMax:0,punchBowMin:0,punchBowMax:0,effectPowerupMin:0,effectPowerupMax:0,rotation:0,distance:0,halfBorderDistance:0}
+data modify storage main Weights set value {kbStick:0,fangTrap:0,potionInvis:0,elytra:0,clock:0,snowball:0,eyeTeleport:0,punchBow:0,effectPowerup:0}
 
 tellraw @a {"text":"Tag 2.0E Loaded!","color":"#32e65c"}

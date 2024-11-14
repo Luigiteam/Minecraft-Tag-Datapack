@@ -161,7 +161,7 @@ execute if score gameMode Toggle matches 5 run team modify taggers nametagVisibi
 
 scoreboard players add Rounds round 1
 
-time set day
+time set midnight
 
 # This forces default if a person doesn't have a specific sound selected
 execute as @a unless score @s playerRevelerSound matches 0.. run scoreboard players set @s playerRevelerSound 1

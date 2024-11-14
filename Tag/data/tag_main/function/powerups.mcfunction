@@ -20,6 +20,7 @@ scoreboard players set pow Rand 0
 $execute store result score pow Rand run random value 0..$(powMax)
 
 execute at @s run rotate @s facing entity @r
+$tp @s ~ ~ ~ ~$(rotation) ~
 
 # This is when the powerup and Firework spawn
 ## Item 1 (Knockback Stick)

@@ -1,0 +1,9 @@
+execute store result storage main Weights.kbStick int 1 run scoreboard players get kbStick powWeight
+execute store result storage main Weights.fangTrap int 1 run scoreboard players get fangTrap powWeight
+execute store result storage main Weights.potionInvis int 1 run scoreboard players get potionInvis powWeight
+execute store result storage main Weights.elytra int 1 run scoreboard players get elytra powWeight
+execute store result storage main Weights.clock int 1 run scoreboard players get clock powWeight
+execute store result storage main Weights.snowball int 1 run scoreboard players get snowball powWeight
+execute store result storage main Weights.eyeTeleport int 1 run scoreboard players get eyeTeleport powWeight
+execute store result storage main Weights.punchBow int 1 run scoreboard players get punchBow powWeight
+execute store result storage main Weights.effectPowerup int 1 run scoreboard players get effectPowerup powWeight

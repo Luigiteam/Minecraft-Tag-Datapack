@@ -28,9 +28,10 @@ execute as @s if entity @s[nbt=!{Inventory:[{Slot:32b}]}] run function tag_main:
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:33b}]}] run function tag_main:inventory_gui/setting_functions/world_depth/remove {amount:10,pitch:0.6}
 
 # Detection for hotbar
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:0b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:1,pitch:0.8}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:1b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:2,pitch:1.0}
-execute as @s if entity @s[nbt=!{Inventory:[{Slot:3b}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:4,pitch:1.4}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:0b,id:"minecraft:paper",count:1}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:1,pitch:0.8}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:1b,id:"minecraft:paper",count:2}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:2,pitch:1.0}
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:2b,id:"minecraft:map",count:3}]}] run scoreboard players set @s guiUpdate 1
+execute as @s if entity @s[nbt=!{Inventory:[{Slot:3b,id:"minecraft:paper",count:4}]}] run function tag_main:inventory_gui/setting_functions/pages/page_change {page:4,pitch:1.4}
 
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:8b}]}] run clear @a *
 execute as @s if entity @s[nbt=!{Inventory:[{Slot:8b}]}] run function tag_main:start
