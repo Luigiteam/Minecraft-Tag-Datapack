@@ -4,7 +4,7 @@ execute unless score EndTimer gameTimer matches 2400.. run scoreboard players se
 
 scoreboard players operation temp gameTimer = EndTimer gameTimer
 
-playsound minecraft:block.note_block.bit ambient @s ~ ~ ~ 50 0.5
+$playsound minecraft:block.note_block.bit ambient @s ~ ~ ~ 50 $(pitch)
 
 scoreboard players set @s guiUpdate 1
 
