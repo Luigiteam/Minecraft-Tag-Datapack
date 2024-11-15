@@ -1,6 +1,7 @@
 
 execute if entity @s[nbt=!{Inventory:[{Slot:10b}]}] run function tag_main:inventory_gui/setting_functions/powerup_weights/increase_weight {type:"fangTrap"}
 execute if entity @s[nbt=!{Inventory:[{Slot:18b}]}] run function tag_main:inventory_gui/setting_functions/powerup_weights/defaults {type:"fangTrap"}
+execute if entity @s[nbt=!{Inventory:[{Slot:19b}]}] run scoreboard players set @s guiUpdate 1
 execute if entity @s[nbt=!{Inventory:[{Slot:28b}]}] run function tag_main:inventory_gui/setting_functions/powerup_weights/decrease_weight {type:"fangTrap"}
 
 

@@ -8,4 +8,4 @@ scoreboard players set @s guiUpdate 1
 
 function tag_main:weight_check
 
-playsound block.note_block.basedrum player @s ~ ~ ~ 50 0.8
+playsound block.note_block.bit player @s ~ ~ ~ 20 0.6
