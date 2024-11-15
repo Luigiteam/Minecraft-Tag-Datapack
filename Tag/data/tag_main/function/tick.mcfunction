@@ -124,7 +124,8 @@ execute if score gameMode Toggle matches 3 run bossbar set runnertimer name ["",
 execute if score gameMode Toggle matches 4 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ":"},{"text": " Infection Tag","color": "red"}]
 execute if score gameMode Toggle matches 5 run bossbar set runnertimer name ["",{"text":"Round "},{"score":{"name":"Rounds","objective":"round"},"color": "gold"},{"text": ":"},{"text": " Hide-and-Seek","color": "gray"}]
 
-title @a[tag=runner,scores={heartBeatSpeed=0}] actionbar {"text": "The tagger is ", "extra":[{"selector":"@a[tag=tagger]"}]}
+execute if score State gameStart matches 0 run title @a actionbar {"text":"Open the Inventory to change settings of the game!"}
+execute if score State gameStart matches 1 run title @a[tag=runner,scores={heartBeatSpeed=0}] actionbar {"text": "The tagger is ", "extra":[{"selector":"@a[tag=tagger]"}]}
 
 ## heartbeat 1
 title @a[tag=runner,scores={heartBeatSpeed=1,heartBeatTimer=10}] actionbar {"text":"♥","color":"red"}
