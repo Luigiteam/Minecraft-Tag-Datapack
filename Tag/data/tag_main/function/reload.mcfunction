@@ -3,8 +3,6 @@ execute as @a[tag=spectate] at @s run tag @s remove spectate
 
 kill @e[type=marker,tag=tpSpawn]
 
-scoreboard players set @a guiDelay 5
-
 # Resetting Fake PLayers
 scoreboard players set State gameStart 0
 

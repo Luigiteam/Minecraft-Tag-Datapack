@@ -1,5 +1,6 @@
 scoreboard players set State gameStart 0
 scoreboard players set @a guiDelay 10
+scoreboard players set @a guiUpdate 1
 
 tag @a[tag=runner] add winner
 

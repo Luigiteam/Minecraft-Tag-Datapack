@@ -28,6 +28,9 @@ execute if score State gameStart matches 1 if score Insane Toggle matches 1 run 
 execute if score tnt gameTimer matches 300.. as @a[tag=!freeze,scores={blindTimer=..0}] at @s run summon tnt ~ ~ ~ {fuse:60s}
 execute if score tnt gameTimer matches 300.. run scoreboard players set tnt gameTimer 0
 
+execute as @a at @s if block ~ ~ ~ minecraft:nether_portal run setblock ~ ~ ~ minecraft:air
+execute as @a at @s run fill ~-1 ~-1 ~-1 ~1 ~1 ~1 minecraft:air replace minecraft:end_portal
+
 # Hide-and-Seek
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 store result score runners Numbers run execute if entity @e[tag=runner,tag=!spectate]
 execute if score State gameStart matches 1 if score gameMode Toggle matches 5 if score runners Numbers matches 0 run scoreboard players add winnerTimer gameTimer 1
@@ -321,6 +324,7 @@ execute if score State gameStart matches 1.. as @a[tag=tagger,nbt=!{Inventory:[{
 
 execute if score State gameStart matches 1.. as @a[tag=tagger] if score @s effectLostWarped matches 1.. at @s run function tag_main:effect_give
 
+# execute if score State gameStart matches 1.. as @a[tag=tagger,nbt=!{Inventory:[{id:"minecraft:glow_berries"}]}] run give @s minecraft:glow_berries[minecraft:custom_data={Floating:1b,Effect:1b,Kill:1b},minecraft:enchantment_glint_override=true,minecraft:custom_name='[{"text":"Runner Tracker","italic":false}]',minecraft:item_model="main:tag_player_revealer",minecraft:potion_contents={custom_effects:[{id:"minecraft:luck",amplifier:6b,duration:100}]},minecraft:food={nutrition:3,saturation:0f,can_always_eat:true},minecraft:consumable={consume_seconds:0.5f,animation:"bow",has_consume_particles:false,sound:{sound_id:"block.beacon.activate"},on_consume_effects:[{type:"play_sound",sound:"block.beacon.activate"}]},minecraft:use_cooldown={seconds:15,cooldown_group:"tag:effect"}] 1
 
 execute as @a[tag=runner] run clear @s glow_berries[minecraft:custom_name='[{"text":"Runner Tracker","italic":false}]']
 
@@ -560,6 +564,8 @@ execute as @a[tag=tagger] if score @s damageDelt matches ..0 run advancement rev
 execute as @a[tag=runner] if score @s damageDelt matches ..0 run advancement revoke @a only tag_main:on_hurt_by_runner
 
 execute as @a if score @s damageDelt matches 1.. run scoreboard players remove @s damageDelt 1
+
+execute at @s as @e[type=item,sort=nearest,limit=1,nbt={Item:{id:"minecraft:glow_berries"}}] run execute store result entity @s Owner int 1 run data get entity @n[type=player,tag=tagger] UUID 1
 
 ## Marker particle timer
 execute as @e[type=marker,tag=particle,tag=processed,scores={gameTimer=1..}] run scoreboard players add @s markerTimer 1

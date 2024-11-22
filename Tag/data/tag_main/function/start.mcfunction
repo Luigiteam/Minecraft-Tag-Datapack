@@ -173,6 +173,6 @@ execute at @e[type=marker,tag=tpSpawn] run worldborder center ~ ~
 
 worldborder set 1000 1
 
-execute at @e[type=marker,tag=tpSpawn,tag=!tpOP] run spreadplayers ~ ~ 30 60 true @a
+execute at @e[type=marker,tag=tpSpawn] run spreadplayers ~ ~ 30 60 true @a[tag=!tpOP]
 
-gamemode survival @a[tag=!tpOP]
+gamemode survival @a
