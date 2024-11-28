@@ -1,7 +1,7 @@
+execute if score State gameStart matches 1 run function tag_main:reload
+
 ## VERSION 1.6
 forceload add 0 0 0 0
-
-## NEED TO ADD IN SETTINGS FOR yDistance and keepInventory Toggles
 
 # Adding Objectives
 scoreboard objectives add gameStart dummy
@@ -170,15 +170,15 @@ scoreboard players set minDepth Toggle 1
 
 ## Powerup Toggles
 
-scoreboard players set kbStick Toggle 1
-scoreboard players set fangTrap Toggle 1
-scoreboard players set potionInvis Toggle 1
-scoreboard players set elytra Toggle 1
-scoreboard players set clock Toggle 1
-scoreboard players set snowball Toggle 1
-scoreboard players set eyeTeleport Toggle 1
-scoreboard players set punchBow Toggle 1
-scoreboard players set effectPowerup Toggle 1
+scoreboard players set kbStick Toggle 0
+scoreboard players set fangTrap Toggle 0
+scoreboard players set potionInvis Toggle 0
+scoreboard players set elytra Toggle 0
+scoreboard players set clock Toggle 0
+scoreboard players set snowball Toggle 0
+scoreboard players set eyeTeleport Toggle 0
+scoreboard players set punchBow Toggle 0
+scoreboard players set effectPowerup Toggle 0
 
 scoreboard players set kbStick powWeight 5
 scoreboard players set fangTrap powWeight 4

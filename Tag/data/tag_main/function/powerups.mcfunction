@@ -24,7 +24,7 @@ $tp @s ~ ~ ~ ~$(rotation) ~
 
 # This is when the powerup and Firework spawn
 ## Item 1 (Knockback Stick)
-$execute if score pow Rand matches $(kbStickMin)..$(kbStickMax) if score kbStick Toggle matches 1 run summon minecraft:item ^ ^280 ^$(distance) {Item:{id:"minecraft:wooden_sword",count:1b,components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},minecraft:item_model='stick',"minecraft:enchantments":{levels:{"minecraft:knockback":5}},"minecraft:damage":58,"minecraft:custom_name":'{"text":"Knockback Stick","color":"red","italic":false}'}}}
+$execute if score pow Rand matches $(kbStickMin)..$(kbStickMax) if score kbStick Toggle matches 1 run summon minecraft:item ^ ^280 ^$(distance) {Item:{id:"minecraft:wooden_sword",count:1b,components:{"minecraft:custom_data":{Floating:1b,Upgrade:0b},"minecraft:item_model":'stick',"minecraft:enchantments":{levels:{"minecraft:knockback":5}},"minecraft:damage":58,"minecraft:custom_name":'{"text":"Knockback Stick","color":"red","italic":false}'}}}
 $execute if score pow Rand matches $(kbStickMin)..$(kbStickMax) if score kbStick Toggle matches 1 run summon minecraft:firework_rocket ^ ^10 ^$(distance) {LifeTime:40,FireworksItem:{id:firework_rocket, components:{"minecraft:fireworks":{explosions:[{shape:"large_ball",colors:[I;11743532], fade_colors:[I;14188952]}], flight_duration:2b}}}}
 
 ## Item 2 (Fang Trap)

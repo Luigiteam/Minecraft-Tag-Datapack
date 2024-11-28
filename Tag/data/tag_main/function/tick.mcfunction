@@ -247,7 +247,7 @@ team join lightPurple @e[type=item,nbt={Item:{id:"minecraft:elytra",components:{
 ## Clock of Destiny
 team join Yellow @e[type=item,nbt={Item:{id:"minecraft:clock",components:{"minecraft:custom_data":{Floating:1b}}}}]
 
-## Snowball of Freezing
+## Snowball of Destruction
 team join aqua @e[type=item,nbt={Item:{id:"minecraft:snowball",components:{"minecraft:custom_data":{Floating:1b}}}}]
 
 ## Eye of Teleportation

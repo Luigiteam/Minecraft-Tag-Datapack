@@ -1,5 +1,9 @@
 
+scoreboard players set @a guiUpdate 1
+scoreboard players set @a guiDelay 3
+
 # Assigns the tags
+
 team leave @a
 
 tag @a remove winner
